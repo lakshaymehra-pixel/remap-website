@@ -47,8 +47,8 @@ ul {
     font-weight: 500;
 }
 
-/* Hero Section */
-.hero {
+/* Hero Section — service page only */
+.service-hero {
     background: linear-gradient(135deg, #2e5bff, #1a45e0);
     color: white;
     padding: 0;
