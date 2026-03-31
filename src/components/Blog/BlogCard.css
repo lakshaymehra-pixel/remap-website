@@ -1,0 +1,69 @@
+/* === Card Container === */
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  /* === Blog Image === */
+  .card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  /* === Card Content === */
+  .card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  /* === Blog Title === */
+  .card-heading {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  /* === Blog Description === */
+  .card-description {
+    font-size: 1rem;
+    color: #555;
+    flex-grow: 1;
+  }
+
+  /* === Read More Link === */
+  .read-more-link {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #007bff;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .read-more-link:hover {
+    text-decoration: underline;
+    color: #0056b3;
+  }
+
+  /* === Created Date === */
+  .card-content p:last-child {
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 20px;
+  }

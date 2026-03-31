@@ -1,0 +1,46 @@
+.otpInput {
+    gap: 10px;
+    flex-grow: 1;
+    justify-content: start;
+}
+.otpInput .box {
+    background: #F3F3F3 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+    width: 50px;
+    min-width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #26b9db
+}
+.otpInput .box.focus {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 1px 2px #00000017;
+    border: 1px solid #26b9db;
+   
+}
+.otpInput .box input {
+    width: 20px;
+    display: block;
+   
+    padding: 0;
+    font-size: 15px;
+    font-weight: 600;
+    background-color: inherit;
+    border: none;
+    text-align: center;
+font: normal normal 600 20px/40px Poppins;
+letter-spacing: 0px;
+color: #001A16;
+}
+.otpInput .box input::placeholder {
+    font-size: 20px;
+    font-weight: 900;
+}
+
+@media only screen and (max-width: 480px) {
+    .otpInput {
+       gap: 3px !important;
+    }
+  }

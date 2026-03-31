@@ -1,0 +1,215 @@
+.repayment-card {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+.repayment-header h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.repayment-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.label {
+    font-weight: bold;
+    color: #555;
+}
+
+.value {
+    color: #000;
+}
+
+.due-amount .value {
+    color: #e63946;
+    font-weight: bold;
+}
+
+.repayment-button-container {
+    text-align: center;
+}
+
+.repayment-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.repayment-button:hover {
+    background-color: #0056b3;
+}
+
+
+/* General container for the rate section */
+.rate {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading Styles */
+.rate h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.rate h3 {
+    font-size: 20px;
+    margin-top: 30px;
+    color: #333;
+}
+
+/* Paragraph Styling */
+.rate p {
+    font-size: 16px;
+    margin: 5px 0;
+    color: #333;
+    text-align: left !important;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+th, td {
+    /* border: 1px solid #ddd; */
+    padding: 12px;
+    text-align: left;
+}
+
+/* Table header styling */
+th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Alternate row background */
+/* tr:nth-child(even) {
+    background-color: #f9f9f9;
+} */
+
+/* Table data styling */
+td {
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    /* Repayment Card */
+    .repayment-card {
+        padding: 15px;
+    }
+
+    .repayment-header h2 {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    .info-item {
+        padding: 8px;
+    }
+
+    .label,
+    .value {
+        font-size: 14px;
+    }
+
+    .repayment-button {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+
+    /* Rate Section */
+    .rate {
+        width: 95%;
+        padding: 12px;
+        margin-bottom: 80px;
+    }
+
+    .rate h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .rate h3 {
+        font-size: 16px;
+        margin-top: 20px;
+    }
+
+    .rate p {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    table, th, td {
+        font-size: 13px;
+        padding: 8px;
+    }
+}
+
+/* Extra compression for very small screens */
+@media (max-width: 480px) {
+    .repayment-header h2 {
+        font-size: 16px;
+    }
+
+    .label,
+    .value {
+        font-size: 12px;
+    }
+
+    .repayment-button {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    .rate h2 {
+        font-size: 18px;
+    }
+
+    .rate h3 {
+        font-size: 14px;
+    }
+
+    .rate p,
+    table, th, td {
+        font-size: 12px;
+    }
+}
+
+
+
+
+

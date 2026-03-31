@@ -1,0 +1,236 @@
+/* ================================================
+   HEADER — Logo Left, Menu Center, Buttons Right
+   ================================================ */
+.hdr {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 40px;
+    background: #fff;
+    width: 100%;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    position: relative;
+    z-index: 100;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.hdr-sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background: #fff;
+    animation: hdrSlideDown 0.3s ease;
+}
+
+@keyframes hdrSlideDown {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+}
+
+/* Logo */
+.hdr-logo a {
+    display: flex;
+    align-items: center;
+}
+.hdr-logo img {
+    height: 42px;
+    width: auto;
+}
+
+/* Nav container */
+.hdr-nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    justify-content: flex-end;
+    position: relative;
+}
+
+/* Menu links */
+.hdr-menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.hdr-link {
+    text-decoration: none;
+    color: #333;
+    font-size: 0.92rem;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 30px;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.hdr-link:hover {
+    border-color: #2a4a6b;
+    color: #2a4a6b;
+    text-decoration: none;
+}
+
+.hdr-link-active {
+    border-color: #2a4a6b;
+    color: #2a4a6b;
+}
+
+/* Action buttons */
+.hdr-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.hdr-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.hdr-btn-apply {
+    background: linear-gradient(135deg, #1e3a5f, #2a5080);
+    color: #fff;
+    border: 2px solid transparent;
+}
+.hdr-btn-apply:hover {
+    background: #fff;
+    color: #1e3a5f;
+    border-color: #1e3a5f;
+    text-decoration: none;
+}
+
+.hdr-btn-pay {
+    background: linear-gradient(135deg, #1e3a5f, #2a5080);
+    color: #fff;
+    border: 2px solid transparent;
+}
+.hdr-btn-pay:hover {
+    background: #fff;
+    color: #1e3a5f;
+    border-color: #1e3a5f;
+    text-decoration: none;
+}
+
+/* Hamburger — hidden on desktop */
+.hdr-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 4px;
+}
+.hdr-hamburger span {
+    width: 24px;
+    height: 3px;
+    background: #333;
+    border-radius: 3px;
+    transition: all 0.3s;
+}
+
+/* Close btn — hidden on desktop */
+.hdr-close {
+    display: none;
+}
+
+/* ================================================
+   MOBILE / TABLET
+   ================================================ */
+@media screen and (max-width: 1024px) {
+    .hdr {
+        padding: 12px 20px;
+    }
+
+    .hdr-hamburger {
+        display: flex;
+    }
+
+    .hdr-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: #fff;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 24px;
+        gap: 20px;
+        transform: translateX(-100%);
+        transition: transform 0.35s ease;
+        z-index: 1000;
+        overflow-y: auto;
+    }
+
+    .hdr-nav-open {
+        transform: translateX(0);
+    }
+
+    .hdr-close {
+        display: block;
+        align-self: flex-end;
+        font-size: 32px;
+        color: #333;
+        cursor: pointer;
+        line-height: 1;
+        padding: 4px 8px;
+    }
+
+    .hdr-menu {
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .hdr-menu li {
+        width: 100%;
+    }
+
+    .hdr-link {
+        display: block;
+        text-align: center;
+        padding: 12px 20px;
+        font-size: 1rem;
+        border-radius: 12px;
+    }
+
+    .hdr-link:hover,
+    .hdr-link-active {
+        background: #f5f7fa;
+        border-color: #2a4a6b;
+    }
+
+    .hdr-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .hdr-btn {
+        width: 100%;
+        text-align: center;
+        padding: 14px;
+        font-size: 0.9rem;
+        border-radius: 12px;
+    }
+}

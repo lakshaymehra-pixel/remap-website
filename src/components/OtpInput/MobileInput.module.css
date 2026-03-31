@@ -1,0 +1,62 @@
+.inputWrapper {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Mobile icon styling */
+.iconWrapper {
+  background-color: #26b9db !important;
+  color: white !important;
+  border: none !important;
+  border-top-left-radius: 50px !important;
+  border-bottom-left-radius: 50px !important;
+  font-size: 18px;
+  padding: 0 16px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Main input styling */
+.mobileInput {
+  height: 50px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #001a16;
+  border: 2px solid #d9d9d9 !important;
+  transition: all 0.25s ease;
+  border-left: none !important;
+  background-color: #fff;
+}
+
+/* Focused input glow */
+.mobileInput:focus {
+  border-color: #26b9db !important;
+  box-shadow: 0 0 8px rgba(38, 185, 219, 0.4) !important;
+  outline: none;
+}
+
+/* Disabled input look */
+.mobileInput:disabled {
+  background-color: #f5f5f5;
+  color: #999;
+}
+
+/* Error handling */
+.error {
+  border-color: #e74c3c !important;
+  box-shadow: 0 0 5px rgba(231, 76, 60, 0.4) !important;
+}
+
+.errorText {
+  color: #e74c3c;
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 5px;
+  text-align: center;
+}

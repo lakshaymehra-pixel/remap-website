@@ -1,0 +1,848 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+section {
+    padding: 70px 0;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: #555;
+}
+
+.highlight {
+    color: #1e5799;
+}
+
+/* Old Hero — hidden */
+.about-hero { display: none; }
+
+/* New About Hero */
+.abt-hero {
+    position: relative;
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.abt-hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+}
+.abt-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(20, 50, 80, 0.75);
+    z-index: 1;
+}
+.abt-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 60px 20px;
+    max-width: 600px;
+}
+.abt-hero-content h1 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 14px;
+    letter-spacing: -0.5px;
+}
+.abt-hero-content p {
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.7;
+    margin: 0;
+    font-weight: 300;
+}
+
+@media (max-width: 768px) {
+    .abt-hero { min-height: 200px; }
+    .abt-hero-content h1 { font-size: 1.5rem; }
+    .abt-hero-content p { font-size: 0.85rem; }
+}
+
+/* Our Story Section */
+.abt-story {
+    padding: 50px 40px;
+    background: #fff;
+}
+.abt-story-inner {
+    max-width: 750px;
+    margin: 0 auto;
+    text-align: center;
+}
+.abt-story h2 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+.abt-story h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2C6275;
+    margin-bottom: 18px;
+}
+.abt-story p {
+    font-size: 0.88rem;
+    color: #666;
+    line-height: 1.8;
+    text-align: center;
+    margin: 0;
+}
+
+/* Mission Section */
+.abt-mission {
+    padding: 50px 40px;
+    background: #f8fafb;
+}
+.abt-mission-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+/* Left — Image Placeholder */
+.abt-mission-img {
+    flex: 0 0 40%;
+}
+.abt-img-placeholder {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, #e8eef2, #d4dfe6);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: #2C6275;
+}
+
+/* Right — Content */
+.abt-mission-content {
+    flex: 1;
+}
+.abt-mission-content h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+.abt-mission-content h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #2C6275;
+    margin-bottom: 14px;
+}
+.abt-mission-content > p {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+/* Feature Cards — horizontal rectangle */
+.abt-features {
+    display: flex;
+    gap: 14px;
+}
+.abt-feat-card {
+    flex: 1;
+    background: #fff;
+    border-radius: 12px;
+    padding: 14px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #eef0f2;
+}
+.abt-feat-icon {
+    width: 34px; height: 34px;
+    background: none;
+    border: 1.5px solid #c0d4dc;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem;
+    color: #2C6275;
+    flex-shrink: 0;
+}
+.abt-feat-text strong {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+}
+.abt-feat-text span {
+    font-size: 0.68rem;
+    color: #999;
+    line-height: 1.4;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .abt-mission-inner {
+        flex-direction: column;
+    }
+    .abt-mission-img { flex: unset; }
+    .abt-features { flex-direction: column; }
+}
+
+/* Vision Section */
+.abt-vision {
+    padding: 50px 40px;
+    background: #f8fafb;
+}
+.abt-vision-row {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+.abt-vision-inner {
+    flex: 1;
+}
+.abt-vision-img {
+    flex: 0 0 38%;
+}
+.abt-vision-placeholder {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, #e8eef2, #d4dfe6);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: #2C6275;
+}
+
+@media (max-width: 768px) {
+    .abt-vision-row { flex-direction: column; }
+    .abt-vision-img { flex: unset; width: 100%; }
+}
+.abt-vision h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+.abt-vision h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #2C6275;
+    margin-bottom: 14px;
+}
+.abt-vision p {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Impact Section */
+.abt-impact {
+    padding: 50px 40px;
+    background: #fff;
+}
+.abt-impact-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+.abt-impact h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+.abt-impact-sub {
+    font-size: 0.85rem;
+    color: #999;
+    margin-bottom: 30px;
+}
+.abt-impact-grid {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+.abt-impact-card {
+    flex: 1;
+    background: #f8fafb;
+    border-radius: 14px;
+    padding: 24px 16px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    border: 1px solid #eef2f4;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.abt-impact-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+.abt-impact-icon {
+    width: 44px; height: 44px;
+    background: #eef4f6;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    color: #2C6275;
+    margin: 0 auto 12px;
+}
+.abt-impact-num {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+.abt-impact-label {
+    font-size: 0.75rem;
+    color: #999;
+    font-weight: 500;
+}
+
+@media (max-width: 600px) {
+    .abt-impact-grid {
+        flex-wrap: wrap;
+    }
+    .abt-impact-card { flex: 1 1 45%; }
+}
+
+/* CTA Bar */
+.abt-cta-bar {
+    background: linear-gradient(135deg, #1a3d65, #2a6080, #3a80a5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 18px 40px;
+}
+.abt-cta-bar span {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #fff;
+}
+.abt-cta-btn {
+    display: inline-block;
+    background: #fff;
+    color: #1a3d65;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 10px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    border: 2px solid #fff;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.abt-cta-btn:hover {
+    background: transparent;
+    color: #fff;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .abt-cta-bar {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+        padding: 16px 20px;
+    }
+}
+
+/* Section Headers */
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-header h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+.section-header p {
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Our Story Section */
+.our-story {
+    background-color: #fff;
+}
+
+.story-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.story-image {
+    flex: 1;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.story-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.story-text {
+    flex: 1;
+}
+
+.story-text p {
+    margin-bottom: 15px;
+    line-height: 1.7;
+    color: #555;
+}
+
+/* Features Section */
+
+/* Mission & Vision Section */
+.mission-vision {
+    background-color: #fff;
+}
+
+.mission-vision-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.mission-box, .vision-box {
+    border-radius: 8px;
+    padding: 35px 30px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+}
+
+.mission-box {
+    background: linear-gradient(135deg, rgba(0, 74, 153, 0.03), rgba(0, 120, 212, 0.03));
+    border-left: 4px solid #004A99;
+}
+
+.vision-box {
+    background: linear-gradient(135deg, rgba(0, 120, 212, 0.03), rgba(0, 74, 153, 0.03));
+    border-right: 4px solid #0078d4;
+}
+
+.mission-box:hover, .vision-box:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.mission-icon, .vision-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.mission-icon {
+    background: linear-gradient(135deg, #004A99, #0066cc);
+    color: #fff;
+}
+
+.vision-icon {
+    background: linear-gradient(135deg, #0078d4, #004A99);
+    color: #fff;
+}
+
+.mission-icon i, .vision-icon i {
+    font-size: 28px;
+}
+
+.mission-box h3, .vision-box h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.mission-box p, .vision-box p {
+    color: #555;
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+/* Numbers Section */
+.our-numbers {
+    background-color: #f8f9fa;
+}
+
+.numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.number-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.number-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.number {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #0078d4;
+    margin-bottom: 12px;
+}
+
+.number-label {
+    font-size: 1.05rem;
+    color: #555;
+    font-weight: 500;
+}
+
+/* Leadership Team Section */
+.leadership-team {
+    background-color: #fff;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.team-member {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.member-image {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+}
+
+.member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.team-member:hover .member-image img {
+    transform: scale(1.05);
+}
+
+.team-member h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 15px 20px 5px;
+    color: #333;
+}
+
+.member-position {
+    color: #0078d4;
+    font-weight: 500;
+    margin: 0 20px 10px;
+}
+
+.member-bio {
+    color: #666;
+    line-height: 1.6;
+    padding: 0 20px 20px;
+    font-size: 0.9rem;
+}
+
+/* Regulatory Information */
+.regulatory-info {
+    background-color: #f8f9fa;
+}
+
+.regulatory-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    background: #fff;
+    padding: 35px 30px;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.regulatory-icon {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #004A99, #0078d4);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.regulatory-icon i {
+    font-size: 25px;
+}
+
+.regulatory-content h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.regulatory-content p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+/* Call to Action Section */
+.cta-section {
+    padding: 70px 0;
+    background: linear-gradient(135deg, #004A99, #0078d4);
+    color: #fff;
+    text-align: center;
+}
+
+.cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cta-content h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.cta-content p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin: 0 10px;
+}
+
+.btn-cta {
+    background-color: #fff;
+    color: #004A99;
+}
+
+.btn-cta:hover {
+    background-color: #f5f5f5;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline {
+    border: 2px solid #fff;
+    color: #fff;
+}
+
+.btn-outline:hover {
+    background-color: #fff;
+    color: #004A99;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .about-hero-text h1 {
+        font-size: 2.4rem;
+    }
+    
+    .story-content {
+        flex-direction: column;
+    }
+    
+    .story-image, .story-text {
+        width: 100%;
+    }
+    
+    .story-image {
+        margin-bottom: 30px;
+    }
+    
+    .section-header h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-hero-text h1 {
+        font-size: 2rem;
+    }
+    
+    .about-hero-text p {
+        font-size: 1rem;
+    }
+    
+    .mission-box, .vision-box {
+        padding: 25px 20px;
+    }
+    
+    .regulatory-content {
+        padding: 25px 20px;
+    }
+    
+    .cta-content h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .about-hero {
+        padding: 70px 0 100px;
+    }
+    
+    .about-hero-text h1 {
+        font-size: 1.7rem;
+    }
+
+    .btn {
+        display: block;
+        margin: 10px auto;
+        max-width: 80%;
+    }
+}
+
+/* ================================================
+   FULL MOBILE RESPONSIVE — About Page
+   ================================================ */
+@media (max-width: 768px) {
+    /* Hero */
+    .abt-hero { min-height: 180px; }
+    .abt-hero-content { padding: 40px 16px; }
+    .abt-hero-content h1 { font-size: 1.6rem; }
+    .abt-hero-content p { font-size: 0.85rem; }
+
+    /* Story */
+    .abt-story { padding: 36px 16px; }
+    .abt-story-inner { text-align: center; }
+    .abt-story h2 { font-size: 1.3rem; }
+    .abt-story h3 { font-size: 0.85rem; }
+    .abt-story p { font-size: 0.82rem; text-align: center; }
+
+    /* Mission */
+    .abt-mission { padding: 36px 16px; }
+    .abt-mission-inner { flex-direction: column; gap: 24px; }
+    .abt-mission-img { flex: unset; width: 100%; }
+    .abt-mission-content { text-align: center; }
+    .abt-mission-content h2 { font-size: 1.3rem; }
+    .abt-mission-content h3 { font-size: 0.82rem; }
+    .abt-mission-content > p { font-size: 0.8rem; text-align: center; }
+    .abt-features { flex-direction: column; gap: 10px; }
+    .abt-feat-card { justify-content: center; }
+
+    /* Vision */
+    .abt-vision { padding: 36px 16px; }
+    .abt-vision-row { flex-direction: column; gap: 24px; }
+    .abt-vision-img { flex: unset; width: 100%; }
+    .abt-vision-inner { text-align: center; }
+    .abt-vision h2 { font-size: 1.3rem; }
+    .abt-vision h3 { font-size: 0.82rem; }
+    .abt-vision p { font-size: 0.8rem; text-align: center; }
+
+    /* Impact */
+    .abt-impact { padding: 36px 16px; }
+    .abt-impact h2 { font-size: 1.3rem; }
+    .abt-impact-sub { font-size: 0.8rem; }
+    .abt-impact-grid { flex-wrap: wrap; gap: 10px; }
+    .abt-impact-card { flex: 1 1 45%; padding: 18px 10px; }
+    .abt-impact-num { font-size: 1.1rem; }
+    .abt-impact-label { font-size: 0.68rem; }
+
+    /* CTA Bar */
+    .abt-cta-bar {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+        padding: 16px;
+    }
+    .abt-cta-bar span { font-size: 0.85rem; }
+}
+
+@media (max-width: 480px) {
+    .abt-hero-content h1 { font-size: 1.3rem; }
+    .abt-hero-content p { font-size: 0.78rem; }
+    .abt-story h2, .abt-mission-content h2, .abt-vision h2, .abt-impact h2 { font-size: 1.15rem; }
+    .abt-impact-card { flex: 1 1 100%; }
+    .abt-feat-card { padding: 12px 10px; }
+}

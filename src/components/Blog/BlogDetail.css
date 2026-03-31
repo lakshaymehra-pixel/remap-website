@@ -1,0 +1,71 @@
+/* === Main Page Wrapper === */
+.content_page_wrapper {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    color: #333;
+    font-family: "Segoe UI", sans-serif;
+  }
+
+  /* === Banner Image === */
+  .content_banner img {
+    max-width: 100% !important;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 30px;
+  }
+
+  /* === Text Content === */
+  .text_content_wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .text_content h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #222;
+  }
+
+  .text_content p {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 15px;
+    color: #555;
+  }
+
+  /* === Date styling === */
+  .text_content p:first-of-type {
+    font-size: 0.95rem;
+    color: #999;
+    margin-bottom: 20px;
+  }
+  .blog-html-content {
+    margin-top: 20px;
+  }
+
+  .blog-html-content p,
+  .blog-html-content ul,
+  .blog-html-content li {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #555;
+  }
+
+
+  /* === Responsive Adjustments === */
+  @media (max-width: 768px) {
+    .content_page_wrapper {
+      padding: 20px 15px;
+    }
+
+    .text_content h1 {
+      font-size: 1.5rem;
+    }
+
+    .content_banner img {
+      max-height: 250px;
+    }
+  }
