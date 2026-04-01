@@ -1,143 +1,146 @@
-import React from "react";
-import "../css/ContentPage.css";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import "../css/faq.css";
 
+const faqs = [
+  {
+    group: "General",
+    items: [
+      {
+        q: "What is Salary Topup?",
+        a: "Salary Topup is a short-term, unsecured loan offered by a registered NBFC to help salaried individuals meet immediate financial needs — quickly and digitally.",
+      },
+      {
+        q: "How does a Salary Topup loan work?",
+        a: "You apply online, submit your documents digitally, and receive approval within minutes. The loan amount is disbursed directly to your bank account — no collateral, no paperwork hassle.",
+      },
+    ],
+  },
+  {
+    group: "Eligibility & Amount",
+    items: [
+      {
+        q: "What is the eligibility to apply for a loan?",
+        a: "You must be at least 21 years old, a salaried employee or have a steady source of income, and have a valid bank account with your salary credited.",
+      },
+      {
+        q: "How much can I borrow through a Salary Topup loan?",
+        a: "The loan amount typically ranges from ₹5,000 to ₹50,000, depending on your income, credit profile, and the lending policies at the time of application.",
+      },
+    ],
+  },
+  {
+    group: "Repayment",
+    items: [
+      {
+        q: "What is the repayment period for a Salary Topup loan?",
+        a: "Repayment terms range from 7 to 40 days, typically aligning with your next payday. The schedule is clearly communicated before disbursement.",
+      },
+      {
+        q: "Can I prepay or close the loan before the due date?",
+        a: "Yes, you can repay the loan before the due date. There may be a reduced interest benefit for early closure — contact our support team for details.",
+      },
+      {
+        q: "What happens if I miss the loan repayment date?",
+        a: "If you're unable to repay on time, contact Salary Topup immediately. Depending on your situation, we may offer repayment extensions or alternative arrangements.",
+      },
+    ],
+  },
+  {
+    group: "Documents & Security",
+    items: [
+      {
+        q: "Do I need to provide collateral to get a loan?",
+        a: "No. Salary Topup loans are fully unsecured — you do not need to pledge any asset like a house, vehicle, or gold.",
+      },
+      {
+        q: "What documents are required to apply?",
+        a: "You'll need: PAN card, Aadhaar card (identity & address proof), latest salary slips or bank statement (last 3 months), and employment proof.",
+      },
+      {
+        q: "How fast can I receive the loan amount?",
+        a: "Once approved, funds are typically credited to your bank account within 10–30 minutes. In some cases it may take up to a few hours depending on your bank.",
+      },
+    ],
+  },
+];
 
 const FAQ = () => {
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggle = (key) => setOpenIndex(openIndex === key ? null : key);
+
+  let counter = 0;
+
   return (
     <>
-    <Helmet>
+      <Helmet>
         <title>Salary Top up Loan FAQs – Quick Answers to Your Questions</title>
         <meta property="og:title" content="Salary Top up Loan FAQs – Quick Answers to Your Questions" />
         <meta name="description" content="Find answers about Salary Top up loans, eligibility, documents, loan amounts, repayment terms, and more. Learn how our short-term loans work—fast and easy!" />
         <meta property="og:description" content="Find answers about Salary Top up loans, eligibility, documents, loan amounts, repayment terms, and more. Learn how our short-term loans work—fast and easy!" />
         <link rel="canonical" href="https://salarytopup.com/faq" />
-    </Helmet>
-      <div className="page_wrapper">
-        <div className="page_banner_wrapper">
-          <div className="page_banner_wrapper_overlay">
-            <h2>FAQ's</h2>
-            <div style={{ marginTop: "10px" }}>
-            <Link
-              to="/"
-              style={{
-                color: "#ffaa32",
-                fontWeight: "600",
-                marginTop: "10px",
-                textDecoration:"none"
-              }}
-            >
-              Home
-            </Link>
-            <span style={{ color: "white", fontSize: "16px", margin: "0 10px" }}>→</span>
-              <span style={{ color: "white", fontWeight: "600", fontSize: "16px" }}>
-                Faq's
-              </span>
+      </Helmet>
+
+      {/* ===== HERO ===== */}
+      <section className="fq-hero">
+        <div className="fq-hero-inner">
+          <span className="fq-hero-badge"><i className="fas fa-star"></i> Got Questions? We Have Answers</span>
+          <h1>Frequently Asked <span>Questions</span></h1>
+          <p>Everything you need to know about Salary Topup loans — fast, transparent, and collateral-free.</p>
+        </div>
+        <div className="fq-hero-wave">
+          <svg viewBox="0 0 1440 40" preserveAspectRatio="none"><path d="M0,20 C360,40 1080,0 1440,20 L1440,40 L0,40 Z" fill="#f5f7fa"/></svg>
+        </div>
+      </section>
+
+      {/* ===== ACCORDION ===== */}
+      <section className="fq-body">
+        <div className="fq-container">
+          {faqs.map((group, gi) => (
+            <div className="fq-group" key={gi}>
+              <div className="fq-group-title">{group.group}</div>
+              {group.items.map((item, ii) => {
+                const key = `${gi}-${ii}`;
+                const isOpen = openIndex === key;
+                counter++;
+                const num = String(counter).padStart(2, "0");
+                return (
+                  <div className={`fq-item ${isOpen ? "fq-open" : ""}`} key={key}>
+                    <button className="fq-question" onClick={() => toggle(key)}>
+                      <div className="fq-q-left">
+                        <span className="fq-q-num">{num}</span>
+                        <span className="fq-q-text">{item.q}</span>
+                      </div>
+                      <span className="fq-q-icon">
+                        <i className={`fas fa-chevron-${isOpen ? "up" : "down"}`}></i>
+                      </span>
+                    </button>
+                    <div className="fq-answer">
+                      <div className="fq-answer-inner">{item.a}</div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ===== CTA ===== */}
+      <div className="fq-cta">
+        <div className="fq-cta-inner">
+          <div className="fq-cta-text">
+            <h2>Still have questions?</h2>
+            <p>Our support team is ready to help you — apply now or get in touch.</p>
+          </div>
+          <div className="fq-cta-btns">
+            <Link to="/apply-now" className="fq-btn-primary">Apply Now <i className="fas fa-arrow-right"></i></Link>
+            <Link to="/contact" className="fq-btn-outline"><i className="fas fa-headset"></i> Contact Support</Link>
           </div>
         </div>
-        </div>
-
-
-        <div className="text_content_wrapper">
-          <div className="text_content" style={{ width: "95%" }}>
-            <h1 className="page_title mt30 mb50">Frequently asked questions</h1>
-            <div className="content_row">
-              <div className="content_item">
-                <h3 className="mb10">What is Salary Topup ?</h3>
-                <p>
-                Salary Topup is a short-term, unsecured loan offered by Non-Banking Financial Companies (NBFCs) to help individuals meet immediate financial needs.
-                </p>
-              </div>
-              <div className="content_item">
-                <h3>How do Salary Topup work?</h3>
-                <p>
-                Salary Topup are usually small amounts of money, offered without the need for collateral.
-                </p>
-              </div>
-            </div>
-            <div className="content_row">
-              <div className="content_item">
-                <h3 className="mb10"> What is the eligibility to apply for a Loan?</h3>
-                <p>
-                Eligibility criteria is
-
-You must be at least 21 years of age.
-You should be a salaried employee or have a steady source of income.
-                </p>
-              </div>
-              <div className="content_item">
-                <h3>How much can I borrow through a Salary Topup Loan?</h3>
-                <p>
-                The loan amount typically ranges from ₹5,000 to ₹50,000, depending on your income, credit score, and the lending policies.
-                </p>
-              </div>
-            </div>
-
-            <div className="content_row">
-              <div className="content_item">
-                <h3 className="mb10">
-                What is the repayment period for a Salary Topup Loan?
-                </h3>
-                <p>
-                Repayment terms generally range from 7 days to 30 days, often aligning with your payday.
-                </p>
-              </div>
-              <div className="content_item">
-                <h3>Do I need to provide collateral to get a Salary Topup Loan? </h3>
-                <p>
-                No, payday loans are typically unsecured, meaning no collateral is required.
-                </p>
-              </div>
-            </div>
-            <div className="content_row">
-              <div className="content_item">
-                <h3 className="mb10">
-                What documents are required to apply for a Salary Topup Loan?
-                </h3>
-                <p>
-                Common documentation includes:
-
-Proof of identity (Aadhar card, passport, voter ID)
-Proof of address (electricity bill, rent agreement)
-Proof of income (salary slips, bank statements)
-Employment proof
-                </p>
-              </div>
-              <div className="content_item">
-                <h3>How fast can I receive the loan amount? </h3>
-                <p>
-                Once your loan application is approved, the funds are typically disbursed quickly,
-                 often within 24-48 hours. In some cases, the loan amount may be credited to your
-                 bank account within a few hours.
-                </p>
-              </div>
-            </div>
-            <div className="content_row">
-              <div className="content_item">
-                <h3 className="mb10">
-                What happens if I miss the loan repayment date?
-                </h3>
-                <p>
-                  If you're unable to repay your loan on time, it's essential to
-                  contact Salary Topup immediately to discuss your options.
-                  Depending on the circumstances, Salary Topup may offer
-                  repayment extensions or alternative arrangements to help you
-                  manage your debt.
-                </p>
-              </div>
-              <div className="content_item">
-                <h3>Can I prepay or close the loan before the due date?</h3>
-                <p>
-                Yes, Salary Topup allow you to repay the loan before the due date.
-                However, there may be a reduced interest benefit.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
-
+      </div>
     </>
   );
 };

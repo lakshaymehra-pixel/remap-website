@@ -96,10 +96,8 @@
 @media only screen and (max-width: 900px) {
   .loginWrapper {
     background: #cef2f3 !important;
-    /* Change background for mobile */
     min-height: 0;
-    /* Set min-height to 0 on smaller screens */
-    padding: 70px 20px 30px;
+    padding: 70px 16px 30px;
     justify-content: center !important;
     text-align: center;
   }
@@ -108,8 +106,20 @@
     margin-right: 0 !important;
     margin-left: 0 !important;
     max-width: 100% !important;
+    width: 100% !important;
     justify-content: center !important;
     text-align: center;
+    padding: 30px 16px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .loginWrapper {
+    padding: 66px 12px 24px;
+  }
+  .loginWrapper .right {
+    padding: 20px 12px;
+    border-radius: 10px;
   }
 }
 

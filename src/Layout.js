@@ -8,14 +8,12 @@ import './css/Common.css'
 
 function Layout() {
   return (
-    <div className="wrapper">
+    <div className="wrapper" style={{width:"100%", maxWidth:"100vw"}}>
     <div id="snackbar"></div>
     <Header />
-    <main className="">
+    <main className="main-content" style={{width:"100%"}}>
       <Outlet />
     </main>
-
-
     <footer className="">
       <Footer />
     </footer>

@@ -1,59 +1,196 @@
 import React, { useEffect, useState } from "react";
 import "../../css/Common.css";
-import ChatButton from "../../components/ChatButton";
-import { blogDetail } from "../../Utils/api";
+import { blogDetail, allBlog } from "../../Utils/api";
 import "./BlogDetail.css";
-import { useParams } from 'react-router-dom';
-
+import { useParams, Link } from "react-router-dom";
 
 const BlogDetail = () => {
   const { id } = useParams();
-  const [blog, setBlog]=useState([])
-  useEffect(()=>{
-    const params={
-      "blog_id": id
-    };
+  const [blog, setBlog] = useState({});
+  const [relatedBlogs, setRelatedBlogs] = useState([]);
+  const [formData, setFormData] = useState({ name: "", mobile: "", email: "" });
 
-    blogDetail(params).then(resp =>{
-      if (resp?.data?.Status ===1){
-        const blogDetail=resp?.data.data[0] || {};
-        setBlog(blogDetail);
-      }
-    })
-  },[])
-
-  // ✅ Add image URL logic here, after blog is set
   const BASE_IMAGE_URL = "https://salarytopup.in/upload/";
-  const cleanedFilename = blog.banner_image_url?.replace(/^DIRECT_DOC_URL/, "");
-  const fullImageUrl = BASE_IMAGE_URL + cleanedFilename;
 
+  useEffect(() => {
+    const params = { blog_id: id };
+    blogDetail(params).then((resp) => {
+      if (resp?.data?.Status === 1) {
+        setBlog(resp?.data.data[0] || {});
+      }
+    });
+
+    allBlog({ start: "0", end: "10" }).then((resp) => {
+      if (resp?.data?.Status === 1) {
+        const all = resp.data.data || [];
+        setRelatedBlogs(all.filter((b) => String(b.id) !== String(id)).slice(0, 3));
+      }
+    });
+  }, [id]);
+
+  const getImg = (url) => BASE_IMAGE_URL + (url || "").replace(/^DIRECT_DOC_URL/, "");
+
+  const formatDate = (dateStr) => {
+    if (!dateStr) return "";
+    const d = new Date(dateStr);
+    if (isNaN(d)) return dateStr;
+    return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  };
+
+  const handleFormChange = (e) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    alert("Thank you! We'll get back to you shortly.");
+    setFormData({ name: "", mobile: "", email: "" });
+  };
+
+  const category = blog.category || "Finance";
+  const author = blog.author || "SalaryTopUp Team";
 
   return (
     <>
+      {/* Sticky bottom CTA — mobile only */}
+      <div className="bd-sticky-bar">
+        <a href="/apply-now" className="bd-sticky-apply">
+          <i className="fas fa-paper-plane"></i> Apply Now
+        </a>
+        <a href="tel:+919355753533" className="bd-sticky-call">
+          <i className="fas fa-phone"></i> Call Now
+        </a>
+      </div>
 
-      <div className="content_page_wrapper">
-        <div className="content_page_banner_wrapper">
-          <div className="text_content_wrapper">
-            <div className="text_content">
-              <div className="content_banner">
-                <img src={fullImageUrl} alt="Blog Image" />
+      <div className="bd-page">
+        <div className="bd-container">
+
+          {/* ===== LEFT — Blog Content ===== */}
+          <div className="bd-left">
+
+            {/* Category + Date */}
+            <div className="bd-meta">
+              <span className="bd-category">{category}</span>
+              <span className="bd-date">
+                <i className="far fa-calendar-alt"></i> {formatDate(blog.created_date)}
+              </span>
+            </div>
+
+            {/* Title */}
+            <h1 className="bd-title">{blog.title}</h1>
+
+            {/* Author + Social */}
+            <div className="bd-author-row">
+              <div className="bd-author">
+                <div className="bd-author-avatar">
+                  <i className="fas fa-user"></i>
+                </div>
+                <div className="bd-author-info">
+                  <span className="bd-author-label">Written by</span>
+                  <span className="bd-author-name">{author}</span>
+                </div>
               </div>
-              <h1>{blog.title}</h1>
-              <p>{blog.created_date}</p>
-              <p>
-                {blog.short_description}
-              </p>
-              <br />
-              <div
-                className="blog-html-content"
-                dangerouslySetInnerHTML={{ __html: blog.long_description }}
-              ></div>
-              <br />
+              <div className="bd-social">
+                <a href="https://www.facebook.com/profile.php?id=61574094973748" target="_blank" rel="noopener noreferrer" className="bd-soc-btn bd-soc-fb">
+                  <i className="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://x.com/SalaryTopup" target="_blank" rel="noopener noreferrer" className="bd-soc-btn bd-soc-tw">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style={{width:"13px",height:"13px"}}><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/salary_topup" target="_blank" rel="noopener noreferrer" className="bd-soc-btn bd-soc-ig">
+                  <i className="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/salary-topup/" target="_blank" rel="noopener noreferrer" className="bd-soc-btn bd-soc-li">
+                  <i className="fab fa-linkedin-in"></i>
+                </a>
+              </div>
+            </div>
+
+            {/* Banner Image */}
+            {blog.banner_image_url && (
+              <div className="bd-banner">
+                <img src={getImg(blog.banner_image_url)} alt={blog.title} />
+              </div>
+            )}
+
+            {/* Short Description */}
+            {blog.short_description && (
+              <p className="bd-short-desc">{blog.short_description}</p>
+            )}
+
+            {/* Long Content */}
+            <div
+              className="bd-content"
+              dangerouslySetInnerHTML={{ __html: blog.long_description }}
+            />
+
+            {/* Related Posts */}
+            {relatedBlogs.length > 0 && (
+              <div className="bd-related">
+                <h3 className="bd-related-title">You Must Also Read</h3>
+                <div className="bd-related-grid">
+                  {relatedBlogs.map((rb) => (
+                    <Link to={`/blog/${rb.id}`} key={rb.id} className="bd-related-card">
+                      <img src={getImg(rb.thumb_image_url)} alt={rb.title} className="bd-related-img" />
+                      <div className="bd-related-body">
+                        <span className="bd-related-cat">{rb.category || "Finance"}</span>
+                        <p className="bd-related-heading">{rb.title}</p>
+                        <span className="bd-related-date">
+                          <i className="far fa-calendar-alt"></i> {formatDate(rb.created_date)}
+                        </span>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* ===== RIGHT — Static Loan Form ===== */}
+          <div className="bd-right">
+            <div className="bd-form-card">
+              <h3 className="bd-form-title">Apply for Instant Loan</h3>
+              <p className="bd-form-sub">Get funds in 10 minutes. No paperwork needed.</p>
+              <form className="bd-form" onSubmit={handleFormSubmit}>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Full Name"
+                  value={formData.name}
+                  onChange={handleFormChange}
+                  required
+                />
+                <input
+                  type="tel"
+                  name="mobile"
+                  placeholder="Mobile Number"
+                  maxLength="10"
+                  value={formData.mobile}
+                  onChange={handleFormChange}
+                  required
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  value={formData.email}
+                  onChange={handleFormChange}
+                  required
+                />
+                <button type="submit" className="bd-form-btn">
+                  Get Free Report <i className="fas fa-arrow-right"></i>
+                </button>
+              </form>
+              <div className="bd-form-features">
+                <div className="bd-feat-item"><i className="fas fa-check-circle"></i> Instant Approval</div>
+                <div className="bd-feat-item"><i className="fas fa-check-circle"></i> No Collateral</div>
+                <div className="bd-feat-item"><i className="fas fa-check-circle"></i> 100% Digital</div>
+              </div>
             </div>
           </div>
+
         </div>
       </div>
-      <ChatButton />
     </>
   );
 };

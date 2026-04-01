@@ -167,12 +167,17 @@ a:hover {
     color: white;
     overflow: hidden;
     z-index: 1;
+    margin: 0 !important;
+    padding: 66px 0 0 0 !important;
+    display: block;
 }
 
 /* Background wrapper — responsive */
 .hero-bg-wrap {
     position: relative;
     width: 100%;
+    line-height: 0;
+    font-size: 0;
 }
 
 .hero-bg-img {
@@ -191,7 +196,7 @@ a:hover {
 
 .hero-content {
     position: absolute;
-    top: 0; right: 0; bottom: 0;
+    top: 66px; right: 0; bottom: 0;
     z-index: 2;
     display: flex;
     align-items: center;
@@ -206,6 +211,7 @@ a:hover {
 .hero-text {
     max-width: 520px;
     animation: slideInLeft 1s ease forwards;
+    line-height: 1.5;
 }
 
 .hero-highlight {
@@ -289,6 +295,98 @@ a:hover {
     text-decoration: none;
 }
 
+/* ===== Hero Desktop/Mobile toggle ===== */
+.hero-mobile { display: none; }
+.hero-desktop { display: block; }
+
+/* ===== Hero Mobile ===== */
+@media (max-width: 768px) {
+    .hero {
+        padding-top: 66px !important;
+        background: #0b1f3a;
+        display: block;
+    }
+    .hero-desktop { display: none; }
+    .hero-mobile {
+        display: flex;
+        flex-direction: column;
+        min-height: unset;
+    }
+    /* IMAGE WRAP: relative so text overlays on top */
+    .hero-mob-img-wrap {
+        width: 100%;
+        position: relative;
+        line-height: 0;
+        min-height: 480px;
+    }
+    .hero-mob-img {
+        width: 100%;
+        height: 100%;
+        min-height: 480px;
+        object-fit: cover;
+        object-position: center top;
+        display: block;
+    }
+    /* TOP: heading + subheading overlaid on top of image */
+    .hero-mob-top {
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        padding: 16px 16px 60px;
+        background: linear-gradient(180deg, rgba(10,22,40,0.82) 0%, rgba(10,22,40,0.5) 60%, transparent 100%);
+        z-index: 2;
+    }
+    .hero-mob-top h1 {
+        font-size: 1.5rem;
+        font-weight: 800;
+        font-style: italic;
+        color: #fff;
+        line-height: 1.2;
+        margin-bottom: 8px;
+    }
+    .hero-mob-top p {
+        font-size: 0.82rem;
+        color: rgba(255,255,255,0.85);
+        margin-bottom: 0;
+        line-height: 1.5;
+    }
+    /* BOTTOM: stats + button overlaid at bottom of image */
+    .hero-mob-bottom {
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        padding: 50px 14px 18px;
+        background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.55) 60%, transparent 100%);
+        z-index: 2;
+    }
+    .hero-mob-bottom .hero-stats {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center;
+        margin-bottom: 12px;
+        gap: 0;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .hero-mob-bottom .hero-stat-item { display: flex; flex-direction: column; padding: 0 6px; flex: 1; gap: 2px; }
+    .hero-mob-bottom .hero-stat-item strong { font-size: 0.78rem; color: #fff; font-weight: 700; line-height: 1.2; display: block; }
+    .hero-mob-bottom .hero-stat-item span { font-size: 0.6rem; color: rgba(255,255,255,0.65); line-height: 1.2; display: block; }
+    .hero-mob-bottom .hero-stat-divider { display: block; width: 1px; height: 26px; background: rgba(255,255,255,0.3); flex-shrink: 0; }
+    .hero-mob-bottom .btn-download {
+        display: block;
+        width: 100%;
+        text-align: center;
+        font-size: 0.95rem;
+        padding: 13px;
+        background: transparent;
+        color: #fff;
+        border-radius: 50px;
+        font-weight: 600;
+        border: 1.5px solid rgba(255,255,255,0.5);
+        margin-top: 12px;
+        letter-spacing: 0.2px;
+    }
+    .hero-mob-bottom .btn-download:hover { border-color: #fff; }
+}
+
 /* ===== Apply Now Banner ===== */
 .hsb-banner {
     background: linear-gradient(135deg, #0d2240 0%, #1a3d65 35%, #2a5f90 70%, #3a80b5 100%);
@@ -299,6 +397,7 @@ a:hover {
     gap: 0;
     position: relative;
     overflow: hidden;
+    margin-top: 0;
 }
 .hsb-banner::before {
     content: '';
@@ -405,15 +504,7 @@ a:hover {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .hsb-banner {
-        flex-direction: column;
-        gap: 16px;
-        padding: 24px 20px;
-        text-align: center;
-    }
-    .hsb-illust { margin-right: 0; width: 100px; }
-    .hsb-content { padding: 0; }
-    .hsb-content strong { font-size: 1.1rem; }
+    .hsb-banner { display: none; }
 }
 
 /* ================================================
@@ -2793,7 +2884,8 @@ section:nth-child(even) {
 /* Features Section */
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 220px));
+    justify-content: center;
     gap: 30px;
 }
 
@@ -3534,8 +3626,12 @@ section:nth-child(even) {
     animation: tstFadeIn 0.6s ease;
 }
 @keyframes tstFadeIn {
-    from { opacity: 0; transform: translateX(40px); }
+    from { opacity: 0; transform: translateX(30px); }
     to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes tstFadeInMobile {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 .tst-card {
@@ -3621,8 +3717,15 @@ section:nth-child(even) {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .tst-card { min-width: 260px; max-width: 260px; }
-    .tst-section { padding: 40px 20px 30px; }
+    .tst-section { padding: 36px 16px 28px; }
+    .tst-slider {
+        gap: 14px;
+        flex-direction: column;
+        align-items: center;
+        animation: tstFadeInMobile 0.45s cubic-bezier(0.4,0,0.2,1);
+    }
+    .tst-card { min-width: 100%; max-width: 100%; }
+    .tst-slider-wrap { padding: 0 4px; }
 }
 
 /* ================================================
@@ -4191,8 +4294,13 @@ section:nth-child(even) {
         min-height: 400px;
     }
 
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: unset;
+        gap: 12px;
+    }
     .feature-card {
-        padding: 20px;
+        padding: 16px 12px;
     }
 
 
@@ -4282,5 +4390,73 @@ section:nth-child(even) {
 
 .step.animate {
     animation: fadeIn 0.8s ease forwards;
+}
+
+/* ================================================
+   MOBILE RESPONSIVE — Global Fix (max-width: 600px)
+   ================================================ */
+@media (max-width: 600px) {
+
+    /* Loans section */
+    .loans-section { padding: 36px 16px; }
+    .loans-wrapper { flex-direction: column; gap: 28px; }
+    .loans-right { display: none; }
+    .loans-heading { font-size: 1.6rem; }
+    .loans-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .loans-grid .loan-card:nth-child(4) { grid-column: span 1; }
+    .loans-grid .loan-card:nth-child(5) { grid-column: 1 / -1; max-width: 50%; margin: 0 auto; width: 100%; }
+    .loans-download-btn { font-size: 0.85rem; padding: 10px 20px; }
+
+    /* Financial Strategy / Calculator */
+    .fis-section { padding: 32px 14px; }
+    .fis-body { flex-direction: column; gap: 16px; }
+    .fis-calc { flex: unset; width: 100%; }
+    .fis-chart { display: none; }
+    .fis-header h2 { font-size: 1.3rem; }
+    .fis-donut-svg { width: 200px; height: 200px; }
+    .fis-donut-wrap { padding: 4px 0 10px; }
+    .fis-breakdown { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .fis-breakdown-card { padding: 10px; }
+    .fis-bc-value { font-size: 0.78rem; }
+
+    /* Track section */
+    .track-container { flex-direction: column; gap: 20px; padding: 0 16px; align-items: center; text-align: center; }
+    .track-left { flex: unset; position: static; width: 100%; }
+    .track-right { width: 100%; justify-content: center; }
+    .track-badge { margin: 0 auto 16px; }
+    .track-desc { margin: 0 auto 28px; }
+    .track-cta { margin: 0 auto; }
+    .track-heading { font-size: 1.6rem; }
+    .track-desc { font-size: 0.85rem; }
+    .track-section { padding: 40px 0; }
+
+    /* Why Choose */
+    .wc-card, .wc-card:nth-child(4), .wc-card:nth-child(5) { width: 100%; }
+    .wc-container { padding: 28px 14px 0; }
+    .wc-title { font-size: 1.3rem; }
+    .wc-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 16px; justify-items: center; }
+    .wc-stat-item { width: 100%; align-items: center; text-align: center; }
+
+    /* Apply Now banner */
+    .hsb-banner { flex-direction: column; gap: 14px; padding: 20px 16px; text-align: center; }
+    .hsb-illust { margin-right: 0; width: 80px; }
+    .hsb-content strong { font-size: 1rem; }
+    .hsb-apply-btn { width: 100%; justify-content: center; font-size: 0.88rem; padding: 12px 24px; }
+
+    /* General section headers */
+    .section-header h2 { font-size: 1.5rem; }
+    .section-header p { font-size: 0.9rem; }
+
+    /* Phone mockup — hide on very small screens */
+    .mv-frame { width: 200px; }
+}
+
+@media (max-width: 400px) {
+    .loans-grid { grid-template-columns: 1fr 1fr; }
+    .loans-heading { font-size: 1.4rem; }
+    .track-heading { font-size: 1.4rem; }
+    .fis-breakdown { grid-template-columns: 1fr; }
+    .wc-stats { grid-template-columns: 1fr 1fr; }
+    .wc-stat-item { width: 100%; }
 }
 

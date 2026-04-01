@@ -5,7 +5,7 @@ import logo from "../images/logo.webp";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: "", email: "", mobile: "", subject: "", message: "", consent: false,
+    name: "", email: "", mobile: "", inquiryType: "", subject: "", message: "", consent: false,
   });
   const [processing, setProcessing] = useState(false);
   const [errors, setErrors] = useState({});
@@ -15,7 +15,7 @@ const Contact = () => {
     setFormData((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
   };
 
-  const isFormReady = formData.consent && formData.name && formData.email && formData.mobile && formData.message;
+  const isFormReady = formData.consent && formData.name && formData.email && formData.mobile && formData.inquiryType && formData.message;
 
   const validate = () => {
     const errs = {};
@@ -83,6 +83,19 @@ const Contact = () => {
                 {errors.mobile && <small className="ct-err">{errors.mobile}</small>}
               </div>
               <div className="ct-field ct-full">
+                <label>Inquiry Type <span>*</span></label>
+                <select name="inquiryType" value={formData.inquiryType} onChange={handleChange}>
+                  <option value="">Select Inquiry Type</option>
+                  <option value="Loan Inquiry">Loan Inquiry</option>
+                  <option value="Repayment">Repayment</option>
+                  <option value="Account Issue">Account Issue</option>
+                  <option value="KYC / Documents">KYC / Documents</option>
+                  <option value="Technical Support">Technical Support</option>
+                  <option value="Feedback">Feedback</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div className="ct-field ct-full">
                 <label>Your Message <span>*</span></label>
                 <textarea name="message" rows="4" placeholder="Type your message here..." value={formData.message} onChange={handleChange}></textarea>
                 {errors.message && <small className="ct-err">{errors.message}</small>}
@@ -141,7 +154,7 @@ const Contact = () => {
               <div className="ct-social">
                 <span>Follow us</span>
                 <a href="https://www.facebook.com/profile.php?id=61574094973748" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook-f"></i></a>
-                <a href="https://x.com/SalaryTopup" target="_blank" rel="noopener noreferrer"><span style={{fontWeight:800, fontSize:"0.8rem"}}>X</span></a>
+                <a href="https://x.com/SalaryTopup" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style={{width:"14px",height:"14px"}}><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
                 <a href="https://www.instagram.com/salary_topup" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
                 <a href="https://www.linkedin.com/company/salary-topup/" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin-in"></i></a>
               </div>

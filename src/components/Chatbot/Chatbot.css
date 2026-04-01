@@ -11,7 +11,9 @@
 
 .chatbot-container {
     width: 384px;
+    max-width: calc(100vw - 20px);
     height: 663px;
+    max-height: calc(100vh - 80px);
     border-radius: 15px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     overflow: hidden;

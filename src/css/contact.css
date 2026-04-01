@@ -11,10 +11,10 @@
 
 .ct-body {
     max-width: 1100px;
-    margin: 30px auto 0;
+    margin: 0 auto;
     display: flex;
     gap: 24px;
-    padding: 0 24px;
+    padding: 24px 24px 0;
     align-items: flex-start;
 }
 
@@ -71,6 +71,14 @@
     width: 100%;
     box-sizing: border-box;
 }
+
+/* Remove browser default red/orange invalid borders */
+.ct-field input:invalid,
+.ct-field select:invalid,
+.ct-field textarea:invalid {
+    box-shadow: none;
+    border-color: #dde4e8;
+}
 .ct-field input:focus,
 .ct-field select:focus,
 .ct-field textarea:focus {
@@ -95,7 +103,34 @@
     color: #555;
     cursor: pointer;
 }
-.ct-check input { margin-top: 3px; width: auto; flex-shrink: 0; }
+.ct-check input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #2a5f90;
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    cursor: pointer;
+    background: #fff;
+    transition: background 0.2s, border-color 0.2s;
+    position: relative;
+}
+.ct-check input[type="checkbox"]:checked {
+    background: #2a5f90;
+    border-color: #2a5f90;
+}
+.ct-check input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 3px; top: 0px;
+    width: 5px; height: 9px;
+    border: 2px solid #fff;
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg);
+}
 
 .ct-submit {
     width: 100%;
@@ -219,14 +254,89 @@
 
 /* MOBILE */
 @media (max-width: 768px) {
-    .ct-body { flex-direction: column; padding: 0 16px; }
-    .ct-right { flex: unset; width: 100%; flex-direction: column-reverse; }
-    .ct-row { flex-direction: column; gap: 12px; }
-    .ct-left { padding: 24px 18px; }
-    .ct-left h1 { font-size: 1.4rem; }
-    .ct-card { padding: 18px; }
-    .ct-info-grid { flex-direction: column; gap: 14px; }
-    .ct-top { padding: 14px 16px; }
-    .ct-map-card { flex-direction: column; }
-    .ct-map-right { min-height: 180px; }
+    .ct-page {
+        padding: 66px 0 40px;
+        overflow-x: hidden;
+        width: 100%;
+    }
+    .ct-body {
+        flex-direction: column;
+        padding: 0 12px;
+        margin: 16px auto 0;
+        gap: 14px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .ct-left {
+        width: 100%;
+        padding: 18px 14px;
+        border-radius: 12px;
+        box-sizing: border-box;
+    }
+    .ct-left h1 { font-size: 1.3rem; }
+    .ct-sub { font-size: 0.82rem; margin-bottom: 14px; }
+    .ct-row { flex-direction: row; gap: 10px; }
+    .ct-field input,
+    .ct-field textarea,
+    .ct-field select {
+        font-size: 0.88rem;
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .ct-submit { padding: 12px; font-size: 0.88rem; width: 100%; }
+
+    .ct-right {
+        flex: unset;
+        width: 100%;
+        flex-direction: column;
+        gap: 12px;
+        box-sizing: border-box;
+    }
+    .ct-card {
+        padding: 16px;
+        border-radius: 12px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .ct-card h3 { font-size: 1rem; }
+    .ct-info-grid { flex-direction: row; gap: 12px; align-items: flex-start; }
+    .ct-info-col { flex: 1; gap: 14px; }
+    .ct-card h3 { text-align: center; }
+    .ct-map-left { text-align: center; align-items: center; }
+    .ct-map-btn { margin: 0 auto; }
+    .ct-map-card { flex-direction: column; gap: 10px; order: 2; }
+    .ct-right > .ct-card:not(.ct-map-card) { order: 1; }
+    .ct-map-left { width: 100%; }
+    .ct-map-right {
+        width: 100%;
+        min-height: 200px;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    .ct-map-right iframe {
+        width: 100% !important;
+        height: 200px;
+        display: block;
+    }
+    .ct-map-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    .ct-social { flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .ct-social a { width: 36px; height: 36px; font-size: 0.82rem; }
+    .ct-info-item p { font-size: 0.7rem; line-height: 1.4; }
+    .ct-info-item strong { font-size: 0.75rem; }
+    .ct-ii { font-size: 0.85rem; }
+}
+
+@media (max-width: 400px) {
+    .ct-left h1 { font-size: 1.1rem; }
+    .ct-body { padding: 0 8px; }
+    .ct-left { padding: 14px 12px; }
+    .ct-field input,
+    .ct-field textarea,
+    .ct-field select { font-size: 0.82rem; }
 }

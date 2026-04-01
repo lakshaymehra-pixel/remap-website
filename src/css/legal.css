@@ -1,0 +1,270 @@
+/* ================================================
+   LEGAL PAGES — Terms, Privacy, Rate & Terms
+   ================================================ */
+
+.lg-page {
+    background: #f5f7fa;
+    min-height: 100vh;
+    padding-bottom: 60px;
+}
+
+/* ===== HERO ===== */
+.lg-hero {
+    background: linear-gradient(135deg, #0d2240 0%, #1a3d65 50%, #2a5f90 100%);
+    padding: 60px 0 44px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    color: #fff;
+}
+.lg-hero::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 250px; height: 250px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 50%;
+}
+.lg-hero-inner {
+    position: relative;
+    z-index: 2;
+    padding: 0 24px;
+}
+.lg-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    font-size: 0.74rem;
+    font-weight: 600;
+    padding: 5px 16px;
+    border-radius: 30px;
+    margin-bottom: 14px;
+}
+.lg-hero h1 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 8px;
+    line-height: 1.2;
+}
+.lg-hero-meta {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.6);
+}
+.lg-hero-wave {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    line-height: 0;
+}
+.lg-hero-wave svg { width: 100%; height: 36px; display: block; }
+
+/* ===== LAYOUT ===== */
+.lg-layout {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px 0;
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+}
+
+/* ===== SIDEBAR TOC ===== */
+.lg-sidebar {
+    width: 230px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 90px;
+    align-self: flex-start;
+}
+.lg-toc {
+    background: #fff;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.lg-toc-title {
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #2C637F;
+    margin-bottom: 14px;
+}
+.lg-toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.lg-toc ul li a {
+    display: block;
+    font-size: 0.8rem;
+    color: #666;
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+}
+.lg-toc ul li a:hover {
+    background: #eef4f7;
+    color: #1a3d65;
+}
+
+/* ===== CONTENT ===== */
+.lg-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.lg-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 36px 40px;
+    box-shadow: 0 2px 14px rgba(0,0,0,0.06);
+}
+
+.lg-card h2.lg-main-title {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: #1a2d4a;
+    margin-bottom: 6px;
+}
+.lg-card .lg-subtitle {
+    font-size: 0.88rem;
+    color: #888;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f0f4f7;
+}
+
+/* Section headings */
+.lg-card h2 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #1a2d4a;
+    margin: 32px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 1.5px solid #eef2f5;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.lg-card h2 .lg-sec-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    background: #1a3d65;
+    color: #fff;
+    border-radius: 7px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    flex-shrink: 0;
+}
+
+.lg-card h3 {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #1a2d4a;
+    margin: 26px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.lg-card h3::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 16px;
+    background: #2C637F;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+.lg-card p {
+    font-size: 0.88rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 12px;
+}
+
+.lg-card ul {
+    padding-left: 0;
+    margin-bottom: 14px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.lg-card ul li {
+    font-size: 0.86rem;
+    color: #555;
+    line-height: 1.7;
+    padding-left: 20px;
+    position: relative;
+}
+.lg-card ul li::before {
+    content: '›';
+    position: absolute;
+    left: 6px;
+    color: #2C637F;
+    font-weight: 700;
+    font-size: 1rem;
+}
+.lg-card ul ul {
+    margin-top: 8px;
+    padding-left: 14px;
+}
+.lg-card ul ul li::before {
+    content: '–';
+    font-size: 0.85rem;
+}
+
+.lg-card strong {
+    color: #1a2d4a;
+    font-weight: 700;
+}
+.lg-card a {
+    color: #2C637F;
+    text-decoration: underline;
+}
+
+/* Contact box */
+.lg-contact-box {
+    background: #eef4f7;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-top: 24px;
+    border-left: 4px solid #2C637F;
+}
+.lg-contact-box p {
+    margin: 0 0 8px;
+    font-size: 0.88rem;
+    color: #444;
+}
+.lg-contact-box p:last-child { margin: 0; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+    .lg-layout { flex-direction: column; }
+    .lg-sidebar { display: none; }
+    .lg-card { padding: 24px 20px; }
+}
+@media (max-width: 500px) {
+    .lg-hero { padding: 44px 0 32px; }
+    .lg-hero h1 { font-size: 1.5rem; }
+    .lg-hero-meta { font-size: 0.75rem; }
+    .lg-layout { padding: 20px 14px 0; }
+    .lg-card { padding: 20px 16px; }
+    .lg-card h2 { font-size: 0.95rem; }
+    .lg-card h3 { font-size: 0.9rem; }
+    .lg-card p, .lg-card ul li { font-size: 0.82rem; }
+    .lg-toc ul li a { font-size: 0.75rem; padding: 5px 8px; }
+}

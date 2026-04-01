@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import landingpage from "../images/landingpage.webp";
+import heroMobile from "../images/hero-mobile.png";
 import "../css/topup.css"; // v2
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
@@ -19,16 +20,25 @@ const tstData = [
 
 const TstSection = () => {
   const [tstPage, setTstPage] = useState(0);
-  const totalPages = 3; // 9 cards / 3 per page
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  const perPage = isMobile ? 1 : 3;
+  const totalPages = Math.ceil(tstData.length / perPage);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setTstPage(prev => (prev + 1) % totalPages);
-    }, 5000);
+    }, 4000);
     return () => clearInterval(timer);
-  }, []);
+  }, [totalPages]);
 
-  const visible = tstData.slice(tstPage * 3, tstPage * 3 + 3);
+  const visible = tstData.slice(tstPage * perPage, tstPage * perPage + perPage);
 
   return (
     <section className="tst-section" id="testimonials">
@@ -54,7 +64,7 @@ const TstSection = () => {
         </div>
       </div>
       <div className="tst-dots">
-        {[0,1,2].map(i => (
+        {Array.from({length: totalPages}).map((_, i) => (
           <span className={`tst-dot ${i === tstPage ? "tst-dot-active" : ""}`} key={i} onClick={() => setTstPage(i)}></span>
         ))}
       </div>
@@ -285,34 +295,47 @@ const Home = () => {
 
       {/* HERO SECTION */}
       <section className="hero">
-        <div className="hero-bg-wrap">
-          <img src={landingpage} alt="" className="hero-bg-img" />
-          <div className="hero-overlay"></div>
-        </div>
 
-        <div className="hero-content">
-          <div className="hero-text">
-            <h1>Sahi Financial Decisions<br />se Life Banegi <span className="hero-highlight">Great</span></h1>
-            <p>
-              Achieve your life goals with a personalized approach to money.
-            </p>
-            <div className="hero-stats">
-              <div className="hero-stat-item">
-                <strong>&#9733; 10+ Lakh</strong>
-                <span>Goal Achieved</span>
+        {/* ── Desktop hero (hidden on mobile) ── */}
+        <div className="hero-desktop">
+          <div className="hero-bg-wrap">
+            <img src={landingpage} alt="" className="hero-bg-img" />
+            <div className="hero-overlay"></div>
+          </div>
+          <div className="hero-content">
+            <div className="hero-text">
+              <h1>Sahi Financial Decisions<br />se Life Banegi <span className="hero-highlight">Great</span></h1>
+              <p>Achieve your life goals with a personalized approach to money.</p>
+              <div className="hero-stats">
+                <div className="hero-stat-item"><strong>&#9733; 10+ Lakh</strong><span>Goal Achieved</span></div>
+                <div className="hero-stat-divider"></div>
+                <div className="hero-stat-item"><strong>4.9 <i className="fas fa-download" style={{fontSize:"0.7rem"}}></i></strong><span>Play Store</span></div>
+                <div className="hero-stat-divider"></div>
+                <div className="hero-stat-item"><strong>&#10003; 7 Cr</strong><span>Safe Transactions</span></div>
               </div>
-              <div className="hero-stat-divider"></div>
-              <div className="hero-stat-item">
-                <strong>4.9 <i className="fas fa-download" style={{fontSize:"0.7rem"}}></i></strong>
-                <span>Play Store</span>
-              </div>
-              <div className="hero-stat-divider"></div>
-              <div className="hero-stat-item">
-                <strong>&#10003; 7 Cr</strong>
-                <span>Safe Transactions</span>
+              <div className="hero-buttons">
+                <a href="https://play.google.com/store/apps/details?id=com.salarytopup.salarytopup" target="_blank" rel="noopener noreferrer" className="btn-download">Download app &rarr;</a>
               </div>
             </div>
-            <div className="hero-buttons">
+          </div>
+        </div>
+
+        {/* ── Mobile hero (hidden on desktop) ── */}
+        <div className="hero-mobile">
+          <div className="hero-mob-img-wrap">
+            <img src={heroMobile} alt="" className="hero-mob-img" />
+            <div className="hero-mob-top">
+              <h1>Sahi Financial Decisions<br />se Life Banegi <span className="hero-highlight">Great</span></h1>
+              <p>Achieve your life goals with a personalized approach to money.</p>
+            </div>
+            <div className="hero-mob-bottom">
+              <div className="hero-stats">
+                <div className="hero-stat-item"><strong>&#9733; 10+ Lakh</strong><span>Goal Achieved</span></div>
+                <div className="hero-stat-divider"></div>
+                <div className="hero-stat-item"><strong>4.9 <i className="fas fa-download" style={{fontSize:"0.7rem"}}></i></strong><span>Play Store</span></div>
+                <div className="hero-stat-divider"></div>
+                <div className="hero-stat-item"><strong>&#10003; 7 Cr</strong><span>Safe Transactions</span></div>
+              </div>
               <a href="https://play.google.com/store/apps/details?id=com.salarytopup.salarytopup" target="_blank" rel="noopener noreferrer" className="btn-download">Download app &rarr;</a>
             </div>
           </div>
@@ -969,7 +992,7 @@ const Home = () => {
           </div>
           <div className="cta-bar-btns">
             <Link to="/apply-now" className="cta-bar-primary">Apply Now <i className="fas fa-arrow-right"></i></Link>
-            <Link to="/contact" className="cta-bar-outline">Contact Support</Link>
+            <a href="https://play.google.com/store/apps/details?id=com.salarytopup.salarytopup" target="_blank" rel="noopener noreferrer" className="cta-bar-outline"><i className="fas fa-download"></i> Download App</a>
           </div>
         </div>
       </section>
