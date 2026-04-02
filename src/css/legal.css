@@ -268,3 +268,5 @@
     .lg-card p, .lg-card ul li { font-size: 0.82rem; }
     .lg-toc ul li a { font-size: 0.75rem; padding: 5px 8px; }
 }
+
+.lg-cms-content h2 { font-size: 1.1rem; font-weight: 700; color: #0d2240; margin: 24px 0 10px; padding-bottom: 6px; border-bottom: 2px solid #f1f5f9; } .lg-cms-content h3 { font-size: 0.95rem; font-weight: 600; color: #1e3a5f; margin: 16px 0 8px; } .lg-cms-content p { color: #475569; line-height: 1.75; margin-bottom: 12px; } .lg-cms-content ul, .lg-cms-content ol { padding-left: 20px; margin-bottom: 14px; } .lg-cms-content ul li, .lg-cms-content ol li { color: #475569; line-height: 1.7; margin-bottom: 6px; } .lg-cms-content strong { color: #0d2240; } .lg-cms-content a { color: #2563eb; } .lg-layout { max-width: 860px; margin: 0 auto; }

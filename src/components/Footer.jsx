@@ -10,6 +10,25 @@ import playstoreImg from "../images/playstore.webp";
 const Footer = () => {
   const [openMenu, setOpenMenu] = useState(null);
   const toggleMenu = (idx) => setOpenMenu(openMenu === idx ? null : idx);
+  const [nlEmail, setNlEmail] = useState('');
+  const [nlMsg, setNlMsg] = useState('');
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    if (!nlEmail) return;
+    try {
+      const res = await fetch('http://localhost:5000/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: nlEmail })
+      });
+      const data = await res.json();
+      setNlMsg(data.message || 'Subscribed!');
+      setNlEmail('');
+    } catch {
+      setNlMsg('Something went wrong. Try again.');
+    }
+  };
 
   return (
     <footer className="ft">
@@ -110,10 +129,11 @@ const Footer = () => {
           <div className="ft-btm-right">
             <strong>Subscribe to Our Newsletter</strong>
             <span>Stay updated with our latest offers and news.</span>
-            <div className="ft-newsletter">
-              <input type="email" placeholder="Enter our email address" />
-              <button>Subscribe</button>
-            </div>
+            <form className="ft-newsletter" onSubmit={handleSubscribe}>
+              <input type="email" placeholder="Enter your email address" value={nlEmail} onChange={e => { setNlEmail(e.target.value); setNlMsg(''); }} required />
+              <button type="submit">Subscribe</button>
+            </form>
+            {nlMsg && <span style={{ fontSize: '0.78rem', color: '#4ade80', marginTop: '6px', display: 'block' }}>{nlMsg}</span>}
           </div>
         </div>
       </div>

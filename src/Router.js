@@ -80,7 +80,7 @@ function Router() {
           <Route path="repayloan" element={<Navigate to="/repay-loan" replace />} />
           <Route path="repay-loan" element={<RepayLoan showmessage={showmessage} />} />
           <Route path="blog" element={<BlogAll />} />
-          <Route path="/blog/:id" element={<BlogDetail />} />
+          <Route path="/blog/:slug" element={<BlogDetail />} />
           <Route path="/paymenthdfc" element={<Paymentgateway />} />
 
 

@@ -1,34 +1,45 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import "../../css/Common.css";
-import { blogDetail, allBlog } from "../../Utils/api";
 import "./BlogDetail.css";
 import { useParams, Link } from "react-router-dom";
 
+const ADMIN_API = "http://localhost:5000/public";
+
 const BlogDetail = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const [blog, setBlog] = useState({});
   const [relatedBlogs, setRelatedBlogs] = useState([]);
   const [formData, setFormData] = useState({ name: "", mobile: "", email: "" });
-
-  const BASE_IMAGE_URL = "https://salarytopup.in/upload/";
+  const [authorData, setAuthorData] = useState(null);
 
   useEffect(() => {
-    const params = { blog_id: id };
-    blogDetail(params).then((resp) => {
-      if (resp?.data?.Status === 1) {
-        setBlog(resp?.data.data[0] || {});
-      }
-    });
+    fetch(`${ADMIN_API}/blogs/${slug}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.Status === 1) {
+          const b = data.data || {};
+          setBlog(b);
+          if (b.author) {
+            fetch(`http://localhost:5000/api/authors/public?name=${encodeURIComponent(b.author)}`)
+              .then(r => r.json())
+              .then(d => { if (d && d.avatar_url) setAuthorData(d); })
+              .catch(() => {});
+          }
+        }
+      })
+      .catch(() => {});
 
-    allBlog({ start: "0", end: "10" }).then((resp) => {
-      if (resp?.data?.Status === 1) {
-        const all = resp.data.data || [];
-        setRelatedBlogs(all.filter((b) => String(b.id) !== String(id)).slice(0, 3));
-      }
-    });
-  }, [id]);
-
-  const getImg = (url) => BASE_IMAGE_URL + (url || "").replace(/^DIRECT_DOC_URL/, "");
+    fetch(`${ADMIN_API}/blogs`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.Status === 1) {
+          const all = data.data || [];
+          setRelatedBlogs(all.filter((b) => b.slug !== slug).slice(0, 3));
+        }
+      })
+      .catch(() => {});
+  }, [slug]);
 
   const formatDate = (dateStr) => {
     if (!dateStr) return "";
@@ -50,8 +61,36 @@ const BlogDetail = () => {
   const category = blog.category || "Finance";
   const author = blog.author || "SalaryTopUp Team";
 
+  const metaTitle = blog.meta_title || blog.title || "Blog | SalaryTopUp";
+  const metaDesc = blog.meta_description || blog.short_description || "Read our latest blog on salary loans and financial tips.";
+  const ogImage = blog.banner_image_url || "";
+  const canonical = `https://salarytopup.com/blog/${blog.slug || ""}`;
+
   return (
     <>
+      <Helmet>
+        <title>{metaTitle}</title>
+        <meta name="description" content={metaDesc} />
+        {blog.focus_keyword && <meta name="keywords" content={blog.focus_keyword} />}
+        <link rel="canonical" href={canonical} />
+        {/* Open Graph */}
+        <meta property="og:title" content={metaTitle} />
+        <meta property="og:description" content={metaDesc} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={canonical} />
+        {ogImage && <meta property="og:image" content={ogImage} />}
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={metaTitle} />
+        <meta name="twitter:description" content={metaDesc} />
+        {ogImage && <meta name="twitter:image" content={ogImage} />}
+        {/* Article meta */}
+        {blog.createdAt && <meta property="article:published_time" content={blog.createdAt} />}
+        {blog.tags && Array.isArray(blog.tags) && blog.tags.map(tag => (
+          <meta property="article:tag" content={tag} key={tag} />
+        ))}
+      </Helmet>
+
       {/* Sticky bottom CTA — mobile only */}
       <div className="bd-sticky-bar">
         <a href="/apply-now" className="bd-sticky-apply">
@@ -72,7 +111,7 @@ const BlogDetail = () => {
             <div className="bd-meta">
               <span className="bd-category">{category}</span>
               <span className="bd-date">
-                <i className="far fa-calendar-alt"></i> {formatDate(blog.created_date)}
+                <i className="far fa-calendar-alt"></i> {formatDate(blog.createdAt)}
               </span>
             </div>
 
@@ -83,7 +122,10 @@ const BlogDetail = () => {
             <div className="bd-author-row">
               <div className="bd-author">
                 <div className="bd-author-avatar">
-                  <i className="fas fa-user"></i>
+                  {authorData?.avatar_url
+                    ? <img src={authorData.avatar_url} alt={author} style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
+                    : <i className="fas fa-user"></i>
+                  }
                 </div>
                 <div className="bd-author-info">
                   <span className="bd-author-label">Written by</span>
@@ -109,7 +151,7 @@ const BlogDetail = () => {
             {/* Banner Image */}
             {blog.banner_image_url && (
               <div className="bd-banner">
-                <img src={getImg(blog.banner_image_url)} alt={blog.title} />
+                <img src={blog.banner_image_url} alt={blog.title} />
               </div>
             )}
 
@@ -130,13 +172,13 @@ const BlogDetail = () => {
                 <h3 className="bd-related-title">You Must Also Read</h3>
                 <div className="bd-related-grid">
                   {relatedBlogs.map((rb) => (
-                    <Link to={`/blog/${rb.id}`} key={rb.id} className="bd-related-card">
-                      <img src={getImg(rb.thumb_image_url)} alt={rb.title} className="bd-related-img" />
+                    <Link to={`/blog/${rb.slug}`} key={rb._id} className="bd-related-card">
+                      <img src={rb.thumb_image_url} alt={rb.title} className="bd-related-img" />
                       <div className="bd-related-body">
                         <span className="bd-related-cat">{rb.category || "Finance"}</span>
                         <p className="bd-related-heading">{rb.title}</p>
                         <span className="bd-related-date">
-                          <i className="far fa-calendar-alt"></i> {formatDate(rb.created_date)}
+                          <i className="far fa-calendar-alt"></i> {formatDate(rb.createdAt)}
                         </span>
                       </div>
                     </Link>
@@ -152,31 +194,9 @@ const BlogDetail = () => {
               <h3 className="bd-form-title">Apply for Instant Loan</h3>
               <p className="bd-form-sub">Get funds in 10 minutes. No paperwork needed.</p>
               <form className="bd-form" onSubmit={handleFormSubmit}>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Full Name"
-                  value={formData.name}
-                  onChange={handleFormChange}
-                  required
-                />
-                <input
-                  type="tel"
-                  name="mobile"
-                  placeholder="Mobile Number"
-                  maxLength="10"
-                  value={formData.mobile}
-                  onChange={handleFormChange}
-                  required
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email Address"
-                  value={formData.email}
-                  onChange={handleFormChange}
-                  required
-                />
+                <input type="text" name="name" placeholder="Full Name" value={formData.name} onChange={handleFormChange} required />
+                <input type="tel" name="mobile" placeholder="Mobile Number" maxLength="10" value={formData.mobile} onChange={handleFormChange} required />
+                <input type="email" name="email" placeholder="Email Address" value={formData.email} onChange={handleFormChange} required />
                 <button type="submit" className="bd-form-btn">
                   Get Free Report <i className="fas fa-arrow-right"></i>
                 </button>

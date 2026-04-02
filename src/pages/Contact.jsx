@@ -36,14 +36,13 @@ const Contact = () => {
       if (processing) return;
       setProcessing(true);
       try {
-        const resp = await fetch("https://salarytopup.in/api/SendCustomerQuery", {
+        const resp = await fetch("http://localhost:5000/api/contacts", {
           method: "POST",
-          headers: { "Content-Type": "application/json; charset=UTF-8" },
-          body: JSON.stringify({ name: formData.name, email: formData.email, mobile: formData.mobile, subject: formData.subject, message: formData.message }),
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name: formData.name, email: formData.email, mobile: formData.mobile, inquiryType: formData.inquiryType, message: formData.message }),
         });
-        if (resp.status === 200) {
-          const dataset = await resp.json();
-          if (dataset.status === 1) alert("Form Submitted Successfully");
+        if (resp.ok) {
+          alert("Form Submitted Successfully! We'll get back to you shortly.");
         } else { alert("Form Not submitted, please try again later!"); }
       } catch (error) { console.error("Error:", error); }
       finally { setProcessing(false); setFormData({ name: "", email: "", mobile: "", subject: "", message: "", consent: false }); }
