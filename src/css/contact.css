@@ -7,6 +7,8 @@
     padding: 0 0 40px;
 }
 .ct-top { display: none; }
+.ct-field label span { color: inherit; }
+.ct-check span { color: #333 !important; }
 .ct-logo { height: 40px; width: auto; }
 
 .ct-body {
@@ -97,7 +99,7 @@
 
 .ct-check {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 8px;
     font-size: 0.78rem;
     color: #555;
@@ -106,20 +108,20 @@
 .ct-check input[type="checkbox"] {
     appearance: none;
     -webkit-appearance: none;
-    width: 16px;
-    height: 16px;
-    border: 2px solid #2a5f90;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #26b9db;
     border-radius: 4px;
     flex-shrink: 0;
-    margin-top: 2px;
+    margin-top: 0;
     cursor: pointer;
     background: #fff;
     transition: background 0.2s, border-color 0.2s;
     position: relative;
 }
 .ct-check input[type="checkbox"]:checked {
-    background: #2a5f90;
-    border-color: #2a5f90;
+    background: #26b9db;
+    border-color: #26b9db;
 }
 .ct-check input[type="checkbox"]:checked::after {
     content: '';

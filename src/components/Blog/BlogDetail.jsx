@@ -4,7 +4,20 @@ import "../../css/Common.css";
 import "./BlogDetail.css";
 import { useParams, Link } from "react-router-dom";
 
-const ADMIN_API = "http://localhost:5000/public";
+const ADMIN_API = "http://localhost:4500/public";
+
+const FaqItem = ({ question, answer }) => {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <div className={`bd-faq-item ${open ? "bd-faq-open" : ""}`}>
+      <button className="bd-faq-q" onClick={() => setOpen(!open)}>
+        <span>{question}</span>
+        <div className="bd-faq-icon">{open ? "−" : "+"}</div>
+      </button>
+      {open && <div className="bd-faq-a">{answer}</div>}
+    </div>
+  );
+};
 
 const BlogDetail = () => {
   const { slug } = useParams();
@@ -21,7 +34,7 @@ const BlogDetail = () => {
           const b = data.data || {};
           setBlog(b);
           if (b.author) {
-            fetch(`http://localhost:5000/api/authors/public?name=${encodeURIComponent(b.author)}`)
+            fetch(`http://localhost:4500/api/authors/public?name=${encodeURIComponent(b.author)}`)
               .then(r => r.json())
               .then(d => { if (d && d.avatar_url) setAuthorData(d); })
               .catch(() => {});
@@ -166,6 +179,17 @@ const BlogDetail = () => {
               dangerouslySetInnerHTML={{ __html: blog.long_description }}
             />
 
+            {/* FAQs Section */}
+            {blog.faqs && blog.faqs.length > 0 && (
+              <div className="bd-faqs">
+                <h3 className="bd-faqs-title">Frequently Asked Questions</h3>
+                <p className="bd-faqs-subtitle">Everything you need to know — answered clearly.</p>
+                {blog.faqs.map((faq, i) => (
+                  <FaqItem key={i} question={faq.question} answer={faq.answer} />
+                ))}
+              </div>
+            )}
+
             {/* Related Posts */}
             {relatedBlogs.length > 0 && (
               <div className="bd-related">
@@ -192,7 +216,7 @@ const BlogDetail = () => {
           <div className="bd-right">
             <div className="bd-form-card">
               <h3 className="bd-form-title">Apply for Instant Loan</h3>
-              <p className="bd-form-sub">Get funds in 10 minutes. No paperwork needed.</p>
+              <p className="bd-form-sub">Get funds fast. No paperwork needed.</p>
               <form className="bd-form" onSubmit={handleFormSubmit}>
                 <input type="text" name="name" placeholder="Full Name" value={formData.name} onChange={handleFormChange} required />
                 <input type="tel" name="mobile" placeholder="Mobile Number" maxLength="10" value={formData.mobile} onChange={handleFormChange} required />

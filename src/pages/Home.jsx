@@ -1,26 +1,36 @@
 import React, { useEffect, useState, useRef } from "react";
 import landingpage from "../images/landingpage.webp";
 import heroMobile from "../images/hero-mobile.png";
+import appQrImg from "../images/app_qr.png";
+import heroPerson from "../images/db759e90-29ef-4c5e-b9a3-43a062ba4a03.png";
+import heroMobilePerson from "../images/c0ce3801-9ba7-4bfe-922f-c089f6ef76da.png";
 import "../css/topup.css"; // v2
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
-// Testimonials data — 9 cards
-const tstData = [
-  { name:"Ankit Kumar",   city:"Delhi",     text:"Amazing service and very easy to use. The process was smooth and quick. I highly recommend it to everyone." },
-  { name:"Priya Sharma",  city:"Mumbai",    text:"Got my salary advance within 10 minutes. No paperwork, no hassle. Best experience I've ever had with a loan app." },
-  { name:"Rahul Verma",   city:"Bangalore", text:"Transparent fees and instant approval. Customer support was very helpful. Will definitely use again for emergencies." },
-  { name:"Sneha Gupta",   city:"Hyderabad", text:"I needed money urgently for a medical bill. SalaryTopUp disbursed the amount in just 15 minutes. Lifesaver!" },
-  { name:"Vikram Singh",  city:"Jaipur",    text:"Very user-friendly app with great customer service. The interest rates are fair and the repayment process is simple." },
-  { name:"Neha Patel",    city:"Ahmedabad", text:"Applied at night and got approved instantly. The money was in my account by morning. Truly 24/7 service!" },
-  { name:"Amit Mishra",   city:"Lucknow",   text:"SalaryTopUp helped me when no bank would. Quick disbursal, zero hidden charges. Highly recommended for salaried people." },
-  { name:"Kavita Reddy",  city:"Chennai",   text:"The entire process is digital and hassle-free. Got my loan approved in under 5 minutes. Excellent customer support too." },
-  { name:"Saurabh Jain",  city:"Pune",      text:"Best salary loan app I have used. The repayment is flexible and the interest rates are very competitive. Five stars!" },
+const FALLBACK_TST = [
+  { name:"Ankit Kumar",   location:"Delhi",     message:"Amazing service and very easy to use. The process was smooth and quick. I highly recommend it to everyone.", rating: 5 },
+  { name:"Priya Sharma",  location:"Mumbai",    message:"Got my salary advance super fast. No paperwork, no hassle. Best experience I've ever had with a loan app.", rating: 5 },
+  { name:"Rahul Verma",   location:"Bangalore", message:"Transparent fees and instant approval. Customer support was very helpful. Will definitely use again for emergencies.", rating: 5 },
+  { name:"Sneha Gupta",   location:"Hyderabad", message:"I needed money urgently for a medical bill. SalaryTopUp disbursed the amount in just 15 minutes. Lifesaver!", rating: 5 },
+  { name:"Vikram Singh",  location:"Jaipur",    message:"Very user-friendly app with great customer service. The interest rates are fair and the repayment process is simple.", rating: 5 },
+  { name:"Neha Patel",    location:"Ahmedabad", message:"Applied at night and got approved instantly. The money was in my account by morning. Truly 24/7 service!", rating: 5 },
+  { name:"Amit Mishra",   location:"Lucknow",   message:"SalaryTopUp helped me when no bank would. Quick disbursal, zero hidden charges. Highly recommended for salaried people.", rating: 5 },
+  { name:"Kavita Reddy",  location:"Chennai",   message:"The entire process is digital and hassle-free. Got my loan approved in under 5 minutes. Excellent customer support too.", rating: 5 },
+  { name:"Saurabh Jain",  location:"Pune",      message:"Best salary loan app I have used. The repayment is flexible and the interest rates are very competitive. Five stars!", rating: 5 },
 ];
 
 const TstSection = () => {
   const [tstPage, setTstPage] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [tstData, setTstData] = useState(FALLBACK_TST);
+
+  useEffect(() => {
+    fetch('http://localhost:4500/api/testimonials/public')
+      .then(r => r.json())
+      .then(data => { if (data && data.length > 0) setTstData(data); })
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth <= 768);
@@ -52,12 +62,12 @@ const TstSection = () => {
                 <div className="tst-avatar">{t.name.charAt(0)}</div>
                 <div className="tst-info">
                   <strong>{t.name}</strong>
-                  <span>{t.city}</span>
+                  <span>{t.location || t.city}</span>
                 </div>
               </div>
-              <p className="tst-text">{t.text}</p>
+              <p className="tst-text">{t.message || t.text}</p>
               <div className="tst-stars">
-                {[1,2,3,4,5].map(s => <i className="fas fa-star" key={s}></i>)}
+                {[1,2,3,4,5].map(s => <i className={`fas fa-star`} key={s} style={{ color: s <= (t.rating || 5) ? '#f59e0b' : '#e2e8f0' }}></i>)}
               </div>
             </div>
           ))}
@@ -73,17 +83,33 @@ const TstSection = () => {
 };
 
 // FAQ Component
-const faqData = [
-  { q: "Who can apply for a SalaryTopUp loan?", a: "Any salaried individual aged 21-58 years with a minimum monthly income of ₹15,000 can apply. You need to be working with your current employer for at least 3 months." },
-  { q: "How fast can I get the loan approval?", a: "Our AI-powered system processes applications instantly. Most loans are approved within 10 minutes and the amount is disbursed to your bank account within 30 minutes." },
-  { q: "Do I need to provide any collateral?", a: "No, SalaryTopUp loans are completely unsecured. You don't need to pledge any asset or provide any collateral. Your salary is your credit." },
-  { q: "What documents are required to apply?", a: "You just need your PAN card, Aadhaar card, and last 3 months bank statement. Everything is verified digitally — no physical documents needed." },
-  { q: "How can I repay my loan?", a: "You can repay via UPI, net banking, debit card, or auto-debit from your salary account. We also send reminders before the due date so you never miss a payment." },
-  { q: "What is the interest rate?", a: "Our interest rates start from 1% per day depending on your credit profile. There are no hidden charges — what you see is what you pay." },
+const FALLBACK_FAQS = [
+  { question: "Who can apply for a SalaryTopUp loan?", answer: "Any salaried individual aged 21-58 years with a minimum monthly income of ₹15,000 can apply. You need to be working with your current employer for at least 3 months." },
+  { question: "How fast can I get the loan approval?", answer: "Our AI-powered system processes applications instantly. Loans are approved quickly and the amount is disbursed to your bank account as soon as possible." },
+  { question: "Do I need to provide any collateral?", answer: "No, SalaryTopUp loans are completely unsecured. You don't need to pledge any asset or provide any collateral. Your salary is your credit." },
+  { question: "What documents are required to apply?", answer: "You just need your PAN card, Aadhaar card, and last 3 months bank statement. Everything is verified digitally — no physical documents needed." },
+  { question: "How can I repay my loan?", answer: "You can repay via UPI, net banking, debit card, or auto-debit from your salary account. We also send reminders before the due date so you never miss a payment." },
+  { question: "What is the interest rate?", answer: "Our interest rates start from 1% per day depending on your credit profile. There are no hidden charges — what you see is what you pay." },
 ];
+
+// QR image component
+const AppQRImage = () => (
+  <img src={appQrImg} alt="Scan to Download SalaryTopUp App" className="app-popup-qr" />
+);
 
 const FaqSection = () => {
   const [openFaq, setOpenFaq] = useState(null);
+  const [faqData, setFaqData] = useState(FALLBACK_FAQS);
+
+  useEffect(() => {
+    const base = process.env.REACT_APP_API_URL || 'http://localhost:4500';
+    fetch(`${base}/api/faqs/public/home`)
+      .then(r => r.json())
+      .then(data => {
+        if (Array.isArray(data) && data.length > 0) setFaqData(data);
+      })
+      .catch(err => console.error('FAQ fetch failed:', err));
+  }, []);
 
   return (
     <section className="faq-section" id="faq">
@@ -92,14 +118,14 @@ const FaqSection = () => {
         <div className="faq-underline"></div>
         <div className="faq-list">
           {faqData.map((faq, i) => (
-            <div className={`faq-item ${openFaq === i ? "faq-open" : ""}`} key={i}
+            <div className={`faq-item ${openFaq === i ? "faq-open" : ""}`} key={faq._id || i}
               onClick={() => setOpenFaq(openFaq === i ? null : i)}>
               <div className="faq-question">
-                <span>{faq.q}</span>
+                <span>{faq.question || faq.q}</span>
                 <i className={`fas fa-chevron-down faq-arrow ${openFaq === i ? "faq-arrow-up" : ""}`}></i>
               </div>
               <div className="faq-answer">
-                <p>{faq.a}</p>
+                <p>{faq.answer || faq.a}</p>
               </div>
             </div>
           ))}
@@ -140,61 +166,167 @@ const StatsCounter = () => {
     return () => observer.disconnect();
   }, []);
 
-  const c1 = useCounter(5.1, 2000, visible);
-  const c2 = useCounter(1.4, 2000, visible);
-  const c3 = useCounter(61, 2000, visible);
-  const c4 = useCounter(10, 2000, visible);
+  const c1 = useCounter(5000, 2000, visible);
+  const c2 = useCounter(25, 2000, visible);
+  const c3 = useCounter(5, 2000, visible);
+  const c4 = useCounter(1, 2000, visible);
 
   return (
     <div className="wc-stats" ref={ref}>
       <div className="wc-stat-item">
-        <span className="wc-stat-label">OVER</span>
-        <strong className="wc-stat-value">{c1.toFixed(1)} Crore</strong>
+
+        <strong className="wc-stat-value">{Math.floor(c1)}+ Cr</strong>
         <span className="wc-stat-sub">Loan Disbursed</span>
       </div>
       <div className="wc-stat-item">
-        <span className="wc-stat-label">OVER</span>
-        <strong className="wc-stat-value">{c2.toFixed(1)} Crore</strong>
+
+        <strong className="wc-stat-value">{Math.floor(c2)}+ Lakhs</strong>
         <span className="wc-stat-sub">Loan Customers</span>
       </div>
       <div className="wc-stat-item">
-        <span className="wc-stat-label">OVER</span>
-        <strong className="wc-stat-value">{Math.floor(c3)} Lakh</strong>
+
+        <strong className="wc-stat-value">{Math.floor(c3)}+ Lakh</strong>
         <span className="wc-stat-sub">Active Users</span>
       </div>
       <div className="wc-stat-item">
-        <span className="wc-stat-label">OVER</span>
-        <strong className="wc-stat-value">{Math.floor(c4)} Lakhs</strong>
+
+        <strong className="wc-stat-value">{Math.floor(c4)}+ Lakh</strong>
         <span className="wc-stat-sub">Max. Loan Amount</span>
       </div>
     </div>
   );
 };
 
+function CalcCard() {
+  const [amount, setAmount] = useState(10000);
+  const [tenure, setTenure] = useState(25);
+  const [dir, setDir] = useState(1);
+  const autoRef = useRef(null);
+  const rate = 0.001;
+  const interest = Math.round(amount * rate * tenure);
+  const total = amount + interest;
+
+  useEffect(() => {
+    autoRef.current = setInterval(() => {
+      setAmount(prev => {
+        let next = prev + dir * 2000;
+        if (next >= 100000) { setDir(-1); return 100000; }
+        if (next <= 5000)   { setDir(1);  return 5000; }
+        return next;
+      });
+    }, 600);
+    return () => clearInterval(autoRef.current);
+  }, [dir]);
+
+  const handleAmount = (e) => { clearInterval(autoRef.current); setAmount(Number(e.target.value)); };
+  const handleTenure = (e) => setTenure(Number(e.target.value));
+
+  return (
+    <div className="hp-calc-card">
+      <div className="hp-calc-header">
+        <i className="fas fa-calculator"></i>
+        <span>Loan Calculator</span>
+      </div>
+      <div className="hp-calc-row">
+        <span>Amount</span>
+        <input
+          type="range" min={5000} max={100000} step={1000}
+          value={amount}
+          onChange={handleAmount}
+          className="hp-calc-range"
+          style={{"--pct": `${((amount-5000)/(100000-5000))*100}%`}}
+        />
+        <strong className="hp-calc-val">₹{amount.toLocaleString('en-IN')}</strong>
+      </div>
+      <div className="hp-calc-row">
+        <span>Tenure</span>
+        <input
+          type="range" min={7} max={40} step={1}
+          value={tenure}
+          onChange={handleTenure}
+          className="hp-calc-range"
+          style={{"--pct": `${((tenure-7)/(40-7))*100}%`}}
+        />
+        <strong className="hp-calc-val">{tenure} Days</strong>
+      </div>
+      <div className="hp-calc-divider" />
+      <div className="hp-calc-result-row">
+        <div className="hp-calc-result-item">
+          <span>Interest</span>
+          <strong>₹{interest.toLocaleString('en-IN')}</strong>
+        </div>
+        <div className="hp-calc-result-item">
+          <span>Total Pay</span>
+          <strong>₹{total.toLocaleString('en-IN')}</strong>
+        </div>
+        <div className="hp-calc-result-item">
+          <span>Rate</span>
+          <strong>0.1%/day</strong>
+        </div>
+      </div>
+      <a href="/apply-now" className="hp-calc-btn">Apply Now <i className="fas fa-arrow-right"></i></a>
+    </div>
+  );
+}
+
 const Home = () => {
   const [loanAmount, setLoanAmount] = useState(25000);
   const [loanPeriod, setLoanPeriod] = useState(15);
-  const [interestRate, setInterestRate] = useState(1);
+  const [interestRate, setInterestRate] = useState(0.1);
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  // App Download Popup — show instantly, then every 5s after close, hide on scroll
+  const [showAppPopup, setShowAppPopup] = useState(false);
+  const popupTimerRef = useRef(null);
+
+  const closeAppPopup = () => {
+    setShowAppPopup(false);
+  };
+
+  // Popup disabled — uncomment below to re-enable
+  // useEffect(() => {
+  //   const onScroll = () => {
+  //     if (window.scrollY > 60) {
+  //       setShowAppPopup(false);
+  //       clearTimeout(popupTimerRef.current);
+  //       popupTimerRef.current = setTimeout(() => setShowAppPopup(true), 5000);
+  //     }
+  //   };
+  //   window.addEventListener('scroll', onScroll, { passive: true });
+  //   return () => { window.removeEventListener('scroll', onScroll); clearTimeout(popupTimerRef.current); };
+  // }, []);
 
   // CIBIL Score Check
   const [showCibilForm, setShowCibilForm] = useState(false);
   const [cibilStep, setCibilStep] = useState(1);
   const [cibilLoading, setCibilLoading] = useState(false);
   const [cibilScore, setCibilScore] = useState(null);
-  const [cibilForm, setCibilForm] = useState({ name:"", mobile:"", pan:"" });
+  const [cibilForm, setCibilForm] = useState({ name:"", mobile:"", pan:"", otp:"", consent: false });
+  const [cibilOtpSent, setCibilOtpSent] = useState(false);
+  const [cibilOtpTimer, setCibilOtpTimer] = useState(0);
+  const cibilTimerRef = useRef(null);
 
   const handleCibilCheck = () => {
     setShowCibilForm(true);
     setCibilStep(1);
     setCibilScore(null);
     setCibilError("");
-    setCibilForm({ name:"", mobile:"", pan:"" });
+    setCibilOtpSent(false);
+    setCibilOtpTimer(0);
+    setCibilForm({ name:"", mobile:"", pan:"", otp:"", consent: false });
+  };
+
+  const startOtpTimer = () => {
+    setCibilOtpTimer(30);
+    clearInterval(cibilTimerRef.current);
+    cibilTimerRef.current = setInterval(() => {
+      setCibilOtpTimer(t => { if (t <= 1) { clearInterval(cibilTimerRef.current); return 0; } return t - 1; });
+    }, 1000);
   };
 
   const [cibilError, setCibilError] = useState("");
 
-  const handleCibilSubmit = () => {
+  const handleCibilSubmit = async () => {
     setCibilError("");
     if (cibilStep === 1) {
       if (!cibilForm.name.trim() || cibilForm.name.trim().length < 3) {
@@ -203,6 +335,18 @@ const Home = () => {
       if (!/^\d{10}$/.test(cibilForm.mobile)) {
         setCibilError("Please enter a valid 10-digit mobile number"); return;
       }
+      if (!cibilForm.consent) {
+        setCibilError("Please agree to let us use your information"); return;
+      }
+      // Send OTP (demo mode — enter any 6-digit OTP)
+      setCibilOtpSent(true);
+      startOtpTimer();
+      setCibilStep(1.5); return;
+    }
+    if (cibilStep === 1.5) {
+      if (!cibilForm.otp || cibilForm.otp.length < 4) {
+        setCibilError("Please enter the OTP sent to your mobile"); return;
+      }
       setCibilStep(2); return;
     }
     // Step 2 — PAN validation: 5 letters + 4 digits + 1 letter
@@ -210,10 +354,17 @@ const Home = () => {
       setCibilError("Please enter a valid PAN number (e.g. ABCPD1234K)"); return;
     }
     setCibilLoading(true);
-    setTimeout(() => {
-      setCibilScore(Math.floor(Math.random() * 151) + 650);
+    setTimeout(async () => {
+      const score = Math.floor(Math.random() * 151) + 650;
+      setCibilScore(score);
       setCibilLoading(false);
       setCibilStep(3);
+      // Save lead to localStorage (admin panel reads from here)
+      try {
+        const leads = JSON.parse(localStorage.getItem("admin_leads") || "[]");
+        leads.unshift({ _id: Date.now().toString(), name: cibilForm.name, mobile: cibilForm.mobile, pan: cibilForm.pan, cibilScore: score, source: "CIBIL Check", status: "New", createdAt: new Date().toISOString() });
+        localStorage.setItem("admin_leads", JSON.stringify(leads));
+      } catch {}
     }, 2500);
   };
 
@@ -296,47 +447,72 @@ const Home = () => {
       {/* HERO SECTION */}
       <section className="hero">
 
-        {/* ── Desktop hero (hidden on mobile) ── */}
-        <div className="hero-desktop">
-          <div className="hero-bg-wrap">
-            <img src={landingpage} alt="" className="hero-bg-img" />
-            <div className="hero-overlay"></div>
-          </div>
-          <div className="hero-content">
-            <div className="hero-text">
-              <h1>Sahi Financial Decisions<br />se Life Banegi <span className="hero-highlight">Great</span></h1>
-              <p>Achieve your life goals with a personalized approach to money.</p>
-              <div className="hero-stats">
-                <div className="hero-stat-item"><strong>&#9733; 10+ Lakh</strong><span>Goal Achieved</span></div>
-                <div className="hero-stat-divider"></div>
-                <div className="hero-stat-item"><strong>4.9 <i className="fas fa-download" style={{fontSize:"0.7rem"}}></i></strong><span>Play Store</span></div>
-                <div className="hero-stat-divider"></div>
-                <div className="hero-stat-item"><strong>&#10003; 7 Cr</strong><span>Safe Transactions</span></div>
-              </div>
-              <div className="hero-buttons">
-                <a href="https://play.google.com/store/apps/details?id=com.salarytopup.salarytopup" target="_blank" rel="noopener noreferrer" className="btn-download">Download app &rarr;</a>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* ── Hero (no image — gradient design) ── */}
+        <div className="hero-new">
+          {/* Decorative blobs */}
+          <div className="hero-blob hero-blob1" />
+          <div className="hero-blob hero-blob2" />
+          <div className="hero-blob hero-blob3" />
 
-        {/* ── Mobile hero (hidden on desktop) ── */}
-        <div className="hero-mobile">
-          <div className="hero-mob-img-wrap">
-            <img src={heroMobile} alt="" className="hero-mob-img" />
-            <div className="hero-mob-top">
-              <h1>Sahi Financial Decisions<br />se Life Banegi <span className="hero-highlight">Great</span></h1>
-              <p>Achieve your life goals with a personalized approach to money.</p>
-            </div>
-            <div className="hero-mob-bottom">
-              <div className="hero-stats">
-                <div className="hero-stat-item"><strong>&#9733; 10+ Lakh</strong><span>Goal Achieved</span></div>
-                <div className="hero-stat-divider"></div>
-                <div className="hero-stat-item"><strong>4.9 <i className="fas fa-download" style={{fontSize:"0.7rem"}}></i></strong><span>Play Store</span></div>
-                <div className="hero-stat-divider"></div>
-                <div className="hero-stat-item"><strong>&#10003; 7 Cr</strong><span>Safe Transactions</span></div>
+          <div className="hero-new-inner">
+            {/* LEFT — Text */}
+            <div className="hero-new-left">
+              {/* Mobile person — shown only on mobile above text */}
+              <img src={heroMobilePerson} alt="hero" className="hp-person-mobile" />
+              <div className="hero-new-badge">
+                <i className="fas fa-bolt"></i> India's #1 Salary Loan App
               </div>
-              <a href="https://play.google.com/store/apps/details?id=com.salarytopup.salarytopup" target="_blank" rel="noopener noreferrer" className="btn-download">Download app &rarr;</a>
+              <h1 className="hero-new-h1">
+                Sahi Financial<br />
+                Decisions se<br />
+                Life Banegi <span className="hero-new-highlight">Great</span>
+              </h1>
+              <p className="hero-new-sub">
+                Achieve your life goals with a personalized approach to money. Instant salary loans, zero paperwork.
+              </p>
+              <div className="hero-new-stats">
+                <div className="hero-new-stat">
+                  <strong>5 Lakh+</strong>
+                  <span>Happy Customers</span>
+                </div>
+                <div className="hero-new-stat-div" />
+                <div className="hero-new-stat">
+                  <strong>4.9 ★</strong>
+                  <span>Play Store</span>
+                </div>
+                <div className="hero-new-stat-div" />
+                <div className="hero-new-stat">
+                  <strong>Zero Fee</strong>
+                  <span>No Hidden Charges</span>
+                </div>
+              </div>
+              <div className="hero-new-btns">
+                <a href="https://play.google.com/store/apps/details?id=com.salarytopup.salarytopup" target="_blank" rel="noopener noreferrer" className="hero-new-btn-primary">
+                  <i className="fab fa-google-play"></i> Download App
+                </a>
+                <a href="#loans" className="hero-new-btn-outline">Apply Now &rarr;</a>
+              </div>
+            </div>
+
+            {/* RIGHT — Animated Person Illustration */}
+            <div className="hero-new-right">
+
+              {/* Glow circle behind person */}
+              <div className="hp-glow" />
+
+              {/* Real person image */}
+              <img src={heroPerson} alt="hero" className="hp-person" />
+
+              {/* Animated Mini Calculator */}
+              <CalcCard />
+
+              {/* Mobile-only person image */}
+              <img src={heroMobilePerson} alt="hero mobile" className="hp-person-mobile" />
+
+              {/* Floating coins */}
+              <div className="hp-coin hp-coin1">₹</div>
+              <div className="hp-coin hp-coin2">₹</div>
+              <div className="hp-coin hp-coin3">₹</div>
             </div>
           </div>
         </div>
@@ -372,7 +548,7 @@ const Home = () => {
         {/* Center — Content */}
         <div className="hsb-content">
           <strong>Check Eligibility & Apply Now!</strong>
-          <span>Instant approval with minimal documentation. Get funds in 10 minutes.</span>
+          <span>Instant approval with minimal documentation. Get funds quickly.</span>
         </div>
 
         {/* Right — Button */}
@@ -389,19 +565,20 @@ const Home = () => {
 
           <div className="wc-grid">
             {[
-              { icon:"fa-hand-holding-usd", title:"Lower Interest Rates",  desc:"Get loans for multiple purposes at lower interest rates to suit your needs" },
-              { icon:"fa-clock",            title:"Instant Approval",      desc:"Get your loan approved within minutes with minimal documentation required" },
-              { icon:"fa-laptop",           title:"Paperless Process",     desc:"Complete digital journey from application to disbursement, no paperwork needed" },
-              { icon:"fa-lock",             title:"100% Secure",           desc:"Your data is encrypted with bank-grade security and never shared with third parties" },
-              { icon:"fa-headphones-alt",   title:"24/7 Support",          desc:"Our dedicated support team is available round the clock to assist you anytime" },
+              { icon:"fa-hand-holding-usd", title:"Lower Interest Rates",  desc:"Get loans for multiple purposes at lower interest rates to suit your needs", slug:"lower-interest-rates" },
+              { icon:"fa-clock",            title:"Instant Approval",      desc:"Get your loan approved within minutes with minimal documentation required", slug:"instant-approval" },
+              { icon:"fa-laptop",           title:"Paperless Process",     desc:"Complete digital journey from application to disbursement, no paperwork needed", slug:"paperless-process" },
+              { icon:"fa-lock",             title:"100% Secure",           desc:"Your data is encrypted with bank-grade security and never shared with third parties", slug:"secure" },
+              { icon:"fa-headphones-alt",   title:"24/7 Support",          desc:"Our dedicated support team is available round the clock to assist you anytime", slug:"support" },
             ].map((card, i) => (
-              <div className="wc-card" key={i}>
+              <Link to={`/features/${card.slug}`} className="wc-card wc-card-link" key={i}>
                 <div className="wc-card-icon">
                   <i className={`fas ${card.icon}`}></i>
                 </div>
                 <h4>{card.title}</h4>
                 <p>{card.desc}</p>
-              </div>
+                <span className="wc-card-arrow">Learn More <i className="fas fa-arrow-right"></i></span>
+              </Link>
             ))}
           </div>
         </div>
@@ -426,6 +603,28 @@ const Home = () => {
             <h2 className="loans-heading">
               Every wish fulfilled.<br />Get instant funds!
             </h2>
+            <div className="loans-trust-grid">
+              <div className="loans-trust-card">
+                <div className="loans-trust-num">5L+</div>
+                <div className="loans-trust-label">Happy Customers</div>
+              </div>
+              <div className="loans-trust-card">
+                <div className="loans-trust-num">4.9★</div>
+                <div className="loans-trust-label">Play Store Rating</div>
+              </div>
+              <div className="loans-trust-card">
+                <div className="loans-trust-num">₹0</div>
+                <div className="loans-trust-label">Hidden Charges</div>
+              </div>
+              <div className="loans-trust-card">
+                <div className="loans-trust-num">₹1 Lakh+</div>
+                <div className="loans-trust-label">Max Loan Amount</div>
+              </div>
+            </div>
+            <p className="loans-trust-desc">
+              SalaryTopUp is India's most trusted salary loan app — built for working professionals who need quick, transparent, and hassle-free financial support between paydays.
+            </p>
+
             <a
               href="https://play.google.com/store/apps/details?id=com.salarytopup.salarytopup"
               target="_blank"
@@ -435,25 +634,21 @@ const Home = () => {
               Download app &rarr;
             </a>
 
-            <div className="loans-grid">
+            <div className="loans-feat-grid">
               {[
-                { icon: "fa-money-bill-wave", title: "Personal Loan",    desc: "Get up to ₹10L in 10 mins" },
-                { icon: "fa-home",            title: "Home Loan",         desc: "Interest starts from 7.75%* p.a." },
-                { icon: "fa-building",        title: "Loan on Property",  desc: "Up to ₹75L without ITR" },
-                { icon: "fa-credit-card",     title: "Credit Cards",      desc: "Lifetime FREE cards with up to ₹5L limit" },
-                { icon: "fa-briefcase",       title: "Business Loan",     desc: "Get up to ₹5L with 60M tenure" },
-              ].map((loan, i) => (
-                <div className="loan-card" key={i}>
-                  <div className="loan-card-top">
-                    <span className="loan-card-icon">
-                      <i className={`fas ${loan.icon}`}></i>
-                    </span>
-                    <span className="loan-card-arrow">
-                      &#8599;
-                    </span>
+                { icon: "fa-bolt",        title: "Quick Disbursal",       desc: "Money in your account" },
+                { icon: "fa-file-alt",    title: "Minimal Docs",          desc: "PAN, Aadhaar & slip" },
+                { icon: "fa-percentage",  title: "0.1% / Day",            desc: "Lowest interest rate" },
+                { icon: "fa-shield-alt",  title: "100% Secure",           desc: "Bank-grade encryption" },
+                { icon: "fa-headset",     title: "24/7 Support",          desc: "Always here for you" },
+                { icon: "fa-redo-alt",    title: "Easy Repayment",        desc: "7 to 40 day tenure" },
+              ].map((feat, i) => (
+                <div className="loans-feat-tile" key={i}>
+                  <div className="loans-feat-tile-icon">
+                    <i className={`fas ${feat.icon}`}></i>
                   </div>
-                  <h4>{loan.title}</h4>
-                  <p>{loan.desc}</p>
+                  <div className="loans-feat-tile-title">{feat.title}</div>
+                  <div className="loans-feat-tile-desc">{feat.desc}</div>
                 </div>
               ))}
             </div>
@@ -568,12 +763,12 @@ const Home = () => {
                                                     <div className="mv-slide-icon mv-icon-success"><i className="fas fa-check"></i></div>
                           <h4>Loan Approved!</h4>
                           <div className="mv-approved-card">
-                            <div className="mv-ap-amount">₹50,000</div>
+                            <div className="mv-ap-amount">₹1,00,000</div>
                             <div className="mv-ap-grid">
                               <div className="mv-ap-item"><span>Tenure</span><strong>30 Days</strong></div>
                               <div className="mv-ap-item"><span>Rate</span><strong>1%/day</strong></div>
-                              <div className="mv-ap-item"><span>Interest</span><strong>₹1,500</strong></div>
-                              <div className="mv-ap-item"><span>Total</span><strong>₹51,500</strong></div>
+                              <div className="mv-ap-item"><span>Interest</span><strong>₹30,000</strong></div>
+                              <div className="mv-ap-item"><span>Total</span><strong>₹1,30,000</strong></div>
                             </div>
                           </div>
                           <div className="mv-mock-btn mv-btn-anim2">
@@ -585,7 +780,7 @@ const Home = () => {
                         {/* S5 — Money Disbursed */}
                         <div className="mv-slide mv-s5">
                                                     <div className="mv-confetti">
-                            {"🎉💰🎊💵✨🎉💰🎊".split("").map((e,i) => (
+                            {["₹","★","◆","●","▲","₹","★","◆"].map((e,i) => (
                               <span className="mv-conf-item" key={i} style={{"--ci":i}}>{e}</span>
                             ))}
                           </div>
@@ -597,7 +792,7 @@ const Home = () => {
                               <div className="mv-tr-line"><div className="mv-tr-dot-move"></div></div>
                               <div className="mv-tr-node"><i className="fas fa-university"></i></div>
                             </div>
-                            <div className="mv-tr-amount">₹50,000</div>
+                            <div className="mv-tr-amount">₹1,00,000</div>
                             <div className="mv-tr-bank">HDFC Bank ****4521</div>
                             <div className="mv-tr-success"><i className="fas fa-check-circle"></i> Transfer Successful</div>
                           </div>
@@ -627,6 +822,99 @@ const Home = () => {
             <p>Adjust the sliders to see a real-time breakdown of your loan repayment</p>
           </div>
           <div className="fis-body">
+            {/* LEFT — Animated Loan Dashboard Card */}
+            <div className="fis-visual-box">
+
+              {/* Floating particles */}
+              <div className="fis-vb-particles">
+                {[...Array(6)].map((_,i)=><span className="fis-vb-particle" key={i} style={{"--pi":i}}></span>)}
+              </div>
+
+              {/* Top — Loan meter */}
+              <div className="fis-vb-header">
+                <span className="fis-vb-tag">
+                  <span className="fis-vb-dot"></span>
+                  Live Loan Estimator
+                </span>
+                <span className="fis-vb-badge">LIVE</span>
+              </div>
+
+              {/* Big animated amount — synced to calculator */}
+              <div className="fis-vb-amount-row">
+                <div className="fis-vb-rupee">₹</div>
+                <div className="fis-vb-amount" key={loanAmount}>{loanAmount.toLocaleString("en-IN")}</div>
+              </div>
+              <div className="fis-vb-label" key={`${loanPeriod}-${loanAmount}`}>Your Loan Amount · {loanPeriod} Days</div>
+
+              {/* Divider */}
+              <div className="fis-vb-divider"></div>
+
+              {/* Animated bar chart — scaled to max loan (1,00,000) */}
+              {(() => {
+                const maxLoan = 100000;
+                const maxTotal = maxLoan + Math.round(maxLoan * (interestRate/100) * loanPeriod) + Math.round(maxLoan * 0.02);
+                const principalPct = Math.max(4, Math.round((loanAmount / maxLoan) * 100));
+                const interestPct  = Math.max(2, Math.round((totalInterest / maxTotal) * 100));
+                const totalPct     = Math.max(4, Math.round((totalPayment  / maxTotal) * 100));
+                return (
+                  <div className="fis-vb-bars">
+                    <div className="fis-vb-bar-row">
+                      <span className="fis-vb-bar-label">Principal</span>
+                      <div className="fis-vb-bar-track">
+                        <div className="fis-vb-bar-fill principal" style={{width:`${principalPct}%`}}></div>
+                      </div>
+                      <span className="fis-vb-bar-val" key={loanAmount}>₹{loanAmount.toLocaleString("en-IN")}</span>
+                    </div>
+                    <div className="fis-vb-bar-row">
+                      <span className="fis-vb-bar-label">Interest</span>
+                      <div className="fis-vb-bar-track">
+                        <div className="fis-vb-bar-fill interest" style={{width:`${interestPct}%`}}></div>
+                      </div>
+                      <span className="fis-vb-bar-val" key={totalInterest}>₹{totalInterest.toLocaleString("en-IN")}</span>
+                    </div>
+                    <div className="fis-vb-bar-row">
+                      <span className="fis-vb-bar-label">Total Pay</span>
+                      <div className="fis-vb-bar-track">
+                        <div className="fis-vb-bar-fill total" style={{width:`${totalPct}%`}}></div>
+                      </div>
+                      <span className="fis-vb-bar-val fis-vb-bar-total" key={totalPayment}>₹{totalPayment.toLocaleString("en-IN")}</span>
+                    </div>
+                  </div>
+                );
+              })()}
+
+              {/* 3 stat pills — live */}
+              <div className="fis-vb-pills">
+                <div className="fis-vb-pill">
+                  <div className="fis-vb-pill-icon"><i className="fas fa-calendar-alt"></i></div>
+                  <div className="fis-vb-pill-val" key={loanPeriod}>{loanPeriod} Days</div>
+                  <div className="fis-vb-pill-lbl">Tenure</div>
+                </div>
+                <div className="fis-vb-pill fis-vb-pill-accent">
+                  <div className="fis-vb-pill-icon">%</div>
+                  <div className="fis-vb-pill-val" key={interestRate}>{interestRate.toFixed(1)}%</div>
+                  <div className="fis-vb-pill-lbl">Daily Rate</div>
+                </div>
+                <div className="fis-vb-pill">
+                  <div className="fis-vb-pill-icon"><i className="fas fa-bolt"></i></div>
+                  <div className="fis-vb-pill-val">Fast</div>
+                  <div className="fis-vb-pill-lbl">Disbursal</div>
+                </div>
+              </div>
+
+              {/* Animated approval strip */}
+              <div className="fis-vb-approved">
+                <div className="fis-vb-tick">
+                  <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#dcfce7" stroke="#16a34a" strokeWidth="1.5"/><polyline points="7,12 10.5,15.5 17,9" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </div>
+                <div>
+                  <div className="fis-vb-approved-title">Eligible for Instant Approval</div>
+                  <div className="fis-vb-approved-sub">No collateral · Minimal documents · 100% Digital</div>
+                </div>
+              </div>
+
+            </div>
+
             <div className="fis-calc">
               <div className="fis-calc-inner">
                 <div className="fis-slider-group">
@@ -650,7 +938,7 @@ const Home = () => {
                     <div className="fis-slider-label"><span className="fis-slider-icon"><i className="fas fa-percentage"></i></span>Daily Interest Rate</div>
                     <span className="fis-slider-val">{interestRate.toFixed(1)}% / day</span>
                   </div>
-                  <div className="fis-range-wrap"><input type="range" min="0.5" max="2" step="0.5" value={interestRate} onChange={e=>setInterestRate(Number(e.target.value))} className="fis-range" style={{"--pct":`${((interestRate-0.5)/1.5)*100}%`}}/></div>
+                  <div className="fis-range-wrap"><input type="range" min="0.1" max="1" step="0.1" value={interestRate} onChange={e=>setInterestRate(Number(e.target.value))} className="fis-range" style={{"--pct":`${((interestRate-0.1)/0.9)*100}%`}}/></div>
                   <div className="fis-range-limits"><span>0.1%</span><span>1%</span></div>
                 </div>
                 <div className="fis-breakdown">
@@ -669,7 +957,7 @@ const Home = () => {
                 <Link to="/apply-now" className="fis-apply-btn">Apply Now <i className="fas fa-arrow-right"></i></Link>
               </div>
             </div>
-            <div className="fis-chart">
+            <div className="fis-chart" style={{display:'none'}}>
               <div className="fis-chart-inner">
                 <h3 className="fis-chart-title">Repayment Breakdown</h3>
                 <p className="fis-chart-sub">Visual overview of your loan repayment structure</p>
@@ -794,6 +1082,9 @@ const Home = () => {
             <button className="track-cta" onClick={handleCibilCheck}>
               Check Score <i className="fas fa-arrow-right"></i>
             </button>
+
+            {/* Mobile-only calculator inside track section */}
+            <div className="track-mob-calc"><CalcCard /></div>
           </div>
 
           {/* Right — Phone Mockup / CIBIL Form */}
@@ -882,9 +1173,40 @@ const Home = () => {
                               value={cibilForm.mobile}
                               onChange={e => setCibilForm({...cibilForm, mobile: e.target.value})} />
                           </div>
+                          <label className="cb-consent">
+                            <input type="checkbox" checked={cibilForm.consent}
+                              onChange={e => setCibilForm({...cibilForm, consent: e.target.checked})} />
+                            <span>I agree to allow SalaryTopUp to use my information to fetch my CIBIL score</span>
+                          </label>
                           {cibilError && <div className="cb-error"><i className="fas fa-exclamation-circle"></i> {cibilError}</div>}
                           <button className="cb-submit" onClick={handleCibilSubmit}>
-                            Continue <i className="fas fa-arrow-right"></i>
+                            Send OTP <i className="fas fa-arrow-right"></i>
+                          </button>
+                        </div>
+                      )}
+
+                      {/* Step 1.5 — OTP */}
+                      {cibilStep === 1.5 && (
+                        <div className="cb-content cb-fade-in" key="s1otp">
+                          <div className="cb-icon-circle" style={{background:"linear-gradient(135deg,#1e8a6e,#26b9db)"}}><i className="fas fa-mobile-alt"></i></div>
+                          <h4>Verify OTP</h4>
+                          <p>OTP sent to +91 {cibilForm.mobile}</p>
+                          <div className="cb-field">
+                            <label><i className="fas fa-key"></i> Enter OTP</label>
+                            <input type="tel" placeholder="• • • • • •" maxLength="6"
+                              value={cibilForm.otp}
+                              onChange={e => setCibilForm({...cibilForm, otp: e.target.value})}
+                              style={{letterSpacing:"6px", fontSize:"1.2rem", textAlign:"center"}} />
+                          </div>
+                          <div className="cb-otp-row">
+                            {cibilOtpTimer > 0
+                              ? <span className="cb-otp-timer"><i className="fas fa-clock"></i> Resend in {cibilOtpTimer}s</span>
+                              : <button className="cb-otp-resend" onClick={() => { startOtpTimer(); }}>Resend OTP</button>
+                            }
+                          </div>
+                          {cibilError && <div className="cb-error"><i className="fas fa-exclamation-circle"></i> {cibilError}</div>}
+                          <button className="cb-submit" onClick={handleCibilSubmit}>
+                            Verify OTP <i className="fas fa-arrow-right"></i>
                           </button>
                         </div>
                       )}
@@ -996,6 +1318,58 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* ── App Download Popup ── */}
+      {showAppPopup && (
+        <div className="app-popup-overlay" onClick={closeAppPopup}>
+          <div className="app-popup-card" onClick={e => e.stopPropagation()}>
+
+            {/* Close */}
+            <button className="app-popup-close" onClick={closeAppPopup}><i className="fas fa-times"></i></button>
+
+            {/* Top section — gradient bg with text */}
+            <div className="app-popup-top">
+              {/* Decorative dots */}
+              <span className="app-popup-dot app-popup-dot-1">+</span>
+              <span className="app-popup-dot app-popup-dot-2">+</span>
+              <span className="app-popup-dot app-popup-dot-3">+</span>
+              <span className="app-popup-dot app-popup-dot-4">+</span>
+
+              <p className="app-popup-question">Applying for a Salary Loan?</p>
+              <h3 className="app-popup-title">
+                Get Instant Loan<sup className="app-popup-star">*</sup><br />
+                on SalaryTopUp App
+              </h3>
+              <a
+                href="https://play.google.com/store/apps/details?id=com.salarytopup.salarytopup"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="app-popup-scan-btn"
+                onClick={closeAppPopup}
+              >
+                Scan QR Code to Download the App
+              </a>
+              <p className="app-popup-tnc">*T&amp;C Apply</p>
+            </div>
+
+            {/* Bottom section — white with QR */}
+            <div className="app-popup-bottom">
+              {/* Decorative floating icons */}
+              <div className="app-popup-icon app-popup-icon-coins"><i className="fas fa-rupee-sign"></i></div>
+              <div className="app-popup-icon app-popup-icon-bank"><i className="fas fa-university"></i></div>
+              <div className="app-popup-icon app-popup-icon-check"><i className="fas fa-check-circle"></i></div>
+
+              {/* QR Code on phone mockup */}
+              <div className="app-popup-phone">
+                <div className="app-popup-phone-screen">
+                  <AppQRImage />
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      )}
     </>
   );
 };

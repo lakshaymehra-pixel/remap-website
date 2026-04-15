@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import "../css/legal.css";
 
 const TermsandConditions = () => {
+  const [content, setContent] = useState('');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('http://localhost:4500/api/pages/public/terms-and-conditions')
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.content) setContent(data.content);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -26,34 +39,37 @@ const TermsandConditions = () => {
         <div className="lg-layout">
           <main className="lg-content" style={{ maxWidth: '100%' }}>
             <div className="lg-card">
-              <h2>Welcome to Salary Topup</h2>
-              <p>Powered by Baid Stock Broking Services Private Limited. If you visit our website and use our services, you agree to be bound by the following terms and conditions.</p>
-
-              <h2>1. Eligibility Criteria</h2>
-              <ul>
-                <li><strong>Age Requirement:</strong> You must be at least 18 years of age to apply for a loan.</li>
-                <li><strong>Residency Requirement:</strong> You must be a legal resident of the country.</li>
-                <li><strong>Bank Account Requirement:</strong> You must have a bank account in your own name.</li>
-              </ul>
-
-              <h2>2. Loan Application Process</h2>
-              <ul>
-                <li><strong>How to Apply:</strong> Visit the website, click on "Apply Now," and complete the online application process.</li>
-              </ul>
-
-              <h2>3. Loan Approval and Disbursement</h2>
-              <ul>
-                <li><strong>Approval Process:</strong> Once we evaluate your application and documentation, if approved, you will receive a loan offer.</li>
-              </ul>
-
-              <h2>4. Repayment &amp; Interest Rate Terms</h2>
-              <ul>
-                <li><strong>Interest Rates:</strong> Loan interest rates will be disclosed in the loan agreement, which is 1% per day.</li>
-              </ul>
-
-              <h2>5. Contact Us</h2>
-              <p><strong>Email:</strong> Customercare@salarytopup.com</p>
-              <p><strong>Phone:</strong> +91 9355753533</p>
+              {loading ? (
+                <p style={{ color: '#94a3b8' }}>Loading...</p>
+              ) : content ? (
+                <div className="lg-cms-content" dangerouslySetInnerHTML={{ __html: content }} />
+              ) : (
+                <>
+                  <h2>Welcome to Salary Topup</h2>
+                  <p>Powered by Baid Stock Broking Services Private Limited. If you visit our website and use our services, you agree to be bound by the following terms and conditions.</p>
+                  <h2>1. Eligibility Criteria</h2>
+                  <ul>
+                    <li><strong>Age Requirement:</strong> You must be at least 18 years of age to apply for a loan.</li>
+                    <li><strong>Residency Requirement:</strong> You must be a legal resident of the country.</li>
+                    <li><strong>Bank Account Requirement:</strong> You must have a bank account in your own name.</li>
+                  </ul>
+                  <h2>2. Loan Application Process</h2>
+                  <ul>
+                    <li><strong>How to Apply:</strong> Visit the website, click on "Apply Now," and complete the online application process.</li>
+                  </ul>
+                  <h2>3. Loan Approval and Disbursement</h2>
+                  <ul>
+                    <li><strong>Approval Process:</strong> Once we evaluate your application and documentation, if approved, you will receive a loan offer.</li>
+                  </ul>
+                  <h2>4. Repayment &amp; Interest Rate Terms</h2>
+                  <ul>
+                    <li><strong>Interest Rates:</strong> Loan interest rates will be disclosed in the loan agreement, which is 1% per day.</li>
+                  </ul>
+                  <h2>5. Contact Us</h2>
+                  <p><strong>Email:</strong> Customercare@salarytopup.com</p>
+                  <p><strong>Phone:</strong> +91 9355753533</p>
+                </>
+              )}
             </div>
           </main>
         </div>

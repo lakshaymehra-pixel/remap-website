@@ -139,7 +139,7 @@ p {
     align-items: flex-start;
 }
 
-/* Left — Image Placeholder */
+/* Left — Animated Mission Visual */
 .abt-mission-img {
     flex: 0 0 40%;
 }
@@ -153,6 +153,238 @@ p {
     justify-content: center;
     font-size: 3rem;
     color: #2C6275;
+}
+
+/* ===== Mission Animated Visual — Target SVG ===== */
+.msn-visual {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-width: 360px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+}
+
+/* SVG target */
+.msn-svg {
+    width: 82%;
+    height: 82%;
+    overflow: visible;
+    animation: msnBob 4s ease-in-out infinite;
+    filter: drop-shadow(0 8px 28px rgba(37,85,126,0.18));
+}
+
+/* Rings draw in one by one */
+.msn-svg-ring {
+    stroke-dasharray: 800;
+    stroke-dashoffset: 800;
+}
+.msn-svg-r1 { animation: msnDrawRing 0.7s ease-out 0.1s forwards; }
+.msn-svg-r2 { animation: msnDrawRing 0.7s ease-out 0.4s forwards; }
+.msn-svg-r3 { animation: msnDrawRing 0.6s ease-out 0.7s forwards; }
+.msn-svg-r4 { animation: msnDrawRing 0.5s ease-out 0.9s forwards; }
+
+/* Center dot pops in */
+.msn-svg-dot {
+    opacity: 0;
+    transform-origin: 130px 130px;
+    animation: msnDotPop 0.4s cubic-bezier(0.34,1.56,0.64,1) 1.1s forwards;
+}
+
+/* Arrow slides in from top-right and stays */
+.msn-svg-arrow {
+    opacity: 0;
+    animation: msnArrowSlide 0.5s cubic-bezier(0.22,1,0.36,1) 1.3s forwards;
+}
+
+/* Ripple pulses from center after arrow hits */
+.msn-ripple {
+    position: absolute;
+    border-radius: 50%;
+    border: 2.5px solid #25557E;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+.msn-rip1 { width: 44px; height: 44px; animation: msnRipple 1.6s ease-out infinite 1.8s; }
+.msn-rip2 { width: 44px; height: 44px; animation: msnRipple 1.6s ease-out infinite 2.1s; }
+.msn-rip3 { width: 44px; height: 44px; animation: msnRipple 1.6s ease-out infinite 2.4s; }
+
+/* Floating stat chips */
+.msn-chip {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ddeaf2;
+    border-radius: 30px;
+    padding: 8px 16px;
+    font-size: 0.73rem;
+    font-weight: 700;
+    color: #25557E;
+    box-shadow: 0 4px 18px rgba(37,85,126,0.13);
+    white-space: nowrap;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    opacity: 0;
+}
+.msn-chip i { font-size: 0.72rem; }
+.msn-chip1 { top: 2%;    left: -2%;  animation: msnChipIn 0.5s ease-out 1.6s forwards, msnFloat1 3.5s ease-in-out 2.1s infinite; }
+.msn-chip2 { bottom: 2%; right: -2%; animation: msnChipIn 0.5s ease-out 1.8s forwards, msnFloat2 4s   ease-in-out 2.3s infinite; }
+.msn-chip3 { bottom: 12%; left: -4%; animation: msnChipIn 0.5s ease-out 2.0s forwards, msnFloat3 4.5s ease-in-out 2.5s infinite; }
+
+/* --- Keyframes --- */
+@keyframes msnDrawRing {
+    to { stroke-dashoffset: 0; }
+}
+@keyframes msnDotPop {
+    0%   { opacity: 0; transform: scale(0); }
+    100% { opacity: 1; transform: scale(1); }
+}
+@keyframes msnArrowSlide {
+    0%   { opacity: 0; transform: translate(40px, -40px); }
+    100% { opacity: 1; transform: translate(0, 0); }
+}
+@keyframes msnRipple {
+    0%   { transform: scale(0.5); opacity: 0.7; }
+    100% { transform: scale(3.2); opacity: 0; }
+}
+@keyframes msnChipIn {
+    0%   { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes msnBob {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-7px); }
+}
+@keyframes msnFloat1 {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-7px); }
+}
+@keyframes msnFloat2 {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(7px); }
+}
+@keyframes msnFloat3 {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-5px); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .msn-visual { max-width: 240px; }
+    .msn-svg { width: 85%; height: 85%; }
+    .msn-chip { font-size: 0.65rem; padding: 6px 12px; }
+    .msn-chip1 { top: 0%; left: -2%; }
+    .msn-chip2 { bottom: 0%; right: -2%; }
+    .msn-chip3 { bottom: 8%; left: -2%; }
+}
+
+/* ===== Vision Animated Visual — Rising Graph ===== */
+.vsn-visual {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(135deg, #eef4f8, #f5f9fc);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    box-shadow: 0 4px 24px rgba(37,85,126,0.08);
+}
+
+.vsn-svg {
+    width: 90%;
+    height: 90%;
+    overflow: visible;
+}
+
+/* Chart line draws in */
+.vsn-line {
+    animation: vsnDrawLine 3s linear infinite;
+}
+@keyframes vsnDrawLine {
+    0%   { stroke-dashoffset: 500; }
+    70%  { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: 0; }
+}
+
+/* Dots always visible — static */
+.vsn-dot { opacity: 1; transform: scale(1); }
+.vsn-d1 { animation: none; }
+.vsn-d2 { animation: none; }
+.vsn-d3 { animation: none; }
+.vsn-d4 { animation: none; }
+.vsn-d5 { animation: none; }
+
+/* Star sparkles at peak */
+.vsn-star {
+    opacity: 0;
+    transform-origin: 270px 30px;
+    animation: vsnStarPop 0.5s cubic-bezier(0.34,1.56,0.64,1) 1.6s forwards,
+               vsnStarPulse 2s ease-in-out 2.1s infinite;
+}
+@keyframes vsnStarPop {
+    0%   { opacity: 0; transform: scale(0) rotate(-30deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+@keyframes vsnStarPulse {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.15); }
+}
+
+/* Floating label chips */
+.vsn-chip {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ddeaf2;
+    border-radius: 30px;
+    padding: 7px 14px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #25557E;
+    box-shadow: 0 3px 14px rgba(37,85,126,0.11);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    opacity: 0;
+}
+.vsn-chip i { font-size: 0.7rem; }
+.vsn-chip1 { top: 10%;    left: 4%;   animation: vsnChipIn 0.4s ease-out 1.7s forwards, vsnFloatA 3.5s ease-in-out 2.1s infinite; }
+.vsn-chip2 { top: 8%;     right: 4%;  animation: vsnChipIn 0.4s ease-out 1.9s forwards, vsnFloatB 4s   ease-in-out 2.3s infinite; }
+.vsn-chip3 { bottom: 10%; left: 50%;  transform: translateX(-50%);
+             animation: vsnChipIn 0.4s ease-out 2.1s forwards, vsnFloatA 4.5s ease-in-out 2.5s infinite; }
+
+@keyframes vsnChipIn {
+    0%   { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+/* chip3 needs its own since it has translateX */
+.vsn-chip3 {
+    bottom: 10%; left: 50%;
+    animation: vsnChipIn3 0.4s ease-out 2.1s forwards, vsnFloatA 4.5s ease-in-out 2.5s infinite;
+}
+@keyframes vsnChipIn3 {
+    0%   { opacity: 0; transform: translateX(-50%) translateY(10px); }
+    100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+@keyframes vsnFloatA {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-6px); }
+}
+@keyframes vsnFloatB {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(6px); }
+}
+
+@media (max-width: 768px) {
+    .vsn-visual { aspect-ratio: 4/3; border-radius: 14px; }
+    .vsn-chip { font-size: 0.62rem; padding: 5px 10px; }
 }
 
 /* Right — Content */

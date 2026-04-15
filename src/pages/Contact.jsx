@@ -1,9 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/contact.css";
 import { Helmet } from "react-helmet";
 import logo from "../images/logo.webp";
 
+const DEFAULT_CONTACT = {
+  address: 'B-76, 2nd Floor, Wazirpur Industrial Area, Delhi 110052',
+  phone: '+91 9355753533',
+  hours: 'Monday - Saturday, 9 AM to 7 PM',
+  whatsapp1: '+91-9899001138',
+  whatsapp2: '+91-8448240723',
+  email: 'customercare@salarytopup.com',
+};
+
 const Contact = () => {
+  const [contactInfo, setContactInfo] = useState(DEFAULT_CONTACT);
+
+  useEffect(() => {
+    fetch('http://localhost:4500/api/pages/public/contact')
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.content) {
+          try {
+            const parsed = JSON.parse(data.content);
+            setContactInfo({ ...DEFAULT_CONTACT, ...parsed });
+          } catch { }
+        }
+      })
+      .catch(() => { });
+  }, []);
+
   const [formData, setFormData] = useState({
     name: "", email: "", mobile: "", inquiryType: "", subject: "", message: "", consent: false,
   });
@@ -36,7 +61,7 @@ const Contact = () => {
       if (processing) return;
       setProcessing(true);
       try {
-        const resp = await fetch("http://localhost:5000/api/contacts", {
+        const resp = await fetch("http://localhost:4500/api/contacts", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name: formData.name, email: formData.email, mobile: formData.mobile, inquiryType: formData.inquiryType, message: formData.message }),
@@ -132,21 +157,21 @@ const Contact = () => {
                 <div className="ct-info-col">
                   <div className="ct-info-item">
                     <i className="fas fa-map-marker-alt ct-ii"></i>
-                    <div><strong>Our Address</strong><p>B-76, 2nd Floor,<br/>Wazirpur Industrial Area,<br/>Delhi 110052</p></div>
+                    <div><strong>Our Address</strong><p>{contactInfo.address}</p></div>
                   </div>
                   <div className="ct-info-item">
                     <i className="fab fa-whatsapp ct-ii"></i>
-                    <div><strong>WhatsApp us</strong><p>+91-9899001138<br/>+91-8448240723</p></div>
+                    <div><strong>WhatsApp us</strong><p>{contactInfo.whatsapp1}<br/>{contactInfo.whatsapp2}</p></div>
                   </div>
                 </div>
                 <div className="ct-info-col">
                   <div className="ct-info-item">
                     <i className="fas fa-phone ct-ii"></i>
-                    <div><strong>Customer Support</strong><p>+91 9355753533<br/>Monday - Saturday,<br/>9 AM to 7 PM</p></div>
+                    <div><strong>Customer Support</strong><p>{contactInfo.phone}<br/>{contactInfo.hours}</p></div>
                   </div>
                   <div className="ct-info-item">
                     <i className="fas fa-envelope ct-ii"></i>
-                    <div><strong>Email Support</strong><p>customercare@salarytopup.com</p></div>
+                    <div><strong>Email Support</strong><p>{contactInfo.email}</p></div>
                   </div>
                 </div>
               </div>

@@ -41,7 +41,7 @@ const FAQ = () => {
   const [groupedFaqs, setGroupedFaqs] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/faqs/public')
+    fetch('http://localhost:4500/api/faqs/public')
       .then(r => r.json())
       .then(data => {
         if (data && data.length > 0) {

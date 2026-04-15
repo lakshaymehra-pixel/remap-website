@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import "../css/legal.css";
 
 const RateandTerms = () => {
+  const [content, setContent] = useState('');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('http://localhost:4500/api/pages/public/rate-and-terms')
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.content) setContent(data.content);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -26,36 +39,34 @@ const RateandTerms = () => {
         <div className="lg-layout">
           <main className="lg-content" style={{ maxWidth: '100%' }}>
             <div className="lg-card">
-              <h2>Loan Rate &amp; Terms</h2>
-              <p>All loan rates and terms are transparent and disclosed before you accept any offer. Salary Topup is committed to zero hidden charges.</p>
-
-              <h2>1. Loan Amount</h2>
-              <ul>
-                <li><strong>Minimum Loan:</strong> ₹5,000</li>
-                <li><strong>Maximum Loan:</strong> ₹1,00,000</li>
-              </ul>
-
-              <h2>2. Interest Rate</h2>
-              <ul>
-                <li><strong>Rate:</strong> 1% per day on the outstanding principal amount.</li>
-                <li><strong>Annualised Rate:</strong> Up to 365% per annum.</li>
-              </ul>
-
-              <h2>3. Loan Tenure</h2>
-              <ul>
-                <li><strong>Minimum Tenure:</strong> 7 days</li>
-                <li><strong>Maximum Tenure:</strong> 40 days</li>
-              </ul>
-
-              <h2>4. Fees &amp; Charges</h2>
-              <ul>
-                <li><strong>Processing Fee:</strong> Disclosed at the time of application.</li>
-                <li><strong>No Hidden Charges:</strong> All fees are clearly disclosed before loan acceptance.</li>
-              </ul>
-
-              <h2>5. Contact Us</h2>
-              <p><strong>Email:</strong> Customercare@salarytopup.com</p>
-              <p><strong>Phone:</strong> +91 9355753533</p>
+              {loading ? (
+                <p style={{ color: '#94a3b8' }}>Loading...</p>
+              ) : content ? (
+                <div className="lg-cms-content" dangerouslySetInnerHTML={{ __html: content }} />
+              ) : (
+                <>
+                  <h2>Loan Rate &amp; Terms</h2>
+                  <p>All loan rates and terms are transparent and disclosed before you accept any offer.</p>
+                  <h2>1. Loan Amount</h2>
+                  <ul>
+                    <li><strong>Minimum Loan:</strong> ₹5,000</li>
+                    <li><strong>Maximum Loan:</strong> ₹1,00,000</li>
+                  </ul>
+                  <h2>2. Interest Rate</h2>
+                  <ul>
+                    <li><strong>Rate:</strong> 1% per day on the outstanding principal amount.</li>
+                    <li><strong>Annualised Rate:</strong> Up to 365% per annum.</li>
+                  </ul>
+                  <h2>3. Loan Tenure</h2>
+                  <ul>
+                    <li><strong>Minimum Tenure:</strong> 7 days</li>
+                    <li><strong>Maximum Tenure:</strong> 40 days</li>
+                  </ul>
+                  <h2>4. Contact Us</h2>
+                  <p><strong>Email:</strong> Customercare@salarytopup.com</p>
+                  <p><strong>Phone:</strong> +91 9355753533</p>
+                </>
+              )}
             </div>
           </main>
         </div>

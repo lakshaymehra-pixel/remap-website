@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import "../css/legal.css";
 
 const PrivacyPolicy = () => {
+  const [content, setContent] = useState('');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('http://localhost:4500/api/pages/public/privacy-policy')
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.content) setContent(data.content);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -26,28 +39,30 @@ const PrivacyPolicy = () => {
         <div className="lg-layout">
           <main className="lg-content" style={{ maxWidth: '100%' }}>
             <div className="lg-card">
-              <h2>Our Privacy Commitment</h2>
-              <p><strong>Baid Stock Broking Services Private Limited</strong> operates the salarytopup.com website. This Privacy Policy explains how we collect, use, and share your personal information.</p>
-
-              <h2>1. Information We Collect</h2>
-              <ul>
-                <li><strong>Personal Information:</strong> Name, address, email, phone number, date of birth.</li>
-                <li><strong>Financial Information:</strong> Bank account details, credit history.</li>
-              </ul>
-
-              <h2>2. How We Use Your Information</h2>
-              <ul>
-                <li>To provide and maintain our services.</li>
-                <li>To process your transactions and manage your accounts.</li>
-                <li>To verify your identity and prevent fraud.</li>
-              </ul>
-
-              <h2>3. Data Security</h2>
-              <p>We implement appropriate technical and organisational measures to protect your personal information from unauthorised access.</p>
-
-              <h2>4. Contact Us</h2>
-              <p><strong>Phone:</strong> +91 9355753533</p>
-              <p><strong>Email:</strong> Customercare@salarytopup.com</p>
+              {loading ? (
+                <p style={{ color: '#94a3b8' }}>Loading...</p>
+              ) : content ? (
+                <div className="lg-cms-content" dangerouslySetInnerHTML={{ __html: content }} />
+              ) : (
+                <>
+                  <h2>Our Privacy Commitment</h2>
+                  <p><strong>Baid Stock Broking Services Private Limited</strong> operates the salarytopup.com website.</p>
+                  <h2>1. Information We Collect</h2>
+                  <ul>
+                    <li><strong>Personal Information:</strong> Name, address, email, phone number, date of birth.</li>
+                    <li><strong>Financial Information:</strong> Bank account details, credit history.</li>
+                  </ul>
+                  <h2>2. How We Use Your Information</h2>
+                  <ul>
+                    <li>To provide and maintain our services.</li>
+                    <li>To process your transactions and manage your accounts.</li>
+                    <li>To verify your identity and prevent fraud.</li>
+                  </ul>
+                  <h2>3. Contact Us</h2>
+                  <p><strong>Phone:</strong> +91 9355753533</p>
+                  <p><strong>Email:</strong> Customercare@salarytopup.com</p>
+                </>
+              )}
             </div>
           </main>
         </div>

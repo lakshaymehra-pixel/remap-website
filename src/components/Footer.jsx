@@ -1,23 +1,57 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaPhoneAlt, FaEnvelope, FaWhatsapp } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import "../css/footer.css";
 import { Link } from "react-router-dom";
-import logo from "../images/logo.webp";
+import defaultLogo from "../images/logo.webp";
+import { useSiteSettings } from "../App";
 import skyline from "../images/footer-skyline.png";
 import playstoreImg from "../images/playstore.webp";
 
+const DEFAULTS = {
+  description: 'Your trusted partner for emergency funds. We provide quick, collateral-free loans with transparent terms.',
+  phone1: '+91 93557 53533',
+  phone2: '+91 8448240723',
+  whatsapp: '+91 8448240723',
+  email: 'customercare@salarytopup.com',
+  address: 'B-76, 2nd Floor, Wazirpur Industrial Area, Delhi – 110052',
+  rbiText: 'RBI Registered NBFC Baid Stock Broking Services Private Limited\n(Reg. No. B-14.02553)',
+  copyright: '© 2026 Salary TopUp. All Right Reserved',
+  facebookUrl: 'https://www.facebook.com/profile.php?id=61574094973748',
+  twitterUrl: 'https://x.com/SalaryTopup',
+  instagramUrl: 'https://www.instagram.com/salary_topup',
+  linkedinUrl: 'https://www.linkedin.com/company/salary-topup/',
+  playstoreUrl: 'https://play.google.com/store/apps/details?id=com.salarytopup.salarytopup',
+};
+
 const Footer = () => {
+  const { logoUrl: ctxLogo } = useSiteSettings();
+  const [settings, setSettings] = useState(DEFAULTS);
+  const [siteLogo, setSiteLogo] = useState('');
   const [openMenu, setOpenMenu] = useState(null);
   const toggleMenu = (idx) => setOpenMenu(openMenu === idx ? null : idx);
   const [nlEmail, setNlEmail] = useState('');
   const [nlMsg, setNlMsg] = useState('');
 
+  useEffect(() => {
+    const base = process.env.REACT_APP_API_URL || 'http://localhost:4500';
+    // Footer settings (contact, social, etc.)
+    fetch(`${base}/api/footer-settings/public`)
+      .then(r => r.json())
+      .then(data => setSettings(s => ({ ...s, ...data })))
+      .catch(() => {});
+    // Site logo (always fetch directly for reliability)
+    fetch(`${base}/api/site-settings/public`)
+      .then(r => r.json())
+      .then(data => { if (data.logoUrl) setSiteLogo(data.logoUrl); })
+      .catch(() => {});
+  }, []);
+
   const handleSubscribe = async (e) => {
     e.preventDefault();
     if (!nlEmail) return;
     try {
-      const res = await fetch('http://localhost:5000/api/newsletter/subscribe', {
+      const res = await fetch('http://localhost:4500/api/newsletter/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: nlEmail })
@@ -38,11 +72,11 @@ const Footer = () => {
 
           {/* Col 1 — Logo + About */}
           <div className="ft-col ft-about">
-            <img src={logo} alt="SalaryTopUp" className="ft-logo" />
-            <p>Your trusted partner for emergency funds. We provide quick, collateral-free loans with transparent terms.</p>
+            <img src={settings.logoUrl || siteLogo || ctxLogo || defaultLogo} alt="SalaryTopUp" className="ft-logo" />
+            <p>{settings.description}</p>
             <div className="ft-getapp">
               <span>Get it on</span>
-              <a href="https://play.google.com/store/apps/details?id=com.salarytopup.salarytopup" target="_blank" rel="noopener noreferrer" className="ft-playstore">
+              <a href={settings.playstoreUrl} target="_blank" rel="noopener noreferrer" className="ft-playstore">
                 <img src={playstoreImg} alt="Google Play" className="ft-playstore-img" />
               </a>
             </div>
@@ -54,7 +88,7 @@ const Footer = () => {
             <ul>
               <li><Link to="/">Home</Link></li>
               <li><Link to="/about-us">About Us</Link></li>
-              <li><Link to="/services">Our Services</Link></li>
+              <li><Link to="/career">Career</Link></li>
               <li><Link to="/contact">Contact Us</Link></li>
             </ul>
           </div>
@@ -86,15 +120,15 @@ const Footer = () => {
             <ul>
               <li>
                 <FaPhoneAlt className="ft-ci" />
-                <a href="tel:+919355753533">+91 93557 53533</a>
+                <a href={`tel:${settings.phone1}`}>{settings.phone1}</a>
               </li>
               <li>
                 <FaWhatsapp className="ft-ci" />
-                <a href="https://wa.me/918448240723">+91 8448240723</a>
+                <a href={`https://wa.me/${settings.whatsapp.replace(/\D/g, '')}`}>{settings.whatsapp}</a>
               </li>
               <li>
                 <FaEnvelope className="ft-ci" />
-                <a href="mailto:customercare@salarytopup.com">customercare@salarytopup.com</a>
+                <a href={`mailto:${settings.email}`}>{settings.email}</a>
               </li>
             </ul>
           </div>
@@ -109,20 +143,22 @@ const Footer = () => {
           <div className="ft-btm-left">
             <div className="ft-address">
               <strong>Registered Office :</strong>
-              <span>B-76, 2nd Floor, Wazirpur Industrial Area, Delhi – 110052</span>
+              <span>{settings.address}</span>
             </div>
             <div className="ft-social">
               <span>Follow on</span>
-              <a href="https://www.facebook.com/profile.php?id=61574094973748" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
-              <a href="https://x.com/SalaryTopup" target="_blank" rel="noopener noreferrer"><FaXTwitter /></a>
-              <a href="https://www.instagram.com/salary_topup" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
-              <a href="https://www.linkedin.com/company/salary-topup/" target="_blank" rel="noopener noreferrer"><FaLinkedinIn /></a>
+              <a href={settings.facebookUrl} target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
+              <a href={settings.twitterUrl} target="_blank" rel="noopener noreferrer"><FaXTwitter /></a>
+              <a href={settings.instagramUrl} target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
+              <a href={settings.linkedinUrl} target="_blank" rel="noopener noreferrer"><FaLinkedinIn /></a>
             </div>
           </div>
 
           {/* Center — RBI Info */}
           <div className="ft-btm-center">
-            <p>RBI Registered NBFC Baid Stock Broking Services Private Limited<br />(Reg. No. B-14.02553)</p>
+            <p>{settings.rbiText.split('\n').map((line, i, arr) => (
+              i < arr.length - 1 ? <span key={i}>{line}<br /></span> : <span key={i}>{line}</span>
+            ))}</p>
           </div>
 
           {/* Right — Newsletter */}
@@ -140,7 +176,7 @@ const Footer = () => {
 
       {/* Copyright + Skyline together */}
       <div className="ft-sky-copy">
-        <p className="ft-copy-text">&copy; 2026 Salary TopUp. All Right Reserved</p>
+        <p className="ft-copy-text">{settings.copyright}</p>
         <div className="ft-skyline">
           <img src={skyline} alt="" />
         </div>

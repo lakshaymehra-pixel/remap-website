@@ -43,9 +43,12 @@ import Privacy from "./pages/Dashboard/Privacy/Privacy";
 
 import RepayThankyou from "./pages/RepayThanku";
 import NotFound from "./pages/404";
+import Career from "./pages/Career";
+import FeatureDetail from "./pages/FeatureDetail";
 import BlogAll from "./components/Blog/BlogAll";
 import BlogDetail from "./components/Blog/BlogDetail";
 import Paymentgateway from "./pages/Paymentgateway";
+import AdminPanel from "./pages/AdminPanel";
 
 const showmessage = async (message) => {
   try {
@@ -79,6 +82,8 @@ function Router() {
           <Route path="apply-now" element={<ApplyForLoan showmessage={showmessage} />} />
           <Route path="repayloan" element={<Navigate to="/repay-loan" replace />} />
           <Route path="repay-loan" element={<RepayLoan showmessage={showmessage} />} />
+          <Route path="career" element={<Career />} />
+          <Route path="features/:slug" element={<FeatureDetail />} />
           <Route path="blog" element={<BlogAll />} />
           <Route path="/blog/:slug" element={<BlogDetail />} />
           <Route path="/paymenthdfc" element={<Paymentgateway />} />
@@ -123,6 +128,7 @@ function Router() {
             }
           />
         </Route>
+        <Route path="/admin" element={<AdminPanel />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

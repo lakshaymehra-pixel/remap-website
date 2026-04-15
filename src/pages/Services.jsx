@@ -1,12 +1,12 @@
 import React from "react";
 import "../css/service.css";
 import { Link } from "react-router-dom";
-import instant from ".././images/instant.webp";
-import minimal from ".././images/minimal.webp";
-import online from ".././images/online.jpg";
-import flexible from ".././images/flexible.webp";
-import repayment from ".././images/repayment.webp";
-import collateral from ".././images/collateral.webp";
+import instant from ".././images/Picflow Images Apr 10/salarytopup-instant-loan-approval-india.webp.webp";
+import minimal from ".././images/Picflow Images Apr 10/salarytopup-personal-loan-minimal-paperwork.webp.webp";
+import online from ".././images/Picflow Images Apr 10/salarytopup-online-loan-application-india.webp.webp";
+import flexible from ".././images/Picflow Images Apr 10/salarytopup-flexible-personal-loan-options.webp.webp";
+import repayment from ".././images/Picflow Images Apr 10/salarytopup-easy-loan-repayment-plan.webp.webp";
+import collateral from ".././images/Picflow Images Apr 10/salarytopup-collateral-free-personal-loan.webp.webp";
 import { Helmet } from "react-helmet";
 
 const services = [
@@ -55,8 +55,8 @@ const services = [
 ];
 
 const stats = [
-  { number: "10 min", label: "Average Approval", icon: "fas fa-clock" },
-  { number: "15,000+", label: "Loans Disbursed", icon: "fas fa-hand-holding-usd" },
+  { number: "Fast", label: "Average Approval", icon: "fas fa-clock" },
+  { number: "5000+ Cr", label: "Loans Disbursed", icon: "fas fa-hand-holding-usd" },
   { number: "100%", label: "Secure Process", icon: "fas fa-lock" },
   { number: "10,000+", label: "Happy Customers", icon: "fas fa-users" },
 ];
@@ -64,7 +64,7 @@ const stats = [
 const steps = [
   { step: "01", icon: "fas fa-user-plus", title: "Register", desc: "Create your free account in under 2 minutes." },
   { step: "02", icon: "fas fa-file-upload", title: "Upload Docs", desc: "Submit PAN, Aadhaar & bank statement digitally." },
-  { step: "03", icon: "fas fa-check-circle", title: "Get Approved", desc: "AI-powered instant approval within 10 minutes." },
+  { step: "03", icon: "fas fa-check-circle", title: "Get Approved", desc: "AI-powered instant approval within minutes." },
   { step: "04", icon: "fas fa-money-bill-wave", title: "Get Money", desc: "Funds credited directly to your bank account." },
 ];
 
@@ -145,7 +145,7 @@ const Services = () => {
           <div className="sv-cta-inner">
             <div className="sv-cta-text">
               <h2>Ready for an Instant Loan?</h2>
-              <p>Apply now and get your funds disbursed in as little as 10 minutes after approval.</p>
+              <p>Apply now and get your funds disbursed quickly after approval.</p>
             </div>
             <div className="sv-cta-btns">
               <Link to="/apply-now" className="sv-btn-primary">Apply Now <i className="fas fa-arrow-right"></i></Link>
