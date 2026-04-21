@@ -681,13 +681,13 @@ const Home = () => {
 
         {/* Center — Content */}
         <div className="hsb-content">
-          <strong>Check Eligibility & Apply Now!</strong>
-          <span>Instant approval with minimal documentation. Get funds quickly.</span>
+          <strong>See If You Qualify in 60 Seconds!</strong>
+          <span>No paperwork. No branch visit. Just your phone and salary slip.</span>
         </div>
 
         {/* Right — Button */}
         <Link to="/apply-now" className="hsb-apply-btn">
-          Apply Now <i className="fas fa-arrow-right"></i>
+          Check Eligibility <i className="fas fa-arrow-right"></i>
         </Link>
       </div>
 
