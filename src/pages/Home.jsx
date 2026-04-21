@@ -948,6 +948,494 @@ const Home = () => {
         </div>
       </section>
 
+      {/* FINANCIAL STRATEGY SECTION — between Loans & Track */}
+      <section className="fis-section" id="financial-strategy">
+        <div className="fis-bg-circle c1"></div>
+        <div className="fis-bg-circle c2"></div>
+        <div className="fis-container">
+          <div className="fis-header">
+            <span className="fis-tag"><i className="fas fa-chart-pie"></i> Smart Calculator</span>
+            <h2>Building Insightful <span className="fis-highlight">Financial Strategies</span></h2>
+            <p>Adjust the sliders to see a real-time breakdown of your loan repayment</p>
+          </div>
+          <div className="fis-body">
+            {/* LEFT — Animated Loan Dashboard Card */}
+            <div className="fis-visual-box">
+
+              {/* Floating particles */}
+              <div className="fis-vb-particles">
+                {[...Array(6)].map((_,i)=><span className="fis-vb-particle" key={i} style={{"--pi":i}}></span>)}
+              </div>
+
+              {/* Top — Loan meter */}
+              <div className="fis-vb-header">
+                <span className="fis-vb-tag">
+                  <span className="fis-vb-dot"></span>
+                  Live Loan Estimator
+                </span>
+                <span className="fis-vb-badge">LIVE</span>
+              </div>
+
+              {/* Big animated amount — synced to calculator */}
+              <div className="fis-vb-amount-row">
+                <div className="fis-vb-rupee">₹</div>
+                <div className="fis-vb-amount" key={loanAmount}>{loanAmount.toLocaleString("en-IN")}</div>
+              </div>
+              <div className="fis-vb-label" key={`${loanPeriod}-${loanAmount}`}>Your Loan Amount · {loanPeriod} Days</div>
+
+              {/* Divider */}
+              <div className="fis-vb-divider"></div>
+
+              {/* Animated bar chart — scaled to max loan (1,00,000) */}
+              {(() => {
+                const maxLoan = 100000;
+                const maxTotal = maxLoan + Math.round(maxLoan * (interestRate/100) * loanPeriod) + Math.round(maxLoan * 0.02);
+                const principalPct = Math.max(4, Math.round((loanAmount / maxLoan) * 100));
+                const interestPct  = Math.max(2, Math.round((totalInterest / maxTotal) * 100));
+                const totalPct     = Math.max(4, Math.round((totalPayment  / maxTotal) * 100));
+                return (
+                  <div className="fis-vb-bars">
+                    <div className="fis-vb-bar-row">
+                      <span className="fis-vb-bar-label">Principal</span>
+                      <div className="fis-vb-bar-track">
+                        <div className="fis-vb-bar-fill principal" style={{width:`${principalPct}%`}}></div>
+                      </div>
+                      <span className="fis-vb-bar-val" key={loanAmount}>₹{loanAmount.toLocaleString("en-IN")}</span>
+                    </div>
+                    <div className="fis-vb-bar-row">
+                      <span className="fis-vb-bar-label">Interest</span>
+                      <div className="fis-vb-bar-track">
+                        <div className="fis-vb-bar-fill interest" style={{width:`${interestPct}%`}}></div>
+                      </div>
+                      <span className="fis-vb-bar-val" key={totalInterest}>₹{totalInterest.toLocaleString("en-IN")}</span>
+                    </div>
+                    <div className="fis-vb-bar-row">
+                      <span className="fis-vb-bar-label">Total Pay</span>
+                      <div className="fis-vb-bar-track">
+                        <div className="fis-vb-bar-fill total" style={{width:`${totalPct}%`}}></div>
+                      </div>
+                      <span className="fis-vb-bar-val fis-vb-bar-total" key={totalPayment}>₹{totalPayment.toLocaleString("en-IN")}</span>
+                    </div>
+                  </div>
+                );
+              })()}
+
+              {/* 3 stat pills — live */}
+              <div className="fis-vb-pills">
+                <div className="fis-vb-pill">
+                  <div className="fis-vb-pill-icon"><i className="fas fa-calendar-alt"></i></div>
+                  <div className="fis-vb-pill-val" key={loanPeriod}>{loanPeriod} Days</div>
+                  <div className="fis-vb-pill-lbl">Tenure</div>
+                </div>
+                <div className="fis-vb-pill fis-vb-pill-accent">
+                  <div className="fis-vb-pill-icon">%</div>
+                  <div className="fis-vb-pill-val" key={interestRate}>{interestRate.toFixed(1)}%</div>
+                  <div className="fis-vb-pill-lbl">Daily Rate</div>
+                </div>
+                <div className="fis-vb-pill">
+                  <div className="fis-vb-pill-icon"><i className="fas fa-bolt"></i></div>
+                  <div className="fis-vb-pill-val">Fast</div>
+                  <div className="fis-vb-pill-lbl">Disbursal</div>
+                </div>
+              </div>
+
+              {/* Animated approval strip */}
+              <div className="fis-vb-approved">
+                <div className="fis-vb-tick">
+                  <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#dcfce7" stroke="#16a34a" strokeWidth="1.5"/><polyline points="7,12 10.5,15.5 17,9" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </div>
+                <div>
+                  <div className="fis-vb-approved-title">Eligible for Instant Approval</div>
+                  <div className="fis-vb-approved-sub">No collateral · Minimal documents · 100% Digital</div>
+                </div>
+              </div>
+
+            </div>
+
+            <div className="fis-calc">
+              <div className="fis-calc-inner">
+                <div className="fis-slider-group">
+                  <div className="fis-slider-top">
+                    <div className="fis-slider-label"><span className="fis-slider-icon"><i className="fas fa-rupee-sign"></i></span>Loan Amount</div>
+                    <span className="fis-slider-val">₹{loanAmount.toLocaleString("en-IN")}</span>
+                  </div>
+                  <div className="fis-range-wrap"><input type="range" min="5000" max="100000" step="1000" value={loanAmount} onChange={e=>setLoanAmount(Number(e.target.value))} className="fis-range fis-range-rupee" style={{"--pct":`${((loanAmount-5000)/95000)*100}%`}}/></div>
+                  <div className="fis-range-limits"><span>5000</span><span>1 Lakh</span></div>
+                </div>
+                <div className="fis-slider-group">
+                  <div className="fis-slider-top">
+                    <div className="fis-slider-label"><span className="fis-slider-icon"><i className="fas fa-calendar-alt"></i></span>Loan Period</div>
+                    <span className="fis-slider-val">{loanPeriod} Days</span>
+                  </div>
+                  <div className="fis-range-wrap"><input type="range" min="7" max="40" step="1" value={loanPeriod} onChange={e=>setLoanPeriod(Number(e.target.value))} className="fis-range fis-range-calendar" style={{"--pct":`${((loanPeriod-7)/33)*100}%`}}/></div>
+                  <div className="fis-range-limits"><span>7 Days</span><span>40 Days</span></div>
+                </div>
+                <div className="fis-slider-group">
+                  <div className="fis-slider-top">
+                    <div className="fis-slider-label"><span className="fis-slider-icon"><i className="fas fa-percentage"></i></span>Daily Interest Rate</div>
+                    <span className="fis-slider-val">{interestRate.toFixed(1)}% / day</span>
+                  </div>
+                  <div className="fis-range-wrap"><input type="range" min="0.1" max="1" step="0.1" value={interestRate} onChange={e=>setInterestRate(Number(e.target.value))} className="fis-range fis-range-percent" style={{"--pct":`${((interestRate-0.1)/0.9)*100}%`}}/></div>
+                  <div className="fis-range-limits"><span>0.1%</span><span>1%</span></div>
+                </div>
+                <div className="fis-breakdown">
+                  {[
+                    {label:"Principal",value:`₹${loanAmount.toLocaleString("en-IN")}`,color:"#2C6275",icon:"fa-coins"},
+                    {label:"Interest",value:`₹${totalInterest.toLocaleString("en-IN")}`,color:"#2196f3",icon:"fa-percent"},
+                    {label:"Processing Fee",value:`₹${processingFee.toLocaleString("en-IN")}`,color:"#ff9800",icon:"fa-file-invoice"},
+                    {label:"Total Payable",value:`₹${totalPayment.toLocaleString("en-IN")}`,color:"#2C6275",icon:"fa-receipt",highlight:true},
+                  ].map((item,i)=>(
+                    <div className={`fis-breakdown-card ${item.highlight?"fis-highlight-card":""}`} key={i} style={{"--clr":item.color}}>
+                      <div className="fis-bc-icon"><i className={`fas ${item.icon}`}></i></div>
+                      <div className="fis-bc-info"><span className="fis-bc-label">{item.label}</span><span className="fis-bc-value">{item.value}</span></div>
+                    </div>
+                  ))}
+                </div>
+                <Link to="/apply-now" className="fis-apply-btn">Apply Now <i className="fas fa-arrow-right"></i></Link>
+                <p className="fis-note">Note: This is an estimate. Actual interest and processing fee may vary based on lender terms.</p>
+              </div>
+            </div>
+            <div className="fis-chart" style={{display:'none'}}>
+              <div className="fis-chart-inner">
+                <h3 className="fis-chart-title">Repayment Breakdown</h3>
+                <p className="fis-chart-sub">Visual overview of your loan repayment structure</p>
+                {/* Donut Chart */}
+                <div className="fis-donut-wrap">
+                  <svg viewBox="0 0 280 280" className="fis-donut-svg">
+                    {/* Track */}
+                    <circle cx="140" cy="140" r={R} fill="none" stroke="#f0f2f4" strokeWidth="28"/>
+                    {/* Principal — green */}
+                    <circle cx="140" cy="140" r={R} fill="none"
+                      stroke="#4caf50" strokeWidth="28"
+                      strokeDasharray={`${principalDash} ${C}`}
+                      transform="rotate(-90 140 140)"
+                      style={{transition:"stroke-dasharray 0.5s"}}/>
+                    {/* Interest — blue */}
+                    <circle cx="140" cy="140" r={R} fill="none"
+                      stroke="#2196f3" strokeWidth="28"
+                      strokeDasharray={`${interestDash} ${C}`}
+                      transform={`rotate(${interestRot} 140 140)`}
+                      style={{transition:"all 0.5s"}}/>
+                    {/* Fee — orange */}
+                    <circle cx="140" cy="140" r={R} fill="none"
+                      stroke="#ff9800" strokeWidth="28"
+                      strokeDasharray={`${feeDash} ${C}`}
+                      transform={`rotate(${feeRot} 140 140)`}
+                      style={{transition:"all 0.5s"}}/>
+                    {/* White center */}
+                    <circle cx="140" cy="140" r="60" fill="white"/>
+
+                    {/* Labels positioned around donut */}
+                    {(() => {
+                      const pPct = Math.round((loanAmount/totalPayment)*100);
+                      const iPct = Math.round((totalInterest/totalPayment)*100);
+                      const fPct = Math.round((processingFee/totalPayment)*100);
+                      // Mid-angle for each segment
+                      const pMid = -90 + (pPct/100 * 360) / 2;
+                      const iMid = -90 + (pPct/100 * 360) + (iPct/100 * 360) / 2;
+                      const fMid = -90 + (pPct/100 * 360) + (iPct/100 * 360) + (fPct/100 * 360) / 2;
+                      const labelR = 126;
+                      const px = 140 + labelR * Math.cos(pMid * Math.PI/180);
+                      const py = 140 + labelR * Math.sin(pMid * Math.PI/180);
+                      const ix = 140 + labelR * Math.cos(iMid * Math.PI/180);
+                      const iy = 140 + labelR * Math.sin(iMid * Math.PI/180);
+                      const fx = 140 + labelR * Math.cos(fMid * Math.PI/180);
+                      const fy = 140 + labelR * Math.sin(fMid * Math.PI/180);
+                      return <>
+                        <text x={px} y={py-5} textAnchor="middle" fontSize="11" fill="#4caf50" fontWeight="700">Principal</text>
+                        <text x={px} y={py+8} textAnchor="middle" fontSize="12" fill="#4caf50" fontWeight="800">{pPct}%</text>
+                        <text x={ix} y={iy-5} textAnchor="middle" fontSize="11" fill="#2196f3" fontWeight="700">Interest</text>
+                        <text x={ix} y={iy+8} textAnchor="middle" fontSize="12" fill="#2196f3" fontWeight="800">{iPct}%</text>
+                        <text x={fx} y={fy-5} textAnchor="middle" fontSize="10" fill="#ff9800" fontWeight="700">Fee</text>
+                        <text x={fx} y={fy+7} textAnchor="middle" fontSize="11" fill="#ff9800" fontWeight="800">{fPct}%</text>
+                      </>;
+                    })()}
+                  </svg>
+                </div>
+
+                {/* 3 Progress Bars — connected to calculator */}
+                <div className="fis-bars">
+                  {[
+                    {label:"Principal", pct:Math.round((loanAmount/totalPayment)*100), color:"#2C6275"},
+                    {label:"Interest", pct:Math.round((totalInterest/totalPayment)*100), color:"#2196f3"},
+                    {label:"Total Payable", pct:100, color:"#ff9800"},
+                  ].map((b,i)=>(
+                    <div className="fis-bar-item" key={i}>
+                      <div className="fis-bar-top">
+                        <span className="fis-bar-label">{b.label}</span>
+                        <span className="fis-bar-pct" style={{color:b.color}}>{b.pct}%</span>
+                      </div>
+                      <div className="fis-bar-track">
+                        <div className="fis-bar-fill" style={{width:`${b.pct}%`, background:b.color, transition:"width 0.5s"}}></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* 2 Bottom Cards — no gap */}
+                <div className="fis-bottom-cards">
+                  <div className="fis-bottom-card">
+                    <i className="fas fa-calendar-check"></i>
+                    <span className="fis-btm-label">Repay By</span>
+                    <strong className="fis-btm-value">Day {loanPeriod}</strong>
+                  </div>
+                  <div className="fis-bottom-card">
+                    <i className="fas fa-hand-holding-usd"></i>
+                    <span className="fis-btm-label">Saving</span>
+                    <strong className="fis-btm-value">Zero Hidden Fees</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* TRACK SECTION */}
+      <section className="track-section" id="track">
+        <div className="track-container">
+          {/* Left */}
+          <div className="track-left">
+            <div className="track-badge">
+              <img src={require("../images/logo.webp")} alt="SalaryTopUp" className="track-badge-logo" />
+              <span>TRACK</span>
+            </div>
+            <h2 className="track-heading">Master your<br /><span>money matters</span></h2>
+            <p className="track-desc">
+              Stay on top of your finances. Track every EMI, monitor your credit score,
+              manage repayments — all in one place with SalaryTopUp.
+            </p>
+            <div className="track-points">
+              {[
+                { icon:"fa-chart-line", text:"Real-time EMI & repayment tracking" },
+                { icon:"fa-shield-alt", text:"100% secure & encrypted data" },
+                { icon:"fa-bell",       text:"Smart reminders before due dates" },
+              ].map((p, i) => (
+                <div className="track-point" key={i}>
+                  <i className={`fas ${p.icon}`}></i>
+                  <span>{p.text}</span>
+                </div>
+              ))}
+            </div>
+            <button className="track-cta" onClick={handleCibilCheck}>
+              Check Score <i className="fas fa-arrow-right"></i>
+            </button>
+
+            {/* Mobile-only calculator inside track section */}
+            <div className="track-mob-calc"><CalcCard /></div>
+          </div>
+
+          {/* Right — Phone Mockup / CIBIL Form */}
+          <div className="track-right">
+            <div className="trk-demo">
+              <div className="trk-phone">
+                <div className="trk-screen">
+                  <div className="trk-status"><span>9:41</span><span className="trk-pill-di"></span><div><i className="fas fa-signal"></i> <i className="fas fa-wifi"></i> <i className="fas fa-battery-full"></i></div></div>
+
+                  {/* Default — Animated Score Demo */}
+                  {!showCibilForm && (
+                    <div className="trk-slides">
+                      <div className="trk-sl trk-cs-active">
+                        <div className="trk-dash-head">
+                          <div><strong>Credit Score</strong><span>Updated just now</span></div>
+                          <div className="trk-refresh-btn"><i className="fas fa-sync-alt"></i></div>
+                        </div>
+                        <div className="trk-score-wrap">
+                          <svg viewBox="0 0 200 120" className="trk-score-svg">
+                            <path d="M25,110 A75,75 0 0,1 175,110" fill="none" stroke="#f0f0f0" strokeWidth="14" strokeLinecap="round"/>
+                            <path d="M25,110 A75,75 0 0,1 175,110" fill="none" stroke="url(#scoreGrad2)" strokeWidth="14" strokeLinecap="round" className="trk-score-arc"/>
+                            <line x1="100" y1="110" x2="100" y2="50" stroke="#2C6275" strokeWidth="2.5" strokeLinecap="round" className="trk-needle"/>
+                            <circle cx="100" cy="110" r="5" fill="#2C6275"/>
+                            <defs><linearGradient id="scoreGrad2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#e53935"/><stop offset="25%" stopColor="#ff9800"/><stop offset="50%" stopColor="#fdd835"/><stop offset="75%" stopColor="#66bb6a"/><stop offset="100%" stopColor="#3a7d8f"/></linearGradient></defs>
+                          </svg>
+                          <div className="trk-score-range"><span>300</span><span>900</span></div>
+                          <div className="trk-score-num">742</div>
+                          <div className="trk-score-badge"><i className="fas fa-check-circle"></i> Good Score</div>
+                        </div>
+                        <div className="trk-factors-title">Score Breakdown</div>
+                        <div className="trk-factors-list">
+                          {[
+                            { label:"Payment History",val:95,color:"#4a9aaa",icon:"fa-calendar-check" },
+                            { label:"Credit Utilization",val:28,color:"#1565c0",icon:"fa-credit-card" },
+                            { label:"Account Age",val:72,color:"#ff9800",icon:"fa-hourglass-half" },
+                            { label:"Total Accounts",val:88,color:"#6a1b9a",icon:"fa-layer-group" },
+                            { label:"Hard Inquiries",val:90,color:"#00695c",icon:"fa-search" },
+                          ].map((f,i) => (
+                            <div className="trk-fac-item" key={i} style={{"--fi":i}}>
+                              <div className="trk-fac-left">
+                                <div className="trk-fac-ic" style={{color:f.color,background:`${f.color}15`}}><i className={`fas ${f.icon}`}></i></div>
+                                <span>{f.label}</span>
+                              </div>
+                              <div className="trk-fac-right">
+                                <div className="trk-fac-bar-bg"><div className="trk-fac-bar-fill" style={{"--fw":`${f.val}%`,background:f.color}}></div></div>
+                                <strong style={{color:f.color}}>{f.val}%</strong>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="trk-cs-cta" onClick={handleCibilCheck} style={{cursor:"pointer"}}>
+                          <span>Check Your Score</span>
+                          <i className="fas fa-arrow-right"></i>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* CIBIL Score Check Form */}
+                  {showCibilForm && (
+                    <div className="cb-app">
+                      {/* Header */}
+                      <div className="cb-header">
+                        <button className="cb-back" onClick={() => setShowCibilForm(false)}>
+                          <i className="fas fa-arrow-left"></i>
+                        </button>
+                        <strong>CIBIL Score Check</strong>
+                        <div className="cb-secure"><i className="fas fa-lock"></i></div>
+                      </div>
+
+                      {/* Step 1 — Name & Mobile */}
+                      {cibilStep === 1 && (
+                        <div className="cb-content cb-fade-in" key="s1">
+                          <div className="cb-icon-circle"><i className="fas fa-user-circle"></i></div>
+                          <h4>Enter Your Details</h4>
+                          <p>We need basic info to fetch your score</p>
+                          <div className="cb-field">
+                            <label><i className="fas fa-user"></i> Full Name</label>
+                            <input type="text" placeholder="Rahul Sharma"
+                              value={cibilForm.name}
+                              onChange={e => setCibilForm({...cibilForm, name: e.target.value})} />
+                          </div>
+                          <div className="cb-field">
+                            <label><i className="fas fa-phone"></i> Mobile Number</label>
+                            <input type="tel" placeholder="+91 98765 43210" maxLength="10"
+                              value={cibilForm.mobile}
+                              onChange={e => setCibilForm({...cibilForm, mobile: e.target.value})} />
+                          </div>
+                          <label className="cb-consent">
+                            <input type="checkbox" checked={cibilForm.consent}
+                              onChange={e => setCibilForm({...cibilForm, consent: e.target.checked})} />
+                            <span>I agree to allow SalaryTopUp to use my information to fetch my CIBIL score</span>
+                          </label>
+                          {cibilError && <div className="cb-error"><i className="fas fa-exclamation-circle"></i> {cibilError}</div>}
+                          <button className="cb-submit" onClick={handleCibilSubmit}>
+                            Send OTP <i className="fas fa-arrow-right"></i>
+                          </button>
+                        </div>
+                      )}
+
+                      {/* Step 1.5 — OTP */}
+                      {cibilStep === 1.5 && (
+                        <div className="cb-content cb-fade-in" key="s1otp">
+                          <div className="cb-icon-circle" style={{background:"linear-gradient(135deg,#1e8a6e,#26b9db)"}}><i className="fas fa-mobile-alt"></i></div>
+                          <h4>Verify OTP</h4>
+                          <p>OTP sent to +91 {cibilForm.mobile}</p>
+                          <div className="cb-field">
+                            <label><i className="fas fa-key"></i> Enter OTP</label>
+                            <input type="tel" placeholder="• • • • • •" maxLength="6"
+                              value={cibilForm.otp}
+                              onChange={e => setCibilForm({...cibilForm, otp: e.target.value})}
+                              style={{letterSpacing:"6px", fontSize:"1.2rem", textAlign:"center"}} />
+                          </div>
+                          <div className="cb-otp-row">
+                            {cibilOtpTimer > 0
+                              ? <span className="cb-otp-timer"><i className="fas fa-clock"></i> Resend in {cibilOtpTimer}s</span>
+                              : <button className="cb-otp-resend" onClick={() => { startOtpTimer(); }}>Resend OTP</button>
+                            }
+                          </div>
+                          {cibilError && <div className="cb-error"><i className="fas fa-exclamation-circle"></i> {cibilError}</div>}
+                          <button className="cb-submit" onClick={handleCibilSubmit}>
+                            Verify OTP <i className="fas fa-arrow-right"></i>
+                          </button>
+                        </div>
+                      )}
+
+                      {/* Step 2 — PAN */}
+                      {cibilStep === 2 && !cibilLoading && (
+                        <div className="cb-content cb-fade-in" key="s2">
+                          <div className="cb-icon-circle"><i className="fas fa-id-card"></i></div>
+                          <h4>Verify Identity</h4>
+                          <p>PAN is required by credit bureaus</p>
+                          <div className="cb-field">
+                            <label><i className="fas fa-id-card"></i> PAN Number</label>
+                            <input type="text" placeholder="ABCPD1234K" maxLength="10"
+                              value={cibilForm.pan}
+                              onChange={e => setCibilForm({...cibilForm, pan: e.target.value.toUpperCase()})}
+                              style={{textTransform:"uppercase", letterSpacing:"2px"}} />
+                          </div>
+                          <div className="cb-info-box">
+                            <i className="fas fa-shield-alt"></i>
+                            <span>Your data is encrypted & secure. We never store your PAN.</span>
+                          </div>
+                          {cibilError && <div className="cb-error"><i className="fas fa-exclamation-circle"></i> {cibilError}</div>}
+                          <button className="cb-submit" onClick={handleCibilSubmit}>
+                            Check Score <i className="fas fa-search"></i>
+                          </button>
+                        </div>
+                      )}
+
+                      {/* Loading */}
+                      {cibilLoading && (
+                        <div className="cb-content cb-fade-in cb-loading-screen" key="loading">
+                          <div className="cb-spinner"></div>
+                          <h4>Checking your CIBIL Score...</h4>
+                          <p>Connecting to TransUnion CIBIL</p>
+                          <div className="cb-loading-steps">
+                            <div className="cb-lstep cb-ls1"><i className="fas fa-check-circle"></i> Verifying identity</div>
+                            <div className="cb-lstep cb-ls2"><i className="fas fa-check-circle"></i> Fetching credit data</div>
+                            <div className="cb-lstep cb-ls3"><i className="fas fa-spinner fa-spin"></i> Calculating score</div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Result */}
+                      {cibilStep === 3 && cibilScore && (
+                        <div className="cb-content cb-fade-in cb-result-screen" key="result">
+                          <div className="cb-result-gauge">
+                            <svg viewBox="0 0 200 120">
+                              <path d="M25,110 A75,75 0 0,1 175,110" fill="none" stroke="#f0f0f0" strokeWidth="14" strokeLinecap="round"/>
+                              <path d="M25,110 A75,75 0 0,1 175,110" fill="none" stroke="url(#scoreGrad4)" strokeWidth="14" strokeLinecap="round"
+                                strokeDasharray="236" strokeDashoffset={236 - ((cibilScore-300)/600)*236}
+                                style={{transition:"stroke-dashoffset 1.5s cubic-bezier(0.4,0,0.2,1)"}} />
+                              <line x1="100" y1="110" x2="100" y2="50" stroke={cibilColor(cibilScore)} strokeWidth="2.5" strokeLinecap="round"
+                                style={{transformOrigin:"100px 110px", transform:`rotate(${cibilNeedle(cibilScore)}deg)`, transition:"transform 1.5s cubic-bezier(0.4,0,0.2,1)"}} />
+                              <circle cx="100" cy="110" r="5" fill={cibilColor(cibilScore)}/>
+                              <defs><linearGradient id="scoreGrad4" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#e53935"/><stop offset="25%" stopColor="#ff9800"/><stop offset="50%" stopColor="#fdd835"/><stop offset="75%" stopColor="#66bb6a"/><stop offset="100%" stopColor="#3a7d8f"/></linearGradient></defs>
+                            </svg>
+                          </div>
+                          <div className="cb-score-big" style={{color:cibilColor(cibilScore)}}>{cibilScore}</div>
+                          <div className="cb-score-tag" style={{background:`${cibilColor(cibilScore)}15`, color:cibilColor(cibilScore)}}>
+                            <i className="fas fa-check-circle"></i> {cibilLabel(cibilScore)}
+                          </div>
+
+                          <div className="cb-result-bars">
+                            {[
+                              {l:"Payment History", v:Math.floor(Math.random()*12)+85, c:"#4a9aaa"},
+                              {l:"Credit Utilization", v:Math.floor(Math.random()*25)+20, c:"#1565c0"},
+                              {l:"Account Age", v:Math.floor(Math.random()*25)+60, c:"#ff9800"},
+                              {l:"Total Accounts", v:Math.floor(Math.random()*15)+75, c:"#6a1b9a"},
+                            ].map((b,i)=>(
+                              <div className="cb-bar-row" key={i}>
+                                <div className="cb-bar-label"><span>{b.l}</span><strong style={{color:b.c}}>{b.v}%</strong></div>
+                                <div className="cb-bar-bg"><div className="cb-bar-fill" style={{width:`${b.v}%`,background:b.c,transition:"width 1s ease "+i*0.2+"s"}}></div></div>
+                              </div>
+                            ))}
+                          </div>
+
+                          <button className="cb-submit" onClick={handleCibilCheck}>
+                            <i className="fas fa-redo"></i> Check Again
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  <div className="trk-homebar"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* TESTIMONIALS SECTION */}
       <TstSection />
