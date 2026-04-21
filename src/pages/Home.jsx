@@ -681,8 +681,8 @@ const Home = () => {
 
         {/* Center — Content */}
         <div className="hsb-content">
-          <strong>See If You Qualify in 60 Seconds!</strong>
-          <span>No paperwork. No branch visit. Just your phone and salary slip.</span>
+          <strong>Ready for Instant Cash?</strong>
+          <span>Salary loan approved in minutes, not days.</span>
         </div>
 
         {/* Right — Button */}
