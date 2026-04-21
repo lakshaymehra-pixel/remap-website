@@ -731,12 +731,6 @@ const Home = () => {
         <div className="loans-wrapper">
           {/* Left Content */}
           <div className="loans-left">
-            <div className="loans-badge">
-              <span className="loans-badge-icon">
-                <i className="fas fa-landmark"></i>
-              </span>
-              LOANS
-            </div>
             <h2 className="loans-heading">
               Every wish fulfilled.<br />Get instant funds!
             </h2>
