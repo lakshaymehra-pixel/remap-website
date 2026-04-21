@@ -954,7 +954,6 @@ const Home = () => {
         <div className="fis-bg-circle c2"></div>
         <div className="fis-container">
           <div className="fis-header">
-            <span className="fis-tag"><i className="fas fa-chart-pie"></i> Smart Calculator</span>
             <h2>Building Insightful <span className="fis-highlight">Financial Strategies</span></h2>
             <p>Adjust the sliders to see a real-time breakdown of your loan repayment</p>
           </div>
@@ -1196,10 +1195,6 @@ const Home = () => {
         <div className="track-container">
           {/* Left */}
           <div className="track-left">
-            <div className="track-badge">
-              <img src={require("../images/logo.webp")} alt="SalaryTopUp" className="track-badge-logo" />
-              <span>TRACK</span>
-            </div>
             <h2 className="track-heading">Master your<br /><span>money matters</span></h2>
             <p className="track-desc">
               Stay on top of your finances. Track every EMI, monitor your credit score,
