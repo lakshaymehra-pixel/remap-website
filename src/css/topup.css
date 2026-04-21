@@ -1208,7 +1208,7 @@ a:hover {
 /* Why Choose — New Interactive Layout */
 .wc-new-wrap {
     display: flex;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 60px;
     padding-bottom: 60px;
 }
@@ -1292,8 +1292,9 @@ a:hover {
 .wc-new-right {
     flex: 1;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
+    padding-bottom: 10px;
 }
 .wc-new-img-wrap {
     position: relative;
