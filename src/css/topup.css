@@ -390,17 +390,21 @@ a:hover {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 10px;
     background: #26b9db;
     color: #fff;
     font-weight: 700;
     font-size: 0.9rem;
-    padding: 13px 26px;
+    padding: 11px 22px;
     border-radius: 10px;
     text-decoration: none;
     transition: all 0.2s;
     box-shadow: 0 4px 20px rgba(38,185,219,0.35);
     min-width: 180px;
+}
+.hero-gplay-btn {
+    gap: 12px;
+    padding: 10px 20px;
 }
 .hero-new-btn-primary:hover {
     background: #1fa8c8;

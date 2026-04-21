@@ -631,8 +631,17 @@ const Home = () => {
                 </div>
               </div>
               <div className="hero-new-btns">
-                <a href="https://play.google.com/store/apps/details?id=com.salarytopup.salarytopup" target="_blank" rel="noopener noreferrer" className="hero-new-btn-primary">
-                  <i className="fab fa-google-play"></i> Download App
+                <a href="https://play.google.com/store/apps/details?id=com.salarytopup.salarytopup" target="_blank" rel="noopener noreferrer" className="hero-new-btn-primary hero-gplay-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" style={{flexShrink:0}}>
+                    <path d="M3.18 23.76c.3.17.64.24.99.2L15.55 12 11.8 8.25 3.18 23.76z" fill="#EA4335"/>
+                    <path d="M20.7 10.37l-2.99-1.7-4.16 3.33 4.16 4.16 2.98-1.7a1.98 1.98 0 0 0 0-4.09z" fill="#FBBC04"/>
+                    <path d="M3.17.24A1.98 1.98 0 0 0 2 2.02v19.96c0 .73.4 1.37 1.18 1.78L15.55 12 3.17.24z" fill="#4285F4"/>
+                    <path d="M3.18.24l12.37 11.74 3.74-3.74L4.17.04A1.98 1.98 0 0 0 3.18.24z" fill="#34A853"/>
+                  </svg>
+                  <span style={{display:'flex',flexDirection:'column',alignItems:'flex-start',lineHeight:1.1}}>
+                    <span style={{fontSize:'0.62rem',opacity:0.85,fontWeight:400,letterSpacing:'0.03em'}}>GET IT ON</span>
+                    <span style={{fontSize:'1rem',fontWeight:700,letterSpacing:'0.01em'}}>Google Play</span>
+                  </span>
                 </a>
                 <a href="#loans" className="hero-new-btn-outline">Apply Now &rarr;</a>
               </div>
