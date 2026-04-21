@@ -677,22 +677,23 @@ a:hover {
     .hero-new-stat { text-align: center; }
     .hero-new-stat strong { font-size: 1rem; }
     .hero-new-stat span { font-size: 0.65rem; }
-    .hero-new-btns { justify-content: center; flex-direction: column; align-items: center; width: 100%; gap: 12px; }
-    .hero-new-btn-primary, .hero-new-btn-outline {
-        width: 100% !important;
-        max-width: 320px !important;
+    .hero-new-btns { justify-content: center; flex-direction: row; align-items: center; width: 100%; gap: 10px; flex-wrap: wrap; }
+    .hero-new-btn-outline {
         min-width: unset !important;
         box-sizing: border-box;
-        padding: 15px !important;
-        height: 63px !important;
+        padding: 0 20px !important;
+        height: 50px !important;
+        font-size: 0.85rem !important;
+        flex: 1;
+        max-width: 160px;
     }
     .hero-gplay-img-btn {
-        width: 100%;
-        max-width: 320px;
+        flex: 1;
+        max-width: 160px;
         justify-content: center;
     }
     .hero-gplay-img {
-        height: 63px;
+        height: 50px;
         width: auto;
     }
     .hero-new-right { display: none !important; }
