@@ -136,58 +136,63 @@ export default function Career() {
       {selected && (
         <div className="cr-modal-overlay" onClick={() => setSelected(null)}>
           <div className="cr-modal cr-modal-detail" onClick={e => e.stopPropagation()}>
+            {/* Gradient Header */}
             <div className="cr-modal-header">
-              <div>
-                <h2 className="cr-modal-title">{selected.title}</h2>
-                <div className="cr-job-tags">
-                  <span className="cr-tag cr-tag-blue"><i className="fas fa-briefcase" style={{ marginRight: 5 }}></i>{selected.type}</span>
-                  <span className="cr-tag cr-tag-green"><i className="fas fa-map-marker-alt" style={{ marginRight: 5 }}></i>{selected.location}</span>
-                  {selected.department && <span className="cr-tag cr-tag-yellow">{selected.department}</span>}
-                  {selected.experience && <span className="cr-tag cr-tag-gray"><i className="fas fa-user-clock" style={{ marginRight: 5 }}></i>{selected.experience}</span>}
-                  {selected.salary && <span className="cr-tag cr-tag-pink"><i className="fas fa-rupee-sign" style={{ marginRight: 5 }}></i>{selected.salary}</span>}
-                  {selected.openings > 1 && <span className="cr-job-openings">{selected.openings} Openings</span>}
+              <div className="cr-modal-header-inner">
+                <div>
+                  <h2 className="cr-modal-title">{selected.title}</h2>
+                  <div className="cr-job-tags">
+                    <span className="cr-tag cr-tag-blue"><i className="fas fa-briefcase" style={{ marginRight: 5 }}></i>{selected.type}</span>
+                    <span className="cr-tag cr-tag-green"><i className="fas fa-map-marker-alt" style={{ marginRight: 5 }}></i>{selected.location}</span>
+                    {selected.department && <span className="cr-tag cr-tag-yellow">{selected.department}</span>}
+                    {selected.experience && <span className="cr-tag cr-tag-gray"><i className="fas fa-user-clock" style={{ marginRight: 5 }}></i>{selected.experience}</span>}
+                    {selected.salary && <span className="cr-tag cr-tag-pink"><i className="fas fa-rupee-sign" style={{ marginRight: 5 }}></i>{selected.salary}</span>}
+                    {selected.openings > 1 && <span className="cr-job-openings" style={{ background: 'rgba(255,255,255,0.18)', color: '#fff' }}>{selected.openings} Openings</span>}
+                  </div>
                 </div>
+                <button className="cr-modal-close" onClick={() => setSelected(null)}>×</button>
               </div>
-              <button className="cr-modal-close" onClick={() => setSelected(null)}>×</button>
             </div>
-            <hr className="cr-modal-divider" />
 
-            {selected.short_desc && <p className="cr-detail-desc">{selected.short_desc}</p>}
+            {/* Body */}
+            <div className="cr-modal-body">
+              {selected.short_desc && <p className="cr-detail-desc">{selected.short_desc}</p>}
 
-            {selected.about_role && (
-              <div className="cr-detail-section">
-                <h4>About the Role</h4>
-                <p>{selected.about_role}</p>
-              </div>
-            )}
-            {selected.responsibilities?.length > 0 && (
-              <div className="cr-detail-section">
-                <h4>Key Responsibilities</h4>
-                <ul>{selected.responsibilities.map((r, i) => <li key={i}>{r}</li>)}</ul>
-              </div>
-            )}
-            {selected.requirements?.length > 0 && (
-              <div className="cr-detail-section">
-                <h4>Requirements</h4>
-                <ul>{selected.requirements.map((r, i) => <li key={i}>{r}</li>)}</ul>
-              </div>
-            )}
-            {selected.nice_to_have?.length > 0 && (
-              <div className="cr-detail-section">
-                <h4>Nice to Have</h4>
-                <ul>{selected.nice_to_have.map((r, i) => <li key={i}>{r}</li>)}</ul>
-              </div>
-            )}
-            {selected.benefits?.length > 0 && (
-              <div className="cr-detail-section">
-                <h4>Benefits & Perks</h4>
-                <ul>{selected.benefits.map((r, i) => <li key={i}>{r}</li>)}</ul>
-              </div>
-            )}
+              {selected.about_role && (
+                <div className="cr-detail-section">
+                  <h4>About the Role</h4>
+                  <p>{selected.about_role}</p>
+                </div>
+              )}
+              {selected.responsibilities?.length > 0 && (
+                <div className="cr-detail-section">
+                  <h4>Key Responsibilities</h4>
+                  <ul>{selected.responsibilities.map((r, i) => <li key={i}>{r}</li>)}</ul>
+                </div>
+              )}
+              {selected.requirements?.length > 0 && (
+                <div className="cr-detail-section">
+                  <h4>Requirements</h4>
+                  <ul>{selected.requirements.map((r, i) => <li key={i}>{r}</li>)}</ul>
+                </div>
+              )}
+              {selected.nice_to_have?.length > 0 && (
+                <div className="cr-detail-section">
+                  <h4>Nice to Have</h4>
+                  <ul>{selected.nice_to_have.map((r, i) => <li key={i}>{r}</li>)}</ul>
+                </div>
+              )}
+              {selected.benefits?.length > 0 && (
+                <div className="cr-detail-section">
+                  <h4>Benefits & Perks</h4>
+                  <ul>{selected.benefits.map((r, i) => <li key={i}>{r}</li>)}</ul>
+                </div>
+              )}
 
-            <button className="cr-detail-apply-btn" onClick={() => openApply(selected)}>
-              Apply for this Position <i className="fas fa-arrow-right" style={{ marginLeft: 8 }}></i>
-            </button>
+              <button className="cr-detail-apply-btn" onClick={() => openApply(selected)}>
+                Apply for this Position <i className="fas fa-arrow-right"></i>
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -205,7 +210,7 @@ export default function Career() {
               </div>
             ) : (
               <>
-                <div className="cr-modal-header">
+                <div className="cr-apply-header">
                   <div>
                     <h3 className="cr-apply-title">Apply for {applyJob.title}</h3>
                     <div className="cr-job-tags">
@@ -215,8 +220,7 @@ export default function Career() {
                   </div>
                   <button className="cr-modal-close" onClick={() => setApplyJob(null)}>×</button>
                 </div>
-                <hr className="cr-modal-divider" />
-                <form className="cr-form" onSubmit={handleApplySubmit}>
+                <form className="cr-form cr-form-padded" onSubmit={handleApplySubmit}>
                   <div className="cr-form-grid">
                     <div>
                       <label>Full Name *</label>

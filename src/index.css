@@ -106,7 +106,7 @@
 .fab-wrap:hover .fab-play  { transition-delay: 0.02s; }
 
 @media (max-width: 768px) {
-  .fab-wrap { bottom: 82px; right: 16px; }
+  .fab-wrap { bottom: 24px; right: 16px; }
   .fab-main { width: 52px; height: 52px; }
   .fab-sub-icon { width: 42px; height: 42px; }
 }

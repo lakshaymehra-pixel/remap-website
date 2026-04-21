@@ -328,3 +328,100 @@
     .hdr-logo img { height: 36px; }
     .hdr-mobile-nav { width: 100vw; }
 }
+
+/* ── Pay Now Security Alert Popup ── */
+.pay-alert-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(3px);
+}
+.pay-alert-box {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px 28px 24px;
+    max-width: 460px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    animation: pay-alert-in 0.25s ease;
+}
+@keyframes pay-alert-in {
+    from { transform: scale(0.9); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+}
+.pay-alert-close {
+    position: absolute;
+    top: 14px; right: 16px;
+    background: #f1f5f9;
+    border: none;
+    border-radius: 50%;
+    width: 30px; height: 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #64748b;
+    display: flex; align-items: center; justify-content: center;
+    line-height: 1;
+}
+.pay-alert-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #1a1a2e;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1.5px solid #f1f5f9;
+}
+.pay-alert-icon { font-size: 1.3rem; }
+.pay-alert-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 0.88rem;
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 22px;
+}
+.pay-alert-body strong { color: #1a1a2e; }
+.pay-alert-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+.pay-alert-cancel {
+    background: #f1f5f9;
+    color: #64748b;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.pay-alert-proceed {
+    background: linear-gradient(135deg, #0d2240, #2C6275);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 22px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.pay-alert-proceed:hover { opacity: 0.92; color: #fff; text-decoration: none; }
+@media (max-width: 480px) {
+    .pay-alert-box { padding: 22px 18px 18px; }
+    .pay-alert-actions { flex-direction: column; }
+    .pay-alert-cancel, .pay-alert-proceed { width: 100%; justify-content: center; text-align: center; }
+}

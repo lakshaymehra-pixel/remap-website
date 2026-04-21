@@ -4,7 +4,9 @@
       "Bash(curl -s -I https://salarytopup.in/api/blog)",
       "Bash(curl -s -I https://salarytopup.in/api/login)",
       "Bash(curl -s -I https://salarytopup.in/api/contact)",
-      "Bash(curl -s -I https://salarytopup.in/admin)"
+      "Bash(curl -s -I https://salarytopup.in/admin)",
+      "Read(//c/Users/STU/Desktop/salarytopup-admin/frontend/**)",
+      "Bash(npm start:*)"
     ]
   }
 }

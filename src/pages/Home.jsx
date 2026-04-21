@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import landingpage from "../images/landingpage.webp";
 import heroMobile from "../images/hero-mobile.png";
 import appQrImg from "../images/app_qr.png";
-import heroPerson from "../images/db759e90-29ef-4c5e-b9a3-43a062ba4a03.png";
+import heroPerson from "../images/Picflow Images Apr 10/rithalya_rajput.png";
 import heroMobilePerson from "../images/c0ce3801-9ba7-4bfe-922f-c089f6ef76da.png";
 import "../css/topup.css"; // v2
 import { Link } from "react-router-dom";
@@ -269,6 +269,150 @@ function CalcCard() {
   );
 }
 
+// ── Option 1: Floating Dashboard Cards ──
+function HeroOpt1() {
+  return (
+    <div className="hopt1-wrap">
+      <div className="hopt1-card hopt1-c1">
+        <div className="hopt1-icon" style={{background:'#dcfce7',color:'#16a34a'}}><i className="fas fa-check-circle"></i></div>
+        <div><div className="hopt1-label">Loan Approved</div><div className="hopt1-val">₹50,000</div></div>
+      </div>
+      <div className="hopt1-card hopt1-c2">
+        <div className="hopt1-icon" style={{background:'#dbeafe',color:'#2563eb'}}><i className="fas fa-bolt"></i></div>
+        <div><div className="hopt1-label">Approval Time</div><div className="hopt1-val">2 Minutes</div></div>
+      </div>
+      <div className="hopt1-card hopt1-c3">
+        <div className="hopt1-icon" style={{background:'#fef3c7',color:'#d97706'}}><i className="fas fa-users"></i></div>
+        <div><div className="hopt1-label">Happy Users</div><div className="hopt1-val">5 Lakh+</div></div>
+      </div>
+      <div className="hopt1-card hopt1-c4">
+        <div className="hopt1-icon" style={{background:'#f3e8ff',color:'#7c3aed'}}><i className="fas fa-shield-alt"></i></div>
+        <div><div className="hopt1-label">100% Secure</div><div className="hopt1-val">RBI Registered</div></div>
+      </div>
+      <div className="hopt1-ring" />
+    </div>
+  );
+}
+
+// ── Option 2: 3D Phone Mockup ──
+function HeroOpt2() {
+  return (
+    <div className="hopt2-wrap">
+      <div className="hopt2-phone">
+        <div className="hopt2-screen">
+          <div className="hopt2-notch" />
+          <div className="hopt2-app-header">
+            <div className="hopt2-app-logo">ST</div>
+            <span>SalaryTopUp</span>
+          </div>
+          <div className="hopt2-app-amount">₹50,000</div>
+          <div className="hopt2-app-label">Available Limit</div>
+          <div className="hopt2-app-bar"><div className="hopt2-app-fill" /></div>
+          <div className="hopt2-app-stats">
+            <div><span>Rate</span><strong>0.1%</strong></div>
+            <div><span>Tenure</span><strong>30 Days</strong></div>
+            <div><span>Status</span><strong style={{color:'#16a34a'}}>Active</strong></div>
+          </div>
+          <div className="hopt2-app-btn">Apply Now</div>
+        </div>
+      </div>
+      <div className="hopt2-badge hopt2-b1"><i className="fas fa-star" style={{color:'#f59e0b'}}></i> 4.9 Rating</div>
+      <div className="hopt2-badge hopt2-b2"><i className="fas fa-download" style={{color:'#2563eb'}}></i> 5L+ Downloads</div>
+    </div>
+  );
+}
+
+// ── Option 3: Animated Stats Ring ──
+function HeroOpt3() {
+  return (
+    <div className="hopt3-wrap">
+      <div className="hopt3-ring-outer">
+        <div className="hopt3-ring-inner">
+          <div className="hopt3-center-val">₹1 Cr+</div>
+          <div className="hopt3-center-label">Disbursed</div>
+        </div>
+        <svg className="hopt3-svg" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="85" fill="none" stroke="#e2e8f0" strokeWidth="12"/>
+          <circle cx="100" cy="100" r="85" fill="none" stroke="url(#grad3)" strokeWidth="12" strokeDasharray="400 534" strokeLinecap="round" transform="rotate(-90 100 100)"/>
+          <defs><linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stopColor="#26b9db"/><stop offset="100%" stopColor="#0d2240"/></linearGradient></defs>
+        </svg>
+      </div>
+      <div className="hopt3-cards">
+        <div className="hopt3-stat"><strong>5L+</strong><span>Users</span></div>
+        <div className="hopt3-stat"><strong>2 Min</strong><span>Approval</span></div>
+        <div className="hopt3-stat"><strong>0%</strong><span>Hidden Fee</span></div>
+        <div className="hopt3-stat"><strong>4.9★</strong><span>Rating</span></div>
+      </div>
+    </div>
+  );
+}
+
+// ── Option 4: Glassmorphism Cards ──
+function HeroOpt4() {
+  return (
+    <div className="hopt4-wrap">
+      <div className="hopt4-bg-circle" />
+      <div className="hopt4-card hopt4-main">
+        <div className="hopt4-rupee">₹</div>
+        <div className="hopt4-amount">1,00,000</div>
+        <div className="hopt4-sublabel">Max Loan Amount</div>
+        <div className="hopt4-progress">
+          <div className="hopt4-prog-fill" />
+        </div>
+        <div className="hopt4-row">
+          <span>Processing</span><strong>Instant</strong>
+        </div>
+        <div className="hopt4-row">
+          <span>Tenure</span><strong>7–40 Days</strong>
+        </div>
+      </div>
+      <div className="hopt4-mini hopt4-m1">
+        <i className="fas fa-check" style={{color:'#16a34a'}}></i>
+        <span>No Collateral</span>
+      </div>
+      <div className="hopt4-mini hopt4-m2">
+        <i className="fas fa-file-alt" style={{color:'#2563eb'}}></i>
+        <span>Zero Paperwork</span>
+      </div>
+      <div className="hopt4-mini hopt4-m3">
+        <i className="fas fa-bolt" style={{color:'#f59e0b'}}></i>
+        <span>Instant Disbursal</span>
+      </div>
+    </div>
+  );
+}
+
+// ── Option 5: Loan Journey Steps ──
+function HeroOpt5() {
+  const steps = [
+    { icon: 'fas fa-user-plus', label: 'Register', color: '#2563eb', bg: '#dbeafe' },
+    { icon: 'fas fa-file-alt', label: 'Apply', color: '#7c3aed', bg: '#f3e8ff' },
+    { icon: 'fas fa-check-circle', label: 'Approved', color: '#16a34a', bg: '#dcfce7' },
+    { icon: 'fas fa-rupee-sign', label: 'Get Money', color: '#d97706', bg: '#fef3c7' },
+  ];
+  return (
+    <div className="hopt5-wrap">
+      <div className="hopt5-title">Get Loan in 4 Easy Steps</div>
+      {steps.map((s, i) => (
+        <div className="hopt5-step" key={i} style={{'--delay': `${i * 0.15}s`}}>
+          <div className="hopt5-icon" style={{background: s.bg, color: s.color}}>
+            <i className={s.icon}></i>
+          </div>
+          <div className="hopt5-step-label">{s.label}</div>
+          {i < steps.length - 1 && <div className="hopt5-arrow"><i className="fas fa-chevron-right"></i></div>}
+        </div>
+      ))}
+      <div className="hopt5-bottom">
+        <div className="hopt5-stat"><strong>2 Min</strong><span>Process</span></div>
+        <div className="hopt5-div" />
+        <div className="hopt5-stat"><strong>5L+</strong><span>Users</span></div>
+        <div className="hopt5-div" />
+        <div className="hopt5-stat"><strong>4.9★</strong><span>Rating</span></div>
+      </div>
+    </div>
+  );
+}
+
 const Home = () => {
   const [loanAmount, setLoanAmount] = useState(25000);
   const [loanPeriod, setLoanPeriod] = useState(15);
@@ -458,9 +602,9 @@ const Home = () => {
             {/* LEFT — Text */}
             <div className="hero-new-left">
               {/* Mobile person — shown only on mobile above text */}
-              <img src={heroMobilePerson} alt="hero" className="hp-person-mobile" />
+              <img src={heroPerson} alt="hero" className="hp-person-mobile" />
               <div className="hero-new-badge">
-                <i className="fas fa-bolt"></i> India's #1 Salary Loan App
+                <span className="hero-live-dot"></span> India's #1 Salary Loan App
               </div>
               <h1 className="hero-new-h1">
                 Sahi Financial<br />
@@ -500,19 +644,8 @@ const Home = () => {
               {/* Glow circle behind person */}
               <div className="hp-glow" />
 
-              {/* Real person image */}
+              {/* Person image */}
               <img src={heroPerson} alt="hero" className="hp-person" />
-
-              {/* Animated Mini Calculator */}
-              <CalcCard />
-
-              {/* Mobile-only person image */}
-              <img src={heroMobilePerson} alt="hero mobile" className="hp-person-mobile" />
-
-              {/* Floating coins */}
-              <div className="hp-coin hp-coin1">₹</div>
-              <div className="hp-coin hp-coin2">₹</div>
-              <div className="hp-coin hp-coin3">₹</div>
             </div>
           </div>
         </div>
@@ -922,7 +1055,7 @@ const Home = () => {
                     <div className="fis-slider-label"><span className="fis-slider-icon"><i className="fas fa-rupee-sign"></i></span>Loan Amount</div>
                     <span className="fis-slider-val">₹{loanAmount.toLocaleString("en-IN")}</span>
                   </div>
-                  <div className="fis-range-wrap"><input type="range" min="5000" max="100000" step="1000" value={loanAmount} onChange={e=>setLoanAmount(Number(e.target.value))} className="fis-range" style={{"--pct":`${((loanAmount-5000)/95000)*100}%`}}/></div>
+                  <div className="fis-range-wrap"><input type="range" min="5000" max="100000" step="1000" value={loanAmount} onChange={e=>setLoanAmount(Number(e.target.value))} className="fis-range fis-range-rupee" style={{"--pct":`${((loanAmount-5000)/95000)*100}%`}}/></div>
                   <div className="fis-range-limits"><span>5000</span><span>1 Lakh</span></div>
                 </div>
                 <div className="fis-slider-group">
@@ -930,7 +1063,7 @@ const Home = () => {
                     <div className="fis-slider-label"><span className="fis-slider-icon"><i className="fas fa-calendar-alt"></i></span>Loan Period</div>
                     <span className="fis-slider-val">{loanPeriod} Days</span>
                   </div>
-                  <div className="fis-range-wrap"><input type="range" min="7" max="40" step="1" value={loanPeriod} onChange={e=>setLoanPeriod(Number(e.target.value))} className="fis-range" style={{"--pct":`${((loanPeriod-7)/33)*100}%`}}/></div>
+                  <div className="fis-range-wrap"><input type="range" min="7" max="40" step="1" value={loanPeriod} onChange={e=>setLoanPeriod(Number(e.target.value))} className="fis-range fis-range-calendar" style={{"--pct":`${((loanPeriod-7)/33)*100}%`}}/></div>
                   <div className="fis-range-limits"><span>7 Days</span><span>40 Days</span></div>
                 </div>
                 <div className="fis-slider-group">
@@ -938,7 +1071,7 @@ const Home = () => {
                     <div className="fis-slider-label"><span className="fis-slider-icon"><i className="fas fa-percentage"></i></span>Daily Interest Rate</div>
                     <span className="fis-slider-val">{interestRate.toFixed(1)}% / day</span>
                   </div>
-                  <div className="fis-range-wrap"><input type="range" min="0.1" max="1" step="0.1" value={interestRate} onChange={e=>setInterestRate(Number(e.target.value))} className="fis-range" style={{"--pct":`${((interestRate-0.1)/0.9)*100}%`}}/></div>
+                  <div className="fis-range-wrap"><input type="range" min="0.1" max="1" step="0.1" value={interestRate} onChange={e=>setInterestRate(Number(e.target.value))} className="fis-range fis-range-percent" style={{"--pct":`${((interestRate-0.1)/0.9)*100}%`}}/></div>
                   <div className="fis-range-limits"><span>0.1%</span><span>1%</span></div>
                 </div>
                 <div className="fis-breakdown">
@@ -955,6 +1088,7 @@ const Home = () => {
                   ))}
                 </div>
                 <Link to="/apply-now" className="fis-apply-btn">Apply Now <i className="fas fa-arrow-right"></i></Link>
+                <p className="fis-note">Note: This is an estimate. Actual interest and processing fee may vary based on lender terms.</p>
               </div>
             </div>
             <div className="fis-chart" style={{display:'none'}}>

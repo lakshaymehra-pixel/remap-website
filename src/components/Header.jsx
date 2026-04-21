@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../css/header.css";
 import defaultLogo from "../images/logo.webp";
 import { useSiteSettings } from "../App";
@@ -9,7 +9,16 @@ const Header = () => {
   const [siteLogo, setSiteLogo] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
+  const [showPayAlert, setShowPayAlert] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handlePayNow = (e) => {
+    e.preventDefault();
+    setMenuOpen(false);
+    navigate('/repay-loan');
+    setTimeout(() => setShowPayAlert(true), 2000);
+  };
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenu = () => setMenuOpen(false);
@@ -62,7 +71,7 @@ const Header = () => {
           </ul>
           <div className="hdr-actions">
             <Link to="/apply-now" className="hdr-btn hdr-btn-apply">APPLY NOW</Link>
-            <Link to="/repay-loan" className="hdr-btn hdr-btn-pay">PAY NOW</Link>
+            <a href="/repay-loan" className="hdr-btn hdr-btn-pay" onClick={handlePayNow}>PAY NOW</a>
           </div>
         </nav>
 
@@ -97,9 +106,29 @@ const Header = () => {
             <span><small>GET IT ON</small><strong>Google Play</strong></span>
           </a>
           <Link to="/apply-now" className="hdr-btn hdr-btn-apply" onClick={closeMenu}>APPLY NOW</Link>
-          <Link to="/repay-loan" className="hdr-btn hdr-btn-pay" onClick={closeMenu}>PAY NOW</Link>
+          <a href="/repay-loan" className="hdr-btn hdr-btn-pay" onClick={handlePayNow}>PAY NOW</a>
         </div>
       </div>
+      {/* Pay Now Security Alert Popup */}
+      {showPayAlert && (
+        <div className="pay-alert-overlay" onClick={() => setShowPayAlert(false)}>
+          <div className="pay-alert-box" onClick={e => e.stopPropagation()}>
+            <button className="pay-alert-close" onClick={() => setShowPayAlert(false)}>×</button>
+            <div className="pay-alert-title">
+              <span className="pay-alert-icon">⚠️</span>
+              Important Security Notice
+            </div>
+            <div className="pay-alert-body">
+              <p>We urge all customers to remain cautious and vigilant: <strong>SalaryTopup</strong> will not be responsible for any loss arising from payments made to unverified numbers, unknown persons, or third parties.</p>
+              <p><strong>सुरक्षित भुगतान:</strong> भुगतान केवल हमारी अधिकृत वेबसाइट <strong>www.salarytopup.com</strong> या अधिकृत लिंक से करें। किसी अज्ञात नंबर/लिंक पर भरोसा न करें।</p>
+            </div>
+            <div className="pay-alert-actions">
+              <button className="pay-alert-cancel" onClick={() => setShowPayAlert(false)}>Cancel</button>
+              <button className="pay-alert-proceed" onClick={() => setShowPayAlert(false)}>I Understand, Proceed →</button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
