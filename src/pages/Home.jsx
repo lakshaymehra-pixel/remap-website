@@ -844,7 +844,7 @@ const Home = () => {
                         <div className="mv-slide mv-s2">
                           <div className="mv-slide-icon"><i className="fas fa-shield-alt"></i></div>
                           <h4>Enter OTP</h4>
-                          <p>Code sent to +91 98765 43210</p>
+                          <p>Code sent to +91 9876xxxxxx</p>
                           <div className="mv-otp-boxes">
                             {"4827".split("").map((d,i) => (
                               <div className="mv-otp-box" key={i} style={{"--oi":i}}>
@@ -1293,7 +1293,7 @@ const Home = () => {
                           </div>
                           <div className="cb-field">
                             <label><i className="fas fa-phone"></i> Mobile Number</label>
-                            <input type="tel" placeholder="+91 98765 43210" maxLength="10"
+                            <input type="tel" placeholder="+91 XXXX XXXX" maxLength="10"
                               value={cibilForm.mobile}
                               onChange={e => setCibilForm({...cibilForm, mobile: e.target.value})} />
                           </div>
@@ -1314,7 +1314,7 @@ const Home = () => {
                         <div className="cb-content cb-fade-in" key="s1otp">
                           <div className="cb-icon-circle" style={{background:"linear-gradient(135deg,#1e8a6e,#26b9db)"}}><i className="fas fa-mobile-alt"></i></div>
                           <h4>Verify OTP</h4>
-                          <p>OTP sent to +91 {cibilForm.mobile}</p>
+                          <p>OTP sent to +91 {cibilForm.mobile.slice(0,4)}xxxxxx</p>
                           <div className="cb-field">
                             <label><i className="fas fa-key"></i> Enter OTP</label>
                             <input type="tel" placeholder="• • • • • •" maxLength="6"
