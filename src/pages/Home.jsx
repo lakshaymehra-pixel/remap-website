@@ -694,9 +694,6 @@ const Home = () => {
       {/* WHY CHOOSE SECTION */}
       <section className="wc-section">
         <div className="wc-container">
-          <div className="wc-badge-row">
-            <span className="wc-badge">🏆 Trusted by 5 Lakh+ Indians</span>
-          </div>
           <h2 className="wc-title">The Smarter Way to <span className="wc-title-accent">Borrow Money</span></h2>
           <p className="wc-subtitle">No long queues. No hidden fees. Just fast, fair loans built for salaried professionals.</p>
 
