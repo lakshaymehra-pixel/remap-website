@@ -771,12 +771,6 @@ const Home = () => {
       {/* WHY CHOOSE SECTION */}
       <WcSectionWrapper />
 
-        {/* Stats Bar with Counter */}
-        <div className="wc-stats-bg">
-          <StatsCounter />
-        </div>
-      </section>
-
       {/* LOANS SECTION */}
       <section className="loans-section" id="loans">
         <div className="loans-wrapper">
