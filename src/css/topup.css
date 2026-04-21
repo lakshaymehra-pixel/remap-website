@@ -1205,6 +1205,122 @@ a:hover {
 .wc-card-link:hover .wc-card-arrow { gap: 9px; }
 .wc-card-link:hover { border-color: #26b9db44; }
 
+/* Why Choose — New Interactive Layout */
+.wc-new-wrap {
+    display: flex;
+    align-items: flex-start;
+    gap: 60px;
+    padding-bottom: 60px;
+}
+.wc-new-left {
+    flex: 0 0 480px;
+    max-width: 480px;
+}
+.wc-new-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #26b9db;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.wc-new-title {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #0d2240;
+    line-height: 1.2;
+    margin-bottom: 32px;
+}
+.wc-new-title span { color: #26b9db; }
+
+.wc-new-list { display: flex; flex-direction: column; gap: 6px; }
+
+.wc-new-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 18px;
+    border-radius: 14px;
+    border: 1.5px solid transparent;
+    cursor: pointer;
+    transition: all 0.25s;
+    background: transparent;
+}
+.wc-new-item:hover, .wc-new-item-active {
+    background: #fff;
+    border-color: #e2e8f0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+}
+.wc-new-item-icon {
+    width: 44px; height: 44px; flex-shrink: 0;
+    background: #f0f9ff;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    color: #0d2240;
+    font-size: 1.1rem;
+    transition: background 0.25s;
+}
+.wc-new-item-active .wc-new-item-icon,
+.wc-new-item:hover .wc-new-item-icon {
+    background: linear-gradient(135deg, #0d2240, #2C6275);
+    color: #fff;
+}
+.wc-new-item-text h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0d2240;
+    margin: 0 0 2px;
+}
+.wc-new-item-text p {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.5;
+}
+.wc-new-item-chevron {
+    margin-left: auto;
+    font-size: 0.7rem;
+    color: #cbd5e1;
+    transition: color 0.2s, transform 0.2s;
+}
+.wc-new-item-active .wc-new-item-chevron,
+.wc-new-item:hover .wc-new-item-chevron {
+    color: #26b9db;
+    transform: translateX(3px);
+}
+
+.wc-new-right {
+    flex: 1;
+    position: sticky;
+    top: 100px;
+}
+.wc-new-img-wrap {
+    position: relative;
+    width: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    background: #f0f4f8;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+}
+.wc-new-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+.wc-new-img-active { opacity: 1; }
+
+@media (max-width: 900px) {
+    .wc-new-wrap { flex-direction: column; gap: 30px; padding-bottom: 40px; }
+    .wc-new-left { flex: unset; max-width: 100%; }
+    .wc-new-right { width: 100%; position: static; }
+    .wc-new-title { font-size: 1.5rem; }
+}
+
 /* Stats Bar */
 .wc-stats-bg {
     background: linear-gradient(135deg, #1a3a5c 0%, #24527a 50%, #3a7ab0 100%);

@@ -153,6 +153,83 @@ const useCounter = (target, duration = 2000, startCounting = false) => {
   return count;
 };
 
+// Why Choose — shared state via context
+const WcContext = React.createContext({ activeIdx: 0, setActiveIdx: () => {} });
+
+const WcItem = ({ item, index: _index }) => {
+  const { activeIdx, setActiveIdx } = React.useContext(WcContext);
+  const i = _index;
+  const active = activeIdx === i;
+  return (
+    <div
+      className={`wc-new-item${active ? " wc-new-item-active" : ""}`}
+      onMouseEnter={() => setActiveIdx(i)}
+    >
+      <div className="wc-new-item-icon">
+        <i className={`fas ${item.icon}`}></i>
+      </div>
+      <div className="wc-new-item-text">
+        <h4>{item.title}</h4>
+        {active && <p>{item.desc}</p>}
+      </div>
+      <i className="fas fa-chevron-right wc-new-item-chevron"></i>
+    </div>
+  );
+};
+
+const WcImagePanel = ({ items }) => {
+  const { activeIdx } = React.useContext(WcContext);
+  return (
+    <div className="wc-new-img-wrap">
+      {items && items.map((item, i) => (
+        <img
+          key={i}
+          src={item.img}
+          alt={item.title}
+          className={`wc-new-img${activeIdx === i ? " wc-new-img-active" : ""}`}
+        />
+      ))}
+    </div>
+  );
+};
+
+const WC_ITEMS = [
+  { icon:"fa-laptop",           title:"100% Digital Process",  desc:"Complete digital journey from application to disbursement, no paperwork needed.", img: require("../images/Picflow Images Apr 10/salarytopup-online-loan-application-india.webp.webp") },
+  { icon:"fa-hand-holding-usd", title:"Lower Interest Rates",  desc:"Get salary loans at competitive interest rates with zero hidden charges.", img: require("../images/Picflow Images Apr 10/salarytopup-flexible-personal-loan-options.webp.webp") },
+  { icon:"fa-clock",            title:"Instant Approval",      desc:"Loan approved within minutes — no branch visit, no waiting in queues.", img: require("../images/Picflow Images Apr 10/salarytopup-instant-loan-approval-india.webp.webp") },
+  { icon:"fa-lock",             title:"100% Secure",           desc:"Bank-grade encryption keeps your data safe and private at all times.", img: require("../images/Picflow Images Apr 10/salarytopup-collateral-free-personal-loan.webp.webp") },
+  { icon:"fa-headphones-alt",   title:"24/7 Support",          desc:"Our team is always ready to help you, round the clock, every day.", img: require("../images/Picflow Images Apr 10/salarytopup-easy-loan-repayment-plan.webp.webp") },
+];
+
+const WcSectionWrapper = () => {
+  const [activeIdx, setActiveIdx] = useState(0);
+  return (
+    <WcContext.Provider value={{ activeIdx, setActiveIdx }}>
+      <section className="wc-section">
+        <div className="wc-container">
+          <div className="wc-new-wrap">
+            <div className="wc-new-left">
+              <p className="wc-new-eyebrow">Why Choose Us</p>
+              <h2 className="wc-new-title">India's Most Trusted<br /><span>Salary Loan App</span></h2>
+              <div className="wc-new-list">
+                {WC_ITEMS.map((item, i) => (
+                  <WcItem key={i} item={item} index={i} />
+                ))}
+              </div>
+            </div>
+            <div className="wc-new-right">
+              <WcImagePanel items={WC_ITEMS} />
+            </div>
+          </div>
+        </div>
+        <div className="wc-stats-bg">
+          <StatsCounter />
+        </div>
+      </section>
+    </WcContext.Provider>
+  );
+};
+
 // Stats Counter Component
 const StatsCounter = () => {
   const ref = useRef(null);
@@ -692,30 +769,7 @@ const Home = () => {
       </div>
 
       {/* WHY CHOOSE SECTION */}
-      <section className="wc-section">
-        <div className="wc-container">
-          <h2 className="wc-title">Why Choose Salary TopUp ?</h2>
-          <div className="wc-underline"></div>
-
-          <div className="wc-grid">
-            {[
-              { icon:"fa-laptop",           title:"100% Digital Process",  desc:"Complete digital journey from application to disbursement, no paperwork needed", slug:"paperless-process" },
-              { icon:"fa-hand-holding-usd", title:"Lower Interest Rates",  desc:"Get loans for multiple purposes at lower interest rates to suit your needs", slug:"lower-interest-rates" },
-              { icon:"fa-clock",            title:"Instant Approval",      desc:"Get your loan approved within minutes with minimal documentation required", slug:"instant-approval" },
-              { icon:"fa-lock",             title:"100% Secure",           desc:"Your data is encrypted with bank-grade security and never shared with third parties", slug:"secure" },
-              { icon:"fa-headphones-alt",   title:"24/7 Support",          desc:"Our dedicated support team is available round the clock to assist you anytime", slug:"support" },
-            ].map((card, i) => (
-              <Link to={`/features/${card.slug}`} className="wc-card wc-card-link" key={i}>
-                <div className="wc-card-icon">
-                  <i className={`fas ${card.icon}`}></i>
-                </div>
-                <h4>{card.title}</h4>
-                <p>{card.desc}</p>
-                <span className="wc-card-arrow">Learn More <i className="fas fa-arrow-right"></i></span>
-              </Link>
-            ))}
-          </div>
-        </div>
+      <WcSectionWrapper />
 
         {/* Stats Bar with Counter */}
         <div className="wc-stats-bg">
