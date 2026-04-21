@@ -406,6 +406,19 @@ a:hover {
     gap: 12px;
     padding: 10px 20px;
 }
+.hero-gplay-img-btn {
+    display: inline-block;
+    transition: transform 0.2s, opacity 0.2s;
+}
+.hero-gplay-img-btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.92;
+}
+.hero-gplay-img {
+    height: 58px;
+    width: auto;
+    display: block;
+}
 .hero-new-btn-primary:hover {
     background: #1fa8c8;
     transform: translateY(-2px);
