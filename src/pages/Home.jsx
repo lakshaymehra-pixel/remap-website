@@ -1287,7 +1287,7 @@ const Home = () => {
                           <p>We need basic info to fetch your score</p>
                           <div className="cb-field">
                             <label><i className="fas fa-user"></i> Full Name</label>
-                            <input type="text" placeholder="Rahul Sharma"
+                            <input type="text" placeholder="First Name"
                               value={cibilForm.name}
                               onChange={e => setCibilForm({...cibilForm, name: e.target.value})} />
                           </div>
