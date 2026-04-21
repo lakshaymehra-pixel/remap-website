@@ -699,7 +699,7 @@ const Home = () => {
 
           <div className="wc-grid">
             {[
-              { icon:"fa-laptop",           title:"100% Digital",          desc:"Complete digital journey from application to disbursement, no paperwork needed", slug:"paperless-process" },
+              { icon:"fa-laptop",           title:"100% Digital Process",  desc:"Complete digital journey from application to disbursement, no paperwork needed", slug:"paperless-process" },
               { icon:"fa-hand-holding-usd", title:"Lower Interest Rates",  desc:"Get loans for multiple purposes at lower interest rates to suit your needs", slug:"lower-interest-rates" },
               { icon:"fa-clock",            title:"Instant Approval",      desc:"Get your loan approved within minutes with minimal documentation required", slug:"instant-approval" },
               { icon:"fa-lock",             title:"100% Secure",           desc:"Your data is encrypted with bank-grade security and never shared with third parties", slug:"secure" },
