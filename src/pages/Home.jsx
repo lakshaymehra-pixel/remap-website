@@ -694,24 +694,24 @@ const Home = () => {
       {/* WHY CHOOSE SECTION */}
       <section className="wc-section">
         <div className="wc-container">
-          <h2 className="wc-title">The Smarter Way to <span className="wc-title-accent">Borrow Money</span></h2>
-          <p className="wc-subtitle">No long queues. No hidden fees. Just fast, fair loans built for salaried professionals.</p>
+          <h2 className="wc-title">Why Choose Salary TopUp ?</h2>
+          <div className="wc-underline"></div>
 
           <div className="wc-grid">
             {[
-              { icon:"fa-bolt",             title:"60-Second Approval",    desc:"Application to approval in under a minute — no waiting, no follow-ups.", slug:"instant-approval", color:"#f59e0b" },
-              { icon:"fa-hand-holding-usd", title:"Rates That Make Sense", desc:"Transparent pricing with no surprise charges. What you see is what you pay.", slug:"lower-interest-rates", color:"#10b981" },
-              { icon:"fa-mobile-alt",       title:"100% On Your Phone",    desc:"Apply, track, and repay — everything from your smartphone, anytime.", slug:"paperless-process", color:"#6366f1" },
-              { icon:"fa-shield-alt",       title:"Bank-Grade Security",   desc:"256-bit encryption keeps your data locked tight. Always private.", slug:"secure", color:"#ef4444" },
-              { icon:"fa-comments",         title:"Real Human Support",    desc:"Stuck? Our team is one message away, 24 hours a day, 7 days a week.", slug:"support", color:"#26b9db" },
+              { icon:"fa-hand-holding-usd", title:"Lower Interest Rates",  desc:"Get loans for multiple purposes at lower interest rates to suit your needs", slug:"lower-interest-rates" },
+              { icon:"fa-clock",            title:"Instant Approval",      desc:"Get your loan approved within minutes with minimal documentation required", slug:"instant-approval" },
+              { icon:"fa-laptop",           title:"Paperless Process",     desc:"Complete digital journey from application to disbursement, no paperwork needed", slug:"paperless-process" },
+              { icon:"fa-lock",             title:"100% Secure",           desc:"Your data is encrypted with bank-grade security and never shared with third parties", slug:"secure" },
+              { icon:"fa-headphones-alt",   title:"24/7 Support",          desc:"Our dedicated support team is available round the clock to assist you anytime", slug:"support" },
             ].map((card, i) => (
               <Link to={`/features/${card.slug}`} className="wc-card wc-card-link" key={i}>
-                <div className="wc-card-icon" style={{background: card.color + '15', border: `1.5px solid ${card.color}30`}}>
-                  <i className={`fas ${card.icon}`} style={{color: card.color}}></i>
+                <div className="wc-card-icon">
+                  <i className={`fas ${card.icon}`}></i>
                 </div>
                 <h4>{card.title}</h4>
                 <p>{card.desc}</p>
-                <span className="wc-card-arrow" style={{color: card.color}}>Learn More <i className="fas fa-arrow-right"></i></span>
+                <span className="wc-card-arrow">Learn More <i className="fas fa-arrow-right"></i></span>
               </Link>
             ))}
           </div>
