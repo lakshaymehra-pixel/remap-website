@@ -94,11 +94,11 @@
 .ft-col ul li a {
     color: rgba(255,255,255,0.65);
     text-decoration: none;
-    font-size: 0.83rem;
+    font-size: 0.95rem;
     transition: color 0.2s;
     display: inline-block;
 }
-.ft-col ul li a:hover { color: #fff; }
+.ft-col ul li a:hover { color: #fff; padding-left: 0 !important; }
 
 /* Arrow icon hidden on desktop */
 .ft-acc-icon { display: none; }
