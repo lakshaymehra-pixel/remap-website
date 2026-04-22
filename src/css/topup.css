@@ -4230,6 +4230,55 @@ button.track-cta {
 .cb-info-box i { color:#4a9aaa; font-size:0.55rem; margin-top:1px; flex-shrink:0; }
 .cb-info-box span { font-size:0.45rem; color:#666; line-height:1.4; }
 
+/* Steps bar */
+.cb-steps-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 20px;
+    width: 100%;
+}
+.cb-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+.cb-step span {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: #e2e8f0;
+    color: #94a3b8;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+}
+.cb-step small {
+    font-size: 0.6rem;
+    color: #94a3b8;
+    font-weight: 500;
+}
+.cb-step-active span {
+    background: linear-gradient(135deg, #2C6275, #26b9db);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(38,185,219,0.35);
+}
+.cb-step-active small { color: #2C6275; font-weight: 700; }
+.cb-step-done span {
+    background: #1e8a6e;
+    color: #fff;
+}
+.cb-step-done small { color: #1e8a6e; }
+.cb-step-line {
+    flex: 1;
+    height: 2px;
+    background: #e2e8f0;
+    margin: 0 4px;
+    margin-bottom: 14px;
+}
+.cb-step-line-done { background: #1e8a6e; }
+
 /* Submit button */
 .cb-submit {
     background:linear-gradient(135deg,#2C6275,#3a7d8f);

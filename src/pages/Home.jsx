@@ -1333,6 +1333,13 @@ const Home = () => {
                       {/* Step 1 — Name & Mobile */}
                       {cibilStep === 1 && (
                         <div className="cb-content cb-fade-in" key="s1">
+                          <div className="cb-steps-bar">
+                            <div className="cb-step cb-step-active"><span>1</span><small>Details</small></div>
+                            <div className="cb-step-line" />
+                            <div className="cb-step"><span>2</span><small>OTP</small></div>
+                            <div className="cb-step-line" />
+                            <div className="cb-step"><span>3</span><small>Score</small></div>
+                          </div>
                           <div className="cb-icon-circle"><i className="fas fa-user-circle"></i></div>
                           <h4>Enter Your Details</h4>
                           <p>We need basic info to fetch your score</p>
@@ -1363,6 +1370,13 @@ const Home = () => {
                       {/* Step 1.5 — OTP */}
                       {cibilStep === 1.5 && (
                         <div className="cb-content cb-fade-in" key="s1otp">
+                          <div className="cb-steps-bar">
+                            <div className="cb-step cb-step-done"><span><i className="fas fa-check"></i></span><small>Details</small></div>
+                            <div className="cb-step-line cb-step-line-done" />
+                            <div className="cb-step cb-step-active"><span>2</span><small>OTP</small></div>
+                            <div className="cb-step-line" />
+                            <div className="cb-step"><span>3</span><small>Score</small></div>
+                          </div>
                           <div className="cb-icon-circle" style={{background:"linear-gradient(135deg,#1e8a6e,#26b9db)"}}><i className="fas fa-mobile-alt"></i></div>
                           <h4>Verify OTP</h4>
                           <p>OTP sent to +91 {cibilForm.mobile.slice(0,4)}xxxxxx</p>
@@ -1389,6 +1403,13 @@ const Home = () => {
                       {/* Step 2 — PAN */}
                       {cibilStep === 2 && !cibilLoading && (
                         <div className="cb-content cb-fade-in" key="s2">
+                          <div className="cb-steps-bar">
+                            <div className="cb-step cb-step-done"><span><i className="fas fa-check"></i></span><small>Details</small></div>
+                            <div className="cb-step-line cb-step-line-done" />
+                            <div className="cb-step cb-step-done"><span><i className="fas fa-check"></i></span><small>OTP</small></div>
+                            <div className="cb-step-line cb-step-line-done" />
+                            <div className="cb-step cb-step-active"><span>3</span><small>Score</small></div>
+                          </div>
                           <div className="cb-icon-circle"><i className="fas fa-id-card"></i></div>
                           <h4>Verify Identity</h4>
                           <p>PAN is required by credit bureaus</p>
