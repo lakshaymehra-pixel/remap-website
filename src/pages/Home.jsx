@@ -847,9 +847,18 @@ const Home = () => {
               href="https://play.google.com/store/apps/details?id=com.salarytopup.salarytopup"
               target="_blank"
               rel="noopener noreferrer"
-              className="loans-download-btn"
+              className="loans-gplay-badge"
             >
-              Download app &rarr;
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="loans-gplay-icon">
+                <path d="M3.18 23.76a2 2 0 0 0 2.09-.22l.1-.07 11.67-6.74-.01-.01-3.4-3.4-10.45 10.44z" fill="#EA4335"/>
+                <path d="M20.46 10.18L17.6 8.54l-3.82 3.46 3.83 3.83 2.84-1.64a2 2 0 0 0 0-3.5v-.01z" fill="#FBBC04"/>
+                <path d="M3.18.24A2 2 0 0 0 2 2.06v19.88l10.54-10.54L3.18.24z" fill="#4285F4"/>
+                <path d="M13.63 12L17.6 8.54 5.37.46a2 2 0 0 0-2.19-.22L13.63 12z" fill="#34A853"/>
+              </svg>
+              <div className="loans-gplay-text">
+                <span>GET IT ON</span>
+                <strong>Google Play</strong>
+              </div>
             </a>
 
             <div className="loans-feat-grid">

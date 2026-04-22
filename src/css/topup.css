@@ -1448,20 +1448,23 @@ a:hover {
     margin-bottom: 24px;
 }
 
-.loans-gplay-btn {
-    display: inline-block;
-    margin-bottom: 36px;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-.loans-gplay-btn:hover { transform: translateY(-2px); }
-.loans-gplay-inner {
-    background: #0d2240;
-    border-radius: 12px;
-    padding: 4px 8px;
+.loans-gplay-badge {
     display: inline-flex;
     align-items: center;
+    gap: 12px;
+    border: 1.5px solid #222;
+    border-radius: 10px;
+    padding: 8px 18px;
+    text-decoration: none;
+    background: #fff;
+    margin-bottom: 36px;
+    transition: box-shadow 0.2s, transform 0.2s;
 }
-.loans-gplay-img { height: 52px; width: auto; display: block; }
+.loans-gplay-badge:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.12); transform: translateY(-2px); text-decoration: none; }
+.loans-gplay-icon { width: 28px; height: 28px; flex-shrink: 0; }
+.loans-gplay-text { display: flex; flex-direction: column; line-height: 1.2; }
+.loans-gplay-text span { font-size: 0.6rem; color: #222; letter-spacing: 0.5px; text-transform: uppercase; }
+.loans-gplay-text strong { font-size: 1.1rem; color: #111; font-weight: 700; letter-spacing: -0.3px; }
 
 .loans-download-btn {
     display: inline-block;
