@@ -847,9 +847,9 @@ const Home = () => {
               href="https://play.google.com/store/apps/details?id=com.salarytopup.salarytopup"
               target="_blank"
               rel="noopener noreferrer"
-              className="loans-download-btn"
+              className="loans-gplay-btn"
             >
-              Download app &rarr;
+              <img src={googlePlayBadge} alt="Get it on Google Play" className="loans-gplay-img" />
             </a>
 
             <div className="loans-feat-grid">
