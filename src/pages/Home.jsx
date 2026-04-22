@@ -164,6 +164,7 @@ const WcItem = ({ item, index: _index }) => {
     <div
       className={`wc-new-item${active ? " wc-new-item-active" : ""}`}
       onMouseEnter={() => setActiveIdx(i)}
+      onClick={() => setActiveIdx(i)}
     >
       <div className="wc-new-item-icon">
         <i className={`fas ${item.icon}`}></i>
@@ -195,8 +196,8 @@ const WcImagePanel = ({ items }) => {
 
 const WC_ITEMS = [
   { icon:"fa-shield-alt",       title:"Tap & Apply",                desc:"Apply anytime, from anywhere.", img: require("../images/Picflow Images Apr 10/salarytopup-online-loan-application-india.webp.webp") },
-  { icon:"fa-file-alt",         title:"Minimal Documentation",      desc:"Quick and paperless.", img: require("../images/Picflow Images Apr 10/salarytopup-flexible-personal-loan-options.webp.webp") },
-  { icon:"fa-hand-holding-usd", title:"Trusted & Verified",         desc:"Robust data protection & regulatory adherence.", img: require("../images/Picflow Images Apr 10/salarytopup-instant-loan-approval-india.webp.webp") },
+  { icon:"fa-file-alt",         title:"Minimal Documentation",      desc:"Quick and paperless.", img: require("../images/Picflow Images Apr 10/salarytopup-personal-loan-minimal-paperwork.webp.webp") },
+  { icon:"fa-hand-holding-usd", title:"Trusted & Verified",         desc:"Robust data protection & regulatory adherence.", img: require("../images/Picflow Images Apr 10/salarytopup-collateral-free-personal-loan.webp.webp") },
   { icon:"fa-bolt",             title:"Customer-First Approach",    desc:"Fast support and clear communication.", img: require("../images/Picflow Images Apr 10/salarytopup-easy-loan-repayment-plan.webp.webp") },
 ];
 

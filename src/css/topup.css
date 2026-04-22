@@ -1250,6 +1250,7 @@ a:hover {
     background: #fff;
     border-color: #e2e8f0;
     box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    align-items: flex-start;
 }
 .wc-new-item-icon {
     width: 44px; height: 44px; flex-shrink: 0;
