@@ -10,7 +10,6 @@
 /* ── Top Section ── */
 .ft-top {
     padding: 40px 40px 28px;
-    border-bottom: 1px solid rgba(255,255,255,0.12);
 }
 .ft-top-inner {
     max-width: 1200px;
