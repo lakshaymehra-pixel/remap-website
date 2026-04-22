@@ -173,6 +173,7 @@ const WcItem = ({ item, index: _index }) => {
       <div className="wc-new-item-text">
         <h4>{item.title}</h4>
         {active && <p>{item.desc}</p>}
+        {active && <img src={item.img} alt={item.title} className="wc-mobile-img" />}
       </div>
       <i className="fas fa-chevron-right wc-new-item-chevron"></i>
     </div>
