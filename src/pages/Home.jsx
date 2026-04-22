@@ -165,7 +165,7 @@ const WcItem = ({ item, index: _index }) => {
     <div
       className={`wc-new-item${active ? " wc-new-item-active" : ""}`}
       onMouseEnter={() => setActiveIdx(i)}
-      onClick={() => setActiveIdx(i)}
+      onClick={() => setActiveIdx(active ? -1 : i)}
     >
       <div className="wc-new-item-icon">
         <i className={`fas ${item.icon}`}></i>
