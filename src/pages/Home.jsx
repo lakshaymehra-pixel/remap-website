@@ -1338,18 +1338,28 @@ const Home = () => {
                           <p>We need basic info to fetch your score</p>
                           <div className="cb-field">
                             <label><i className="fas fa-user"></i> Full Name</label>
-                            <input type="text" placeholder="First Name"
-                              value={cibilForm.name}
-                              onChange={e => setCibilForm({...cibilForm, name: e.target.value})}
-                              className={!cibilForm.name && cibilError ? "cb-input-warn" : ""} />
+                            <div className="cb-input-wrap">
+                              <i className="fas fa-user cb-input-icon"></i>
+                              <input type="text" placeholder="✏️ Type your first name here..."
+                                value={cibilForm.name}
+                                onChange={e => setCibilForm({...cibilForm, name: e.target.value})}
+                                className={`cb-input-enhanced ${!cibilForm.name && cibilError ? "cb-input-warn" : cibilForm.name ? "cb-input-ok" : ""}`} />
+                              {cibilForm.name && <i className="fas fa-check-circle cb-input-check"></i>}
+                            </div>
                             {!cibilForm.name && cibilError && <span className="cb-field-warn"><i className="fas fa-exclamation-triangle"></i> Please enter your name</span>}
                           </div>
                           <div className="cb-field">
                             <label><i className="fas fa-phone"></i> Mobile Number</label>
-                            <input type="tel" placeholder="+91 XXXX XXXX" maxLength="10"
-                              value={cibilForm.mobile}
-                              onChange={e => setCibilForm({...cibilForm, mobile: e.target.value})}
-                              className={(!cibilForm.mobile || cibilForm.mobile.length < 10) && cibilError ? "cb-input-warn" : ""} />
+                            <div className="cb-input-wrap">
+                              <span className="cb-input-prefix">+91</span>
+                              <input type="tel" placeholder="Enter 10-digit mobile number"
+                                value={cibilForm.mobile}
+                                maxLength="10"
+                                onChange={e => setCibilForm({...cibilForm, mobile: e.target.value})}
+                                className={`cb-input-enhanced cb-input-with-prefix ${(!cibilForm.mobile || cibilForm.mobile.length < 10) && cibilError ? "cb-input-warn" : cibilForm.mobile.length === 10 ? "cb-input-ok" : ""}`} />
+                              {cibilForm.mobile.length === 10 && <i className="fas fa-check-circle cb-input-check"></i>}
+                            </div>
+                            {cibilForm.mobile.length > 0 && cibilForm.mobile.length < 10 && <span className="cb-field-hint"><i className="fas fa-info-circle"></i> {10 - cibilForm.mobile.length} more digits needed</span>}
                             {(!cibilForm.mobile || cibilForm.mobile.length < 10) && cibilError && <span className="cb-field-warn"><i className="fas fa-exclamation-triangle"></i> Enter valid 10-digit mobile number</span>}
                           </div>
                           <label className="cb-consent">

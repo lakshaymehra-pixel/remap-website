@@ -4230,11 +4230,53 @@ button.track-cta {
 .cb-info-box i { color:#4a9aaa; font-size:0.55rem; margin-top:1px; flex-shrink:0; }
 .cb-info-box span { font-size:0.45rem; color:#666; line-height:1.4; }
 
-/* Field inline warning */
+/* Enhanced input */
+.cb-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.cb-input-enhanced {
+    width: 100%;
+    padding: 10px 36px 10px 12px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 0.82rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    background: #f8fafc;
+}
+.cb-input-enhanced:focus {
+    border-color: #26b9db;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(38,185,219,0.12);
+}
+.cb-input-enhanced::placeholder { color: #94a3b8; font-size: 0.78rem; }
+.cb-input-ok {
+    border-color: #1e8a6e !important;
+    background: #f0fdf4 !important;
+}
 .cb-input-warn {
     border-color: #f97316 !important;
     background: #fff7ed !important;
 }
+.cb-input-check {
+    position: absolute;
+    right: 10px;
+    color: #1e8a6e;
+    font-size: 0.85rem;
+    pointer-events: none;
+}
+.cb-input-prefix {
+    position: absolute;
+    left: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #2C6275;
+    pointer-events: none;
+    z-index: 1;
+}
+.cb-input-with-prefix { padding-left: 38px !important; }
 .cb-field-warn {
     display: flex;
     align-items: center;
@@ -4245,6 +4287,16 @@ button.track-cta {
     font-weight: 500;
 }
 .cb-field-warn i { font-size: 0.65rem; }
+.cb-field-hint {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.7rem;
+    color: #26b9db;
+    margin-top: 4px;
+    font-weight: 500;
+}
+.cb-field-hint i { font-size: 0.65rem; }
 
 /* Steps bar */
 .cb-steps-bar {
