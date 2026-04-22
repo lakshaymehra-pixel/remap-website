@@ -251,28 +251,22 @@ const StatsCounter = () => {
   const c3 = useCounter(5, 2000, visible);
   const c4 = useCounter(1, 2000, visible);
 
+  const stats = [
+    { value: `${Math.floor(c1)}+ Cr`,    label: "Loan Disbursed" },
+    { value: `${Math.floor(c2)}+ Lakhs`, label: "Loan Customers" },
+    { value: `${Math.floor(c3)}+ Lakh`,  label: "Active Users" },
+    { value: `₹${Math.floor(c4)} Lakh`,  label: "Max. Loan Amount" },
+  ];
   return (
     <div className="wc-stats" ref={ref}>
-      <div className="wc-stat-item">
-
-        <strong className="wc-stat-value">{Math.floor(c1)}+ Cr</strong>
-        <span className="wc-stat-sub">Loan Disbursed</span>
-      </div>
-      <div className="wc-stat-item">
-
-        <strong className="wc-stat-value">{Math.floor(c2)}+ Lakhs</strong>
-        <span className="wc-stat-sub">Loan Customers</span>
-      </div>
-      <div className="wc-stat-item">
-
-        <strong className="wc-stat-value">{Math.floor(c3)}+ Lakh</strong>
-        <span className="wc-stat-sub">Active Users</span>
-      </div>
-      <div className="wc-stat-item">
-
-        <strong className="wc-stat-value">{Math.floor(c4)}+ Lakh</strong>
-        <span className="wc-stat-sub">Max. Loan Amount</span>
-      </div>
+      {stats.map((s, i) => (
+        <div className="wc-stat-card" key={i}>
+          <div className="wc-stat-inner">
+            <strong className="wc-stat-value">{s.value}</strong>
+            <span className="wc-stat-sub">{s.label}</span>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
