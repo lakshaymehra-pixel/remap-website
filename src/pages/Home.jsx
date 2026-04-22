@@ -196,7 +196,7 @@ const WcImagePanel = ({ items }) => {
 };
 
 const WC_ITEMS = [
-  { icon:"fa-shield-alt",       title:"Tap & Apply",                desc:"Apply anytime, from anywhere.", img: require("../images/minimaldocs.png") },
+  { icon:"fa-shield-alt",       title:"Tap & Apply",                desc:"Apply anytime, from anywhere.", img: require("../images/Picflow Images Apr 10/salarytopup-online-loan-application-india.webp.webp") },
   { icon:"fa-file-alt",         title:"Minimal Documentation",      desc:"Quick and paperless.", img: require("../images/Picflow Images Apr 10/salarytopup-personal-loan-minimal-paperwork.webp.webp") },
   { icon:"fa-hand-holding-usd", title:"Trusted & Verified",         desc:"Robust data protection & regulatory adherence.", img: require("./LoanHistory/trust and verified.png") },
   { icon:"fa-bolt",             title:"Customer-First Approach",    desc:"Fast support and clear communication.", img: require("../images/customer-first.jpeg") },
