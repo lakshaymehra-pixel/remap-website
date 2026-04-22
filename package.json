@@ -19,6 +19,7 @@
     "bootstrap": "^5.3.7",
     "cleave.js": "^1.6.0",
     "crypto-js": "^4.2.0",
+    "firebase": "^12.12.1",
     "helmet": "^8.1.0",
     "http-proxy-middleware": "^3.0.5",
     "js-cookie": "^3.0.5",

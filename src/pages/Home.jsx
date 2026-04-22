@@ -8,6 +8,7 @@ import "../css/topup.css"; // v2
 import googlePlayBadge from "../assets/google-play-badge.webp";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { auth, RecaptchaVerifier, signInWithPhoneNumber } from "../firebase";
 
 const FALLBACK_TST = [
   { name:"Ankit Kumar",   location:"Delhi",     message:"Amazing service and very easy to use. The process was smooth and quick. I highly recommend it to everyone.", rating: 5 },
@@ -527,6 +528,26 @@ const Home = () => {
   const [cibilOtpSent, setCibilOtpSent] = useState(false);
   const [cibilOtpTimer, setCibilOtpTimer] = useState(0);
   const cibilTimerRef = useRef(null);
+  const confirmationResultRef = useRef(null);
+  const recaptchaVerifierRef = useRef(null);
+
+  const setupRecaptcha = () => {
+    if (!recaptchaVerifierRef.current) {
+      recaptchaVerifierRef.current = new RecaptchaVerifier(auth, "recaptcha-container", {
+        size: "invisible",
+        callback: () => {},
+      });
+    }
+    return recaptchaVerifierRef.current;
+  };
+
+  const sendFirebaseOtp = async (mobile) => {
+    const phoneNumber = "+91" + mobile;
+    const appVerifier = setupRecaptcha();
+    const confirmation = await signInWithPhoneNumber(auth, phoneNumber, appVerifier);
+    confirmationResultRef.current = confirmation;
+    return confirmation;
+  };
 
   const handleCibilCheck = () => {
     setShowCibilForm(true);
@@ -560,16 +581,37 @@ const Home = () => {
       if (!cibilForm.consent) {
         setCibilError("Please agree to let us use your information"); return;
       }
-      // Send OTP (demo mode — enter any 6-digit OTP)
-      setCibilOtpSent(true);
-      startOtpTimer();
-      setCibilStep(1.5); return;
+      // Send real OTP via Firebase
+      try {
+        setCibilLoading(true);
+        await sendFirebaseOtp(cibilForm.mobile);
+        setCibilLoading(false);
+        setCibilOtpSent(true);
+        startOtpTimer();
+        setCibilStep(1.5);
+      } catch (err) {
+        setCibilLoading(false);
+        console.error("OTP send error:", err);
+        setCibilError(err.message || "Failed to send OTP. Please try again.");
+      }
+      return;
     }
     if (cibilStep === 1.5) {
-      if (!cibilForm.otp || cibilForm.otp.length < 4) {
-        setCibilError("Please enter the OTP sent to your mobile"); return;
+      if (!cibilForm.otp || cibilForm.otp.length < 6) {
+        setCibilError("Please enter the 6-digit OTP sent to your mobile"); return;
       }
-      setCibilStep(2); return;
+      try {
+        setCibilLoading(true);
+        if (!confirmationResultRef.current) throw new Error("OTP session expired. Please resend OTP.");
+        await confirmationResultRef.current.confirm(cibilForm.otp);
+        setCibilLoading(false);
+        setCibilStep(2);
+      } catch (err) {
+        setCibilLoading(false);
+        console.error("OTP verify error:", err);
+        setCibilError("Invalid OTP. Please try again.");
+      }
+      return;
     }
     // Step 2 — PAN validation: 5 letters + 4 digits + 1 letter
     if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(cibilForm.pan)) {
@@ -1318,6 +1360,9 @@ const Home = () => {
                     </div>
                   )}
 
+                  {/* Firebase reCAPTCHA container (invisible) */}
+                  <div id="recaptcha-container"></div>
+
                   {/* CIBIL Score Check Form */}
                   {showCibilForm && (
                     <div className="cb-app">
@@ -1376,7 +1421,7 @@ const Home = () => {
                           <div className="cb-otp-row">
                             {cibilOtpTimer > 0
                               ? <span className="cb-otp-timer"><i className="fas fa-clock"></i> Resend in {cibilOtpTimer}s</span>
-                              : <button className="cb-otp-resend" onClick={() => { startOtpTimer(); }}>Resend OTP</button>
+                              : <button className="cb-otp-resend" onClick={async () => { try { await sendFirebaseOtp(cibilForm.mobile); startOtpTimer(); } catch(e) { setCibilError("Failed to resend OTP"); } }}>Resend OTP</button>
                             }
                           </div>
                           {cibilError && <div className="cb-error"><i className="fas fa-exclamation-circle"></i> {cibilError}</div>}
