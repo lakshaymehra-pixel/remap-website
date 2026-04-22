@@ -104,15 +104,26 @@
 /* Arrow icon hidden on desktop */
 .ft-acc-icon { display: none; }
 
-/* ── Contact Pills Row ── */
-.ft-pills-row {
+/* ── Combined Contact Box ── */
+.ft-contact-box-wrap {
+    padding: 0 40px 28px;
+}
+.ft-contact-box {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px 40px;
+    background: rgba(0,0,0,0.18);
+    border-radius: 18px;
+    padding: 18px 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* ── Pills Row ── */
+.ft-pills-row {
     display: grid;
     grid-template-columns: 1fr 1.4fr 1fr;
-    gap: 14px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    gap: 12px;
 }
 .ft-pill {
     display: flex;
@@ -133,18 +144,14 @@
 .ft-pill:hover { background: rgba(255,255,255,0.18); color: #fff; }
 .ft-pill-icon { font-size: 1rem; flex-shrink: 0; }
 
-/* ── Bottom Bar ── */
-.ft-bottom {
-    padding: 16px 40px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-}
+/* ── Bottom Row inside box ── */
 .ft-bottom-inner {
-    max-width: 1200px;
-    margin: 0 auto;
     display: grid;
     grid-template-columns: 1.5fr auto 1.5fr;
     align-items: center;
     gap: 24px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 14px;
 }
 
 /* Address */
@@ -222,8 +229,8 @@
     .ft-about { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 20px; }
     .ft-about > p { flex: 1; }
     .ft-top { padding: 28px 24px 20px; }
-    .ft-pills-row { grid-template-columns: 1fr; padding: 16px 24px; gap: 10px; }
-    .ft-bottom { padding: 14px 24px; }
+    .ft-contact-box-wrap { padding: 0 24px 24px; }
+    .ft-pills-row { grid-template-columns: 1fr; gap: 10px; }
     .ft-bottom-inner { grid-template-columns: 1fr; gap: 12px; }
     .ft-btm-rbi { text-align: left; }
 }
@@ -274,10 +281,10 @@
     }
     .ft-acc-open ul { max-height: 200px; padding-bottom: 12px; }
 
-    .ft-pills-row { padding: 14px 16px; gap: 8px; }
-    .ft-pill { font-size: 0.8rem; padding: 10px 16px; }
-
-    .ft-bottom { padding: 14px 16px; }
+    .ft-contact-box-wrap { padding: 0 16px 20px; }
+    .ft-contact-box { padding: 14px 16px 12px; border-radius: 14px; }
+    .ft-pills-row { gap: 8px; }
+    .ft-pill { font-size: 0.8rem; padding: 10px 14px; }
     .ft-bottom-inner { gap: 10px; text-align: center; }
     .ft-btm-addr { justify-content: center; text-align: center; }
     .ft-btm-rbi { text-align: center; }

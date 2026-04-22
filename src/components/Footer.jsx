@@ -95,31 +95,34 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* ── Contact Pills Row ── */}
-      <div className="ft-pills-row">
-        <a href={`tel:${settings.phone1}`} className="ft-pill">
-          <FaPhoneAlt className="ft-pill-icon" />
-          <span>{settings.phone1}</span>
-        </a>
-        <a href={`mailto:${settings.email}`} className="ft-pill">
-          <FaEnvelope className="ft-pill-icon" />
-          <span>{settings.email}</span>
-        </a>
-        <a href={`https://wa.me/${settings.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="ft-pill">
-          <FaWhatsapp className="ft-pill-icon" />
-          <span>{settings.whatsapp}</span>
-        </a>
-      </div>
+      {/* ── Combined Contact Box ── */}
+      <div className="ft-contact-box-wrap">
+        <div className="ft-contact-box">
 
-      {/* ── Bottom Bar ── */}
-      <div className="ft-bottom">
-        <div className="ft-bottom-inner">
+          {/* Pills Row */}
+          <div className="ft-pills-row">
+            <a href={`tel:${settings.phone1}`} className="ft-pill">
+              <FaPhoneAlt className="ft-pill-icon" />
+              <span>{settings.phone1}</span>
+            </a>
+            <a href={`mailto:${settings.email}`} className="ft-pill">
+              <FaEnvelope className="ft-pill-icon" />
+              <span>{settings.email}</span>
+            </a>
+            <a href={`https://wa.me/${settings.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="ft-pill">
+              <FaWhatsapp className="ft-pill-icon" />
+              <span>{settings.whatsapp}</span>
+            </a>
+          </div>
 
-          {/* Address */}
-          <div className="ft-btm-addr">
-            <FaMapMarkerAlt className="ft-addr-icon" />
-            <div>
-              <strong>Registered Office :</strong>
+          {/* Bottom Row */}
+          <div className="ft-bottom-inner">
+
+            {/* Address */}
+            <div className="ft-btm-addr">
+              <FaMapMarkerAlt className="ft-addr-icon" />
+              <div>
+                <strong>Registered Office :</strong>
               <span>{settings.address}</span>
             </div>
           </div>
@@ -137,8 +140,9 @@ const Footer = () => {
             <span>{settings.rbiText}</span>
           </div>
 
-        </div>
-      </div>
+          </div>{/* end ft-bottom-inner */}
+        </div>{/* end ft-contact-box */}
+      </div>{/* end ft-contact-box-wrap */}
 
       {/* ── Copyright ── */}
       <div className="ft-copyright">
