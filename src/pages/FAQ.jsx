@@ -8,7 +8,7 @@ const FALLBACK_FAQS = [
     group: "General",
     items: [
       { q: "What is Salary Topup?", a: "Salary Topup is a short-term, unsecured loan offered by a registered NBFC to help salaried individuals meet immediate financial needs — quickly and digitally." },
-      { q: "How does a Salary Topup loan work?", a: "You apply online, submit your documents digitally, and receive approval within minutes. The loan amount is disbursed directly to your bank account — no collateral, no paperwork hassle." },
+      { q: "How does a Salary Topup loan work?", a: "Aapko chahiye: PAN Card, Aadhaar Card (identity & address proof), last 3 months ki salary slips ya bank statement, aur employment proof. Bas itna kaafi hai — koi extra documents nahi!" },
     ],
   },
   {
