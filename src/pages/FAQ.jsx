@@ -8,7 +8,7 @@ const FALLBACK_FAQS = [
     group: "General",
     items: [
       { q: "What is Salary Topup?", a: "Salary Topup is a short-term, unsecured loan offered by a registered NBFC to help salaried individuals meet immediate financial needs — quickly and digitally." },
-      { q: "How does a Salary Topup loan work?", a: "Aapko chahiye: PAN Card, Aadhaar Card (identity & address proof), last 3 months ki salary slips ya bank statement, aur employment proof. Bas itna kaafi hai — koi extra documents nahi!" },
+      { q: "How does a Salary Topup loan work?", a: "Bahut simple hai! Online apply karo, documents digitally submit karo, aur minutes mein approval milega. Loan amount seedha aapke bank account mein transfer ho jaata hai — koi collateral nahi, koi paperwork ki jhanjhat nahi." },
     ],
   },
   {
@@ -30,7 +30,7 @@ const FALLBACK_FAQS = [
     group: "Documents & Security",
     items: [
       { q: "Do I need to provide collateral to get a loan?", a: "Bilkul nahi! Salary TopUp loans are 100% collateral-free. Koi bhi ghar, gaadi, ya sona girvee rakhne ki zaroorat nahi hai. Sirf aapki salary aur basic documents kaafi hain." },
-      { q: "What documents are required to apply?", a: "You'll need: PAN card, Aadhaar card (identity & address proof), latest salary slips or bank statement (last 3 months), and employment proof." },
+      { q: "What documents are required to apply?", a: "Aapko chahiye: PAN Card, Aadhaar Card (identity & address proof), last 3 months ki salary slips ya bank statement, aur employment proof. Bas itna kaafi hai — koi extra documents nahi!" },
       { q: "How fast can I receive the loan amount?", a: "Once approved, funds are typically credited to your bank account within 10–30 minutes. In some cases it may take up to a few hours depending on your bank." },
     ],
   },
