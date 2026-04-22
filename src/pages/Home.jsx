@@ -216,8 +216,7 @@ const WcSectionWrapper = ({ hc }) => {
         <div className="wc-container">
           <div className="wc-new-wrap">
             <div className="wc-new-left">
-              <p className="wc-new-eyebrow">{hc.wc_eyebrow}</p>
-              <h2 className="wc-new-title">{hc.wc_title_line1}<br /><span>{hc.wc_title_line2}</span></h2>
+              <h2 className="wc-new-title">Why Choose <span>SalaryTopUp</span></h2>
               <div className="wc-new-list">
                 {items.map((item, i) => (
                   <WcItem key={i} item={item} index={i} />
