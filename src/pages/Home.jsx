@@ -194,10 +194,10 @@ const WcImagePanel = ({ items }) => {
 };
 
 const WC_ITEMS = [
-  { icon:"fa-laptop",           title:"100% Digital Process",  desc:"Complete digital journey from application to disbursement, no paperwork needed.", img: require("../images/Picflow Images Apr 10/salarytopup-online-loan-application-india.webp.webp") },
-  { icon:"fa-hand-holding-usd", title:"Lower Interest Rates",  desc:"Get salary loans at competitive interest rates with zero hidden charges.", img: require("../images/Picflow Images Apr 10/salarytopup-flexible-personal-loan-options.webp.webp") },
-  { icon:"fa-clock",            title:"Instant Approval",      desc:"Loan approved within minutes — no branch visit, no waiting in queues.", img: require("../images/Picflow Images Apr 10/salarytopup-instant-loan-approval-india.webp.webp") },
-  { icon:"fa-headphones-alt",   title:"24/7 Support",          desc:"Our team is always ready to help you, round the clock, every day.", img: require("../images/Picflow Images Apr 10/salarytopup-easy-loan-repayment-plan.webp.webp") },
+  { icon:"fa-shield-alt",       title:"Tap & Apply",                desc:"Apply anytime, from anywhere.", img: require("../images/Picflow Images Apr 10/salarytopup-online-loan-application-india.webp.webp") },
+  { icon:"fa-file-alt",         title:"Minimal Documentation",      desc:"Quick and paperless.", img: require("../images/Picflow Images Apr 10/salarytopup-flexible-personal-loan-options.webp.webp") },
+  { icon:"fa-hand-holding-usd", title:"Trusted & Verified",         desc:"Robust data protection & regulatory adherence.", img: require("../images/Picflow Images Apr 10/salarytopup-instant-loan-approval-india.webp.webp") },
+  { icon:"fa-bolt",             title:"Customer-First Approach",    desc:"Fast support and clear communication.", img: require("../images/Picflow Images Apr 10/salarytopup-easy-loan-repayment-plan.webp.webp") },
 ];
 
 const WcSectionWrapper = () => {
