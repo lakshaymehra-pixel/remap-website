@@ -1232,6 +1232,7 @@ a:hover {
     margin-bottom: 32px;
 }
 .wc-new-title span { color: #26b9db; }
+.wc-brand-small { font-size: 1.1rem; font-weight: 600; letter-spacing: 0.5px; }
 
 .wc-new-list { display: flex; flex-direction: column; gap: 6px; }
 

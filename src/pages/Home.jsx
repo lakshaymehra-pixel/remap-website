@@ -216,7 +216,7 @@ const WcSectionWrapper = ({ hc }) => {
         <div className="wc-container">
           <div className="wc-new-wrap">
             <div className="wc-new-left">
-              <h2 className="wc-new-title">Why Choose <span>SalaryTopUp</span></h2>
+              <h2 className="wc-new-title">Why Choose<br /><span className="wc-brand-small">SalaryTopUp</span></h2>
               <div className="wc-new-list">
                 {items.map((item, i) => (
                   <WcItem key={i} item={item} index={i} />
