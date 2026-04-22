@@ -849,7 +849,9 @@ const Home = () => {
               rel="noopener noreferrer"
               className="loans-gplay-btn"
             >
-              <img src={googlePlayBadge} alt="Get it on Google Play" className="loans-gplay-img" />
+              <div className="loans-gplay-inner">
+                <img src={googlePlayBadge} alt="Get it on Google Play" className="loans-gplay-img" />
+              </div>
             </a>
 
             <div className="loans-feat-grid">
