@@ -1347,8 +1347,9 @@ a:hover {
 
 /* Stats Bar */
 .wc-stats-bg {
-    background: #f0f6ff;
-    padding-top: 20px;
+    background: linear-gradient(135deg, #1a3a5c 0%, #24527a 50%, #3a7ab0 100%);
+    margin-top: -40px;
+    padding-top: 60px;
     padding-bottom: 40px;
 }
 
@@ -1356,6 +1357,7 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
+    gap: 20px;
     padding: 24px 24px;
     max-width: 1060px;
     margin: 0 auto;
