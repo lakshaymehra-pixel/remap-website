@@ -251,7 +251,18 @@ const StatsCounter = () => {
   const c3 = useCounter(5, 2000, visible);
   const c4 = useCounter(1, 2000, visible);
 
-  const stats = [
+  const [statsData, setStatsData] = useState(null);
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL || 'https://backend-production-bf30.up.railway.app'}/api/stats/public`)
+      .then(r => r.json()).then(d => setStatsData(d)).catch(() => {});
+  }, []);
+
+  const stats = statsData ? [
+    { value: statsData.stat1_value, label: statsData.stat1_label },
+    { value: statsData.stat2_value, label: statsData.stat2_label },
+    { value: statsData.stat3_value, label: statsData.stat3_label },
+    { value: statsData.stat4_value, label: statsData.stat4_label },
+  ] : [
     { value: `${Math.floor(c1)}+ Cr`,    label: "Loan Disbursed" },
     { value: `${Math.floor(c2)}+ Lakhs`, label: "Loan Customers" },
     { value: `${Math.floor(c3)}+ Lakh`,  label: "Active Users" },
