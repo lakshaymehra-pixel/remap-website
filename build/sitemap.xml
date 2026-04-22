@@ -93,6 +93,20 @@
 
 
   <url>
+<loc>https://salarytopup.com/career%20%3Cbr%3E</loc>
+<changefreq>weekly</changefreq>
+<priority>0.8</priority>
+</url>
+
+
+  <url>
+<loc>https://salarytopup.com/features/:slug%20%3Cbr%3E</loc>
+<changefreq>weekly</changefreq>
+<priority>0.8</priority>
+</url>
+
+
+  <url>
 <loc>https://salarytopup.com/blog%20%3Cbr%3E</loc>
 <changefreq>weekly</changefreq>
 <priority>0.8</priority>
@@ -100,7 +114,7 @@
 
 
   <url>
-<loc>https://salarytopup.com/blog/:id</loc>
+<loc>https://salarytopup.com/blog/:slug</loc>
 <changefreq>weekly</changefreq>
 <priority>0.8</priority>
 </url>
@@ -290,6 +304,13 @@
 
   <url>
 <loc>https://salarytopup.com/my-dashboard/eligibility</loc>
+<changefreq>weekly</changefreq>
+<priority>0.8</priority>
+</url>
+
+
+  <url>
+<loc>https://salarytopup.com/admin</loc>
 <changefreq>weekly</changefreq>
 <priority>0.8</priority>
 </url>

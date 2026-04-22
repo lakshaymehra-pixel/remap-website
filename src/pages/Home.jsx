@@ -104,8 +104,7 @@ const FaqSection = () => {
   const [faqData, setFaqData] = useState(FALLBACK_FAQS);
 
   useEffect(() => {
-    const base = process.env.REACT_APP_API_URL || 'http://localhost:4500';
-    fetch(`${base}/api/faqs/public/home`)
+    fetch(`${API_BASE}/api/faqs/public/home`)
       .then(r => r.json())
       .then(data => {
         if (Array.isArray(data) && data.length > 0) setFaqData(data);
@@ -203,24 +202,30 @@ const WC_ITEMS = [
   { icon:"fa-bolt",             title:"Customer-First Approach",    desc:"Fast support and clear communication.", img: require("../images/customer-first.jpeg") },
 ];
 
-const WcSectionWrapper = () => {
+const WcSectionWrapper = ({ hc }) => {
   const [activeIdx, setActiveIdx] = useState(0);
+  const items = [
+    { icon:"fa-shield-alt",       title: hc.wc_item1_title, desc: hc.wc_item1_desc, img: WC_ITEMS[0].img },
+    { icon:"fa-file-alt",         title: hc.wc_item2_title, desc: hc.wc_item2_desc, img: WC_ITEMS[1].img },
+    { icon:"fa-hand-holding-usd", title: hc.wc_item3_title, desc: hc.wc_item3_desc, img: WC_ITEMS[2].img },
+    { icon:"fa-bolt",             title: hc.wc_item4_title, desc: hc.wc_item4_desc, img: WC_ITEMS[3].img },
+  ];
   return (
     <WcContext.Provider value={{ activeIdx, setActiveIdx }}>
       <section className="wc-section">
         <div className="wc-container">
           <div className="wc-new-wrap">
             <div className="wc-new-left">
-              <p className="wc-new-eyebrow">Why Choose Us</p>
-              <h2 className="wc-new-title">India's Most Trusted<br /><span>Salary Loan App</span></h2>
+              <p className="wc-new-eyebrow">{hc.wc_eyebrow}</p>
+              <h2 className="wc-new-title">{hc.wc_title_line1}<br /><span>{hc.wc_title_line2}</span></h2>
               <div className="wc-new-list">
-                {WC_ITEMS.map((item, i) => (
+                {items.map((item, i) => (
                   <WcItem key={i} item={item} index={i} />
                 ))}
               </div>
             </div>
             <div className="wc-new-right">
-              <WcImagePanel items={WC_ITEMS} />
+              <WcImagePanel items={items} />
             </div>
           </div>
         </div>
@@ -498,7 +503,38 @@ function HeroOpt5() {
   );
 }
 
+const API_BASE = process.env.REACT_APP_API_URL || 'https://backend-production-bf30.up.railway.app';
+
+const HC_DEFAULTS = {
+  hero_badge: "India's #1 Salary Loan App",
+  hero_h1_line1: 'Sahi Financial', hero_h1_line2: 'Decisions se', hero_h1_line3: 'Life Banegi Great',
+  hero_subheading: 'Achieve your life goals with a personalized approach to money. Instant salary loans, zero paperwork.',
+  hero_btn_text: 'Apply Now',
+  cta_heading: 'Ready for Instant Cash?', cta_subtext: 'Salary loan approved in minutes, not days.', cta_btn_text: 'Check Eligibility',
+  wc_eyebrow: 'Why Choose Us', wc_title_line1: "India's Most Trusted", wc_title_line2: 'Salary Loan App',
+  wc_item1_title: 'Tap & Apply', wc_item1_desc: 'Apply anytime, from anywhere.',
+  wc_item2_title: 'Minimal Documentation', wc_item2_desc: 'Quick and paperless.',
+  wc_item3_title: 'Trusted & Verified', wc_item3_desc: 'Robust data protection & regulatory adherence.',
+  wc_item4_title: 'Customer-First Approach', wc_item4_desc: 'Fast support and clear communication.',
+  loans_h1: 'Every wish fulfilled.', loans_h2: 'Get instant funds!',
+  loans_desc: "SalaryTopUp is India's most trusted salary loan app — built for working professionals who need quick, transparent, and hassle-free financial support between paydays.",
+  track_h1: 'Master your', track_h2: 'money matters',
+  track_desc: 'Stay on top of your finances. Track every EMI, monitor your credit score, manage repayments — all in one place with SalaryTopUp.',
+  track_bullet1: 'Real-time EMI & repayment tracking',
+  track_bullet2: '100% secure & encrypted data',
+  track_bullet3: 'Smart reminders before due dates',
+};
+
 const Home = () => {
+  const [hc, setHc] = useState(HC_DEFAULTS);
+
+  useEffect(() => {
+    fetch(`${API_BASE}/api/home-content/public`)
+      .then(r => r.json())
+      .then(d => { if (d && Object.keys(d).length > 0) setHc(prev => ({ ...prev, ...d })); })
+      .catch(() => {});
+  }, []);
+
   const [loanAmount, setLoanAmount] = useState(25000);
   const [loanPeriod, setLoanPeriod] = useState(15);
   const [interestRate, setInterestRate] = useState(0.1);
@@ -730,15 +766,15 @@ const Home = () => {
               {/* Mobile person — shown only on mobile above text */}
               <img src={heroPerson} alt="hero" className="hp-person-mobile" />
               <div className="hero-new-badge">
-                <span className="hero-live-dot"></span> India's #1 Salary Loan App
+                <span className="hero-live-dot"></span> {hc.hero_badge}
               </div>
               <h1 className="hero-new-h1">
-                Sahi Financial<br />
-                Decisions se<br />
-                Life Banegi <span className="hero-new-highlight">Great</span>
+                {hc.hero_h1_line1}<br />
+                {hc.hero_h1_line2}<br />
+                <span className="hero-new-highlight">{hc.hero_h1_line3}</span>
               </h1>
               <p className="hero-new-sub">
-                Achieve your life goals with a personalized approach to money. Instant salary loans, zero paperwork.
+                {hc.hero_subheading}
               </p>
               <div className="hero-new-stats">
                 <div className="hero-new-stat">
@@ -760,7 +796,7 @@ const Home = () => {
                 <a href="https://play.google.com/store/apps/details?id=com.salarytopup.salarytopup" target="_blank" rel="noopener noreferrer" className="hero-gplay-img-btn">
                   <img src={googlePlayBadge} alt="Get it on Google Play" className="hero-gplay-img" />
                 </a>
-                <a href="#loans" className="hero-new-btn-outline">Apply Now &rarr;</a>
+                <a href="#loans" className="hero-new-btn-outline">{hc.hero_btn_text} &rarr;</a>
               </div>
             </div>
 
@@ -806,18 +842,18 @@ const Home = () => {
 
         {/* Center — Content */}
         <div className="hsb-content">
-          <strong>Ready for Instant Cash?</strong>
-          <span>Salary loan approved in minutes, not days.</span>
+          <strong>{hc.cta_heading}</strong>
+          <span>{hc.cta_subtext}</span>
         </div>
 
         {/* Right — Button */}
         <Link to="/apply-now" className="hsb-apply-btn">
-          Check Eligibility <i className="fas fa-arrow-right"></i>
+          {hc.cta_btn_text} <i className="fas fa-arrow-right"></i>
         </Link>
       </div>
 
       {/* WHY CHOOSE SECTION */}
-      <WcSectionWrapper />
+      <WcSectionWrapper hc={hc} />
 
       {/* LOANS SECTION */}
       <section className="loans-section" id="loans">
@@ -825,7 +861,7 @@ const Home = () => {
           {/* Left Content */}
           <div className="loans-left">
             <h2 className="loans-heading">
-              Every wish fulfilled.<br />Get instant funds!
+              {hc.loans_h1}<br />{hc.loans_h2}
             </h2>
             <div className="loans-trust-grid">
               <div className="loans-trust-card">
@@ -846,7 +882,7 @@ const Home = () => {
               </div>
             </div>
             <p className="loans-trust-desc">
-              SalaryTopUp is India's most trusted salary loan app — built for working professionals who need quick, transparent, and hassle-free financial support between paydays.
+              {hc.loans_desc}
             </p>
 
             <a
@@ -1291,16 +1327,15 @@ const Home = () => {
         <div className="track-container">
           {/* Left */}
           <div className="track-left">
-            <h2 className="track-heading">Master your<br /><span>money matters</span></h2>
+            <h2 className="track-heading">{hc.track_h1}<br /><span>{hc.track_h2}</span></h2>
             <p className="track-desc">
-              Stay on top of your finances. Track every EMI, monitor your credit score,
-              manage repayments — all in one place with SalaryTopUp.
+              {hc.track_desc}
             </p>
             <div className="track-points">
               {[
-                { icon:"fa-chart-line", text:"Real-time EMI & repayment tracking" },
-                { icon:"fa-shield-alt", text:"100% secure & encrypted data" },
-                { icon:"fa-bell",       text:"Smart reminders before due dates" },
+                { icon:"fa-chart-line", text: hc.track_bullet1 },
+                { icon:"fa-shield-alt", text: hc.track_bullet2 },
+                { icon:"fa-bell",       text: hc.track_bullet3 },
               ].map((p, i) => (
                 <div className="track-point" key={i}>
                   <i className={`fas ${p.icon}`}></i>
