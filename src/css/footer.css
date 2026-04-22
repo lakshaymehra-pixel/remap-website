@@ -96,9 +96,9 @@
     text-decoration: none;
     font-size: 0.95rem;
     transition: color 0.2s;
-    display: inline-block;
+    display: block;
 }
-.ft-col ul li a:hover { color: #fff; padding-left: 0 !important; }
+.ft-col ul li a:hover { color: #fff; }
 
 /* Arrow icon hidden on desktop */
 .ft-acc-icon { display: none; }
