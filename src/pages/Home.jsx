@@ -704,8 +704,8 @@ const Home = () => {
                 </div>
                 <div className="hero-new-stat-div" />
                 <div className="hero-new-stat">
-                  <strong>Zero Fee</strong>
-                  <span>No Hidden Charges</span>
+                  <strong>Safe & Secure</strong>
+                  <span>Bank-grade Encryption</span>
                 </div>
               </div>
               <div className="hero-new-btns">
