@@ -1574,19 +1574,6 @@ const Home = () => {
       {/* FAQ SECTION */}
       <FaqSection />
 
-      {/* CTA SECTION */}
-      <section className="cta-bar">
-        <div className="cta-bar-inner">
-          <div className="cta-bar-text">
-            <h2>Ready to Get Started?</h2>
-            <p>Apply now and get your emergency funds within minutes</p>
-          </div>
-          <div className="cta-bar-btns">
-            <Link to="/apply-now" className="cta-bar-primary">Apply Now <i className="fas fa-arrow-right"></i></Link>
-            <a href="https://play.google.com/store/apps/details?id=com.salarytopup.salarytopup" target="_blank" rel="noopener noreferrer" className="cta-bar-outline"><i className="fas fa-download"></i> Download App</a>
-          </div>
-        </div>
-      </section>
 
       {/* ── App Download Popup ── */}
       {showAppPopup && (
