@@ -4230,6 +4230,22 @@ button.track-cta {
 .cb-info-box i { color:#4a9aaa; font-size:0.55rem; margin-top:1px; flex-shrink:0; }
 .cb-info-box span { font-size:0.45rem; color:#666; line-height:1.4; }
 
+/* Field inline warning */
+.cb-input-warn {
+    border-color: #f97316 !important;
+    background: #fff7ed !important;
+}
+.cb-field-warn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.7rem;
+    color: #f97316;
+    margin-top: 4px;
+    font-weight: 500;
+}
+.cb-field-warn i { font-size: 0.65rem; }
+
 /* Steps bar */
 .cb-steps-bar {
     display: flex;

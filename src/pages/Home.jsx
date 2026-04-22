@@ -1333,13 +1333,6 @@ const Home = () => {
                       {/* Step 1 — Name & Mobile */}
                       {cibilStep === 1 && (
                         <div className="cb-content cb-fade-in" key="s1">
-                          <div className="cb-steps-bar">
-                            <div className="cb-step cb-step-active"><span>1</span><small>Details</small></div>
-                            <div className="cb-step-line" />
-                            <div className="cb-step"><span>2</span><small>OTP</small></div>
-                            <div className="cb-step-line" />
-                            <div className="cb-step"><span>3</span><small>Score</small></div>
-                          </div>
                           <div className="cb-icon-circle"><i className="fas fa-user-circle"></i></div>
                           <h4>Enter Your Details</h4>
                           <p>We need basic info to fetch your score</p>
@@ -1347,13 +1340,17 @@ const Home = () => {
                             <label><i className="fas fa-user"></i> Full Name</label>
                             <input type="text" placeholder="First Name"
                               value={cibilForm.name}
-                              onChange={e => setCibilForm({...cibilForm, name: e.target.value})} />
+                              onChange={e => setCibilForm({...cibilForm, name: e.target.value})}
+                              className={!cibilForm.name && cibilError ? "cb-input-warn" : ""} />
+                            {!cibilForm.name && cibilError && <span className="cb-field-warn"><i className="fas fa-exclamation-triangle"></i> Please enter your name</span>}
                           </div>
                           <div className="cb-field">
                             <label><i className="fas fa-phone"></i> Mobile Number</label>
                             <input type="tel" placeholder="+91 XXXX XXXX" maxLength="10"
                               value={cibilForm.mobile}
-                              onChange={e => setCibilForm({...cibilForm, mobile: e.target.value})} />
+                              onChange={e => setCibilForm({...cibilForm, mobile: e.target.value})}
+                              className={(!cibilForm.mobile || cibilForm.mobile.length < 10) && cibilError ? "cb-input-warn" : ""} />
+                            {(!cibilForm.mobile || cibilForm.mobile.length < 10) && cibilError && <span className="cb-field-warn"><i className="fas fa-exclamation-triangle"></i> Enter valid 10-digit mobile number</span>}
                           </div>
                           <label className="cb-consent">
                             <input type="checkbox" checked={cibilForm.consent}
@@ -1370,13 +1367,6 @@ const Home = () => {
                       {/* Step 1.5 — OTP */}
                       {cibilStep === 1.5 && (
                         <div className="cb-content cb-fade-in" key="s1otp">
-                          <div className="cb-steps-bar">
-                            <div className="cb-step cb-step-done"><span><i className="fas fa-check"></i></span><small>Details</small></div>
-                            <div className="cb-step-line cb-step-line-done" />
-                            <div className="cb-step cb-step-active"><span>2</span><small>OTP</small></div>
-                            <div className="cb-step-line" />
-                            <div className="cb-step"><span>3</span><small>Score</small></div>
-                          </div>
                           <div className="cb-icon-circle" style={{background:"linear-gradient(135deg,#1e8a6e,#26b9db)"}}><i className="fas fa-mobile-alt"></i></div>
                           <h4>Verify OTP</h4>
                           <p>OTP sent to +91 {cibilForm.mobile.slice(0,4)}xxxxxx</p>
@@ -1403,13 +1393,6 @@ const Home = () => {
                       {/* Step 2 — PAN */}
                       {cibilStep === 2 && !cibilLoading && (
                         <div className="cb-content cb-fade-in" key="s2">
-                          <div className="cb-steps-bar">
-                            <div className="cb-step cb-step-done"><span><i className="fas fa-check"></i></span><small>Details</small></div>
-                            <div className="cb-step-line cb-step-line-done" />
-                            <div className="cb-step cb-step-done"><span><i className="fas fa-check"></i></span><small>OTP</small></div>
-                            <div className="cb-step-line cb-step-line-done" />
-                            <div className="cb-step cb-step-active"><span>3</span><small>Score</small></div>
-                          </div>
                           <div className="cb-icon-circle"><i className="fas fa-id-card"></i></div>
                           <h4>Verify Identity</h4>
                           <p>PAN is required by credit bureaus</p>
