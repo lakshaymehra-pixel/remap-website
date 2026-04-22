@@ -7,7 +7,7 @@ const TermsandConditions = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:4500/api/pages/public/terms-and-conditions')
+    fetch(`${process.env.REACT_APP_API_URL || 'https://backend-production-bf30.up.railway.app'}/api/pages/public/terms-and-conditions`)
       .then(r => r.json())
       .then(data => {
         if (data && data.content) setContent(data.content);

@@ -16,7 +16,7 @@ const Contact = () => {
   const [contactInfo, setContactInfo] = useState(DEFAULT_CONTACT);
 
   useEffect(() => {
-    fetch('http://localhost:4500/api/pages/public/contact')
+    fetch(`${process.env.REACT_APP_API_URL || 'https://backend-production-bf30.up.railway.app'}/api/pages/public/contact`)
       .then(r => r.json())
       .then(data => {
         if (data && data.content) {
@@ -61,7 +61,7 @@ const Contact = () => {
       if (processing) return;
       setProcessing(true);
       try {
-        const resp = await fetch("http://localhost:4500/api/contacts", {
+        const resp = await fetch(`${process.env.REACT_APP_API_URL || 'https://backend-production-bf30.up.railway.app'}/api/contacts`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name: formData.name, email: formData.email, mobile: formData.mobile, inquiryType: formData.inquiryType, message: formData.message }),

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import "../css/career.css";
 
-const API = "http://localhost:4500/public";
-const APPLY_API = "http://localhost:4500/api/job-applications/apply";
+const API = (process.env.REACT_APP_API_URL || "https://backend-production-bf30.up.railway.app") + "/public";
+const APPLY_API = (process.env.REACT_APP_API_URL || "https://backend-production-bf30.up.railway.app") + "/api/job-applications/apply";
 
 const WHY_ITEMS = [
   { icon: <i className="fas fa-rocket"></i>, title: "Fast Growth", desc: "Work in a high-growth startup with real ownership and impact." },

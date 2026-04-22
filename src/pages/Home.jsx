@@ -27,7 +27,7 @@ const TstSection = () => {
   const [tstData, setTstData] = useState(FALLBACK_TST);
 
   useEffect(() => {
-    fetch('http://localhost:4500/api/testimonials/public')
+    fetch(`${process.env.REACT_APP_API_URL || 'https://backend-production-bf30.up.railway.app'}/api/testimonials/public`)
       .then(r => r.json())
       .then(data => { if (data && data.length > 0) setTstData(data); })
       .catch(() => {});

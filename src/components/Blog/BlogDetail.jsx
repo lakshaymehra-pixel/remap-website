@@ -4,7 +4,8 @@ import "../../css/Common.css";
 import "./BlogDetail.css";
 import { useParams, Link } from "react-router-dom";
 
-const ADMIN_API = "http://localhost:4500/public";
+const ADMIN_API = (process.env.REACT_APP_API_URL || "https://backend-production-bf30.up.railway.app") + "/public";
+const API_BASE = process.env.REACT_APP_API_URL || "https://backend-production-bf30.up.railway.app";
 
 const FaqItem = ({ question, answer }) => {
   const [open, setOpen] = React.useState(false);
@@ -34,7 +35,7 @@ const BlogDetail = () => {
           const b = data.data || {};
           setBlog(b);
           if (b.author) {
-            fetch(`http://localhost:4500/api/authors/public?name=${encodeURIComponent(b.author)}`)
+            fetch(`${API_BASE}/api/authors/public?name=${encodeURIComponent(b.author)}`)
               .then(r => r.json())
               .then(d => { if (d && d.avatar_url) setAuthorData(d); })
               .catch(() => {});

@@ -51,7 +51,8 @@ const Footer = () => {
     e.preventDefault();
     if (!nlEmail) return;
     try {
-      const res = await fetch('http://localhost:4500/api/newsletter/subscribe', {
+      const base = process.env.REACT_APP_API_URL || 'https://backend-production-bf30.up.railway.app';
+      const res = await fetch(`${base}/api/newsletter/subscribe`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: nlEmail })

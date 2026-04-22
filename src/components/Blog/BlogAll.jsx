@@ -4,7 +4,7 @@ import "../../css/Common.css";
 import "./BlogAll.css";
 import { Helmet } from "react-helmet";
 
-const ADMIN_API = "http://localhost:4500/public";
+const ADMIN_API = (process.env.REACT_APP_API_URL || "https://backend-production-bf30.up.railway.app") + "/public";
 
 const BlogAll = () => {
   const [blogList, setBlogList] = useState([]);

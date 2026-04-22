@@ -32,7 +32,7 @@ const About = () => {
   const [cms, setCms] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:4500/api/pages/public/about-us')
+    fetch(`${process.env.REACT_APP_API_URL || 'https://backend-production-bf30.up.railway.app'}/api/pages/public/about-us`)
       .then(r => r.json())
       .then(data => {
         if (data && data.content) {
