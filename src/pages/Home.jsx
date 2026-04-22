@@ -1254,6 +1254,9 @@ const Home = () => {
             <button className="track-cta" onClick={handleCibilCheck}>
               Check Score <i className="fas fa-arrow-right"></i>
             </button>
+            <p className="track-cta-hint">
+              <i className="fas fa-mobile-alt"></i> Enter your mobile number to get your free CIBIL score instantly — no login required.
+            </p>
 
             {/* Mobile-only calculator inside track section */}
             <div className="track-mob-calc"><CalcCard /></div>
