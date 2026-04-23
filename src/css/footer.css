@@ -262,8 +262,9 @@
         border-bottom: 1px solid rgba(255,255,255,0.08);
         padding: 0 4px;
     }
-    .ft-col ul li { justify-content: flex-start; }
-    .ft-col ul li a { font-size: 0.88rem; }
+    .ft-col ul li { justify-content: center; text-align: center; }
+    .ft-col ul li a { font-size: 0.88rem; text-align: center; width: 100%; }
+    .ft-accordion ul { text-align: center; }
 
     .ft-accordion h4 {
         padding: 12px 0;
