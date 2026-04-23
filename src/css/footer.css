@@ -252,7 +252,7 @@
         gap: 8px;
         grid-column: auto;
     }
-    .ft-logo { height: 52px; }
+    .ft-logo { height: 90px; }
     .ft-about > p { font-size: 0.8rem; max-width: 280px; text-align: center; }
     .ft-getapp { align-items: center; }
     .ft-playstore-img { height: 42px; }
