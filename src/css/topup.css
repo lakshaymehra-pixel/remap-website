@@ -1623,29 +1623,48 @@ a:hover {
 .loans-feat-card h4 { font-size: 0.88rem; font-weight: 700; color: #0d2240; margin: 0 0 3px; }
 .loans-feat-card p { font-size: 0.78rem; color: #64748b; margin: 0; }
 
-/* ===== Trust Stats Grid ===== */
-.loans-trust-grid {
+/* ===== Stats Row (replaces old trust grid) ===== */
+.lns-stats-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    margin: 24px 0 20px;
+    gap: 12px;
+    margin: 24px 0 22px;
 }
-.loans-trust-card {
+.lns-stat-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     background: #fff;
-    border-radius: 16px;
-    padding: 20px 16px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
-    border-left: 4px solid #26b9db;
+    border-radius: 14px;
+    padding: 14px 16px;
+    box-shadow: 0 2px 14px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
-.loans-trust-num {
-    font-size: 1.4rem;
+.lns-stat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(0,0,0,0.1);
+}
+.lns-stat-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.05);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+    color: var(--sc);
+}
+.lns-stat-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.lns-stat-num {
+    font-size: 1.3rem;
     font-weight: 900;
-    color: #0f2744;
     line-height: 1;
-    margin-bottom: 6px;
 }
-.loans-trust-label {
-    font-size: 0.78rem;
+.lns-stat-label {
+    font-size: 0.72rem;
     color: #64748b;
     font-weight: 500;
 }
@@ -6120,7 +6139,7 @@ section:nth-child(even) {
     .loans-right { display: flex !important; flex: unset; width: 100%; justify-content: center; padding: 10px 0; }
     .loans-feat-grid { display: none !important; }
     .loans-feat-list { display: none !important; }
-    .loans-trust-grid { display: none !important; }
+    .lns-stats-row { display: none !important; }
     .loans-trust-desc { display: none !important; }
     .loans-download-btn { display: none !important; }
     .mv-frame { width: 280px !important; }

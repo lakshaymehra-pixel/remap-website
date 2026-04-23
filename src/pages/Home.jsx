@@ -862,23 +862,23 @@ const Home = () => {
             <h2 className="loans-heading">
               {hc.loans_h1}<br />{hc.loans_h2}
             </h2>
-            <div className="loans-trust-grid">
-              <div className="loans-trust-card">
-                <div className="loans-trust-num">5L+</div>
-                <div className="loans-trust-label">Happy Customers</div>
-              </div>
-              <div className="loans-trust-card">
-                <div className="loans-trust-num">4.9★</div>
-                <div className="loans-trust-label">Play Store Rating</div>
-              </div>
-              <div className="loans-trust-card">
-                <div className="loans-trust-num">₹0</div>
-                <div className="loans-trust-label">Hidden Charges</div>
-              </div>
-              <div className="loans-trust-card">
-                <div className="loans-trust-num">₹1 Lakh+</div>
-                <div className="loans-trust-label">Max Loan Amount</div>
-              </div>
+            <div className="lns-stats-row">
+              {[
+                { icon: "fa-users",        num: "5L+",      label: "Happy Customers",  color: "#2C6275" },
+                { icon: "fa-star",         num: "4.9★",     label: "Play Store Rating", color: "#f59e0b" },
+                { icon: "fa-rupee-sign",   num: "₹0",       label: "Hidden Charges",   color: "#10b981" },
+                { icon: "fa-hand-holding-usd", num: "₹1L+", label: "Max Loan Amount",  color: "#6366f1" },
+              ].map((s, i) => (
+                <div className="lns-stat-item" key={i}>
+                  <div className="lns-stat-icon" style={{"--sc": s.color}}>
+                    <i className={`fas ${s.icon}`}></i>
+                  </div>
+                  <div className="lns-stat-text">
+                    <span className="lns-stat-num" style={{color: s.color}}>{s.num}</span>
+                    <span className="lns-stat-label">{s.label}</span>
+                  </div>
+                </div>
+              ))}
             </div>
             <p className="loans-trust-desc">
               {hc.loans_desc}
