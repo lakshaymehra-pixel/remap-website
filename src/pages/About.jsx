@@ -228,39 +228,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Our Impact Section */}
-      <section className="abt-impact">
-        <div className="abt-impact-inner">
-          <h2>Our Impact</h2>
-          <p className="abt-impact-sub">Numbers that define our journey</p>
-          <div className="abt-impact-grid">
-            {[
-              {
-                svg: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2C637F" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="28" height="28"><path d="M20 12V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v5"/><path d="M2 15c0-1.1.9-2 2-2h1l3 4h8l3-4h1a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2z"/><path d="M9 7h6M9 10h4"/></svg>,
-                num:"15,000+", label:"Loans Disbursed"
-              },
-              {
-                svg: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2C637F" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="28" height="28"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M7 15h2M14 15h3"/></svg>,
-                num:"₹50Cr+", label:"Total Loan Amount"
-              },
-              {
-                svg: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2C637F" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="28" height="28"><circle cx="9" cy="6" r="3"/><path d="M1 20v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/><circle cx="18" cy="6" r="2.5"/><path d="M22 20v-1a4 4 0 0 0-3-3.87"/></svg>,
-                num:"5 Lakh+", label:"Happy Customers"
-              },
-              {
-                svg: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2C637F" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="28" height="28"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>,
-                num:"250+", label:"Finance Experts"
-              },
-            ].map((s,i) => (
-              <div className="abt-impact-card" key={i}>
-                <div className="abt-impact-icon">{s.svg}</div>
-                <div className="abt-impact-num">{s.num}</div>
-                <div className="abt-impact-label">{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Call to Action Section */}
       {/* CTA Bar */}
