@@ -3843,7 +3843,24 @@ a:hover {
     text-decoration: none;
     box-shadow: 0 6px 20px rgba(26,61,43,0.35);
     transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+    animation: trackCtaPulse 2.2s ease-in-out infinite;
 }
+@keyframes trackCtaPulse {
+    0%,100% { box-shadow: 0 6px 20px rgba(44,98,117,0.4), 0 0 0 0 rgba(44,98,117,0.5); }
+    50%      { box-shadow: 0 8px 28px rgba(44,98,117,0.55), 0 0 0 10px rgba(44,98,117,0); }
+}
+.track-cta::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.35) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+.track-cta:active::after { opacity: 1; }
 .track-cta-hint {
     margin-top: 12px;
     font-size: 0.78rem;
@@ -3969,6 +3986,23 @@ a:hover {
 }
 .trk-cs-active {
     opacity: 1;
+}
+
+/* App label — "Check Your CIBIL Score" at top of phone screen */
+.trk-app-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background: linear-gradient(90deg, #2C6275 0%, #3a7d8f 100%);
+    color: #fff;
+    font-size: 0.52rem;
+    font-weight: 700;
+    border-radius: 6px;
+    padding: 5px 10px;
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+    text-align: center;
 }
 
 /* Dashboard head */

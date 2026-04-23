@@ -1364,6 +1364,10 @@ const Home = () => {
                   {!showCibilForm && (
                     <div className="trk-slides">
                       <div className="trk-sl trk-cs-active">
+                        <div className="trk-app-label">
+                          <i className="fas fa-star" style={{color:"#f59e0b",fontSize:"0.5rem"}}></i>
+                          <span>Check Your CIBIL Score</span>
+                        </div>
                         <div className="trk-dash-head">
                           <div><strong>Credit Score</strong><span>Updated just now</span></div>
                           <div className="trk-refresh-btn"><i className="fas fa-sync-alt"></i></div>
