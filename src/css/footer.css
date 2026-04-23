@@ -301,7 +301,7 @@
         right: 0;
         margin-bottom: 12px;
     }
-    .ft-pill { font-size: 0.82rem; padding: 11px 16px; justify-content: flex-start; gap: 12px; }
+    .ft-pill { font-size: 0.82rem; padding: 11px 16px; justify-content: center; gap: 12px; }
 
     /* Bottom row */
     .ft-bottom-inner {
