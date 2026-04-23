@@ -224,53 +224,60 @@
 
 /* ===== Tablet ===== */
 @media (max-width: 900px) {
-    .ft-top-inner {
-        grid-template-columns: 1fr 1fr;
-        gap: 28px;
-    }
-    .ft-about { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 20px; }
-    .ft-about > p { flex: 1; }
-    .ft-top { padding: 28px 24px 20px; }
-    .ft-contact-box-wrap { padding: 16px 24px 24px; }
+    .ft-top-inner { grid-template-columns: 1fr 1fr; gap: 24px; }
+    .ft-about { grid-column: 1 / -1; align-items: center; text-align: center; }
+    .ft-about > p { text-align: center; }
+    .ft-top { padding: 24px 20px 16px; }
+    .ft-contact-box-wrap { padding: 16px 20px 20px; }
     .ft-pills-row { grid-template-columns: 1fr; gap: 10px; top: -18px; left: 16px; right: 16px; }
-    .ft-bottom-inner { grid-template-columns: 1fr; gap: 12px; }
-    .ft-btm-rbi { text-align: left; }
+    .ft-bottom-inner { grid-template-columns: 1fr; gap: 12px; text-align: center; }
+    .ft-btm-addr { justify-content: center; text-align: center; }
+    .ft-btm-rbi { text-align: center; }
+    .ft-social { justify-content: center; }
 }
 
 /* ===== Mobile ===== */
 @media (max-width: 600px) {
+    /* Top section */
+    .ft-top { padding: 20px 16px 12px; }
     .ft-top-inner { grid-template-columns: 1fr; gap: 0; }
 
+    /* Logo col */
     .ft-about {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding-bottom: 20px;
+        padding-bottom: 16px;
         border-bottom: 1px solid rgba(255,255,255,0.1);
         gap: 8px;
         grid-column: auto;
     }
-    .ft-about > p { text-align: center; }
+    .ft-logo { height: 52px; }
+    .ft-about > p { font-size: 0.8rem; max-width: 280px; text-align: center; }
     .ft-getapp { align-items: center; }
+    .ft-playstore-img { height: 42px; }
 
+    /* Accordion menu cols */
     .ft-col {
         border-bottom: 1px solid rgba(255,255,255,0.08);
-        padding: 0;
+        padding: 0 4px;
     }
-    .ft-col ul li { justify-content: center; }
+    .ft-col ul li { justify-content: flex-start; }
+    .ft-col ul li a { font-size: 0.88rem; }
 
     .ft-accordion h4 {
-        padding: 13px 0;
+        padding: 12px 0;
         margin: 0;
         cursor: pointer;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        font-size: 0.92rem;
     }
     .ft-acc-icon {
         display: flex !important;
-        font-size: 0.6rem;
-        color: rgba(255,255,255,0.4);
+        font-size: 0.65rem;
+        color: rgba(255,255,255,0.5);
         transition: transform 0.3s;
     }
     .ft-acc-open .ft-acc-icon { transform: rotate(180deg); }
@@ -279,18 +286,41 @@
         overflow: hidden;
         transition: max-height 0.3s ease;
         padding: 0;
-        text-align: center;
     }
-    .ft-acc-open ul { max-height: 200px; padding-bottom: 12px; }
+    .ft-acc-open ul { max-height: 240px; padding-bottom: 12px; }
 
-    .ft-contact-box-wrap { padding: 20px 16px 20px; }
-    .ft-contact-box { padding: 14px 16px 14px; border-radius: 14px; }
-    .ft-pills-row { gap: 8px; top: -20px; left: 12px; right: 12px; }
-    .ft-pill { font-size: 0.8rem; padding: 10px 14px; }
-    .ft-bottom-inner { gap: 10px; text-align: center; }
-    .ft-btm-addr { justify-content: center; text-align: center; }
+    /* Contact box */
+    .ft-contact-box-wrap { padding: 18px 16px 16px; }
+    .ft-contact-box { padding: 16px 14px 14px; border-radius: 14px; }
+    .ft-pills-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin-bottom: 12px;
+    }
+    .ft-pill { font-size: 0.82rem; padding: 11px 16px; justify-content: flex-start; gap: 12px; }
+
+    /* Bottom row */
+    .ft-bottom-inner {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        text-align: center;
+        margin-top: 0;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        padding-top: 14px;
+    }
+    .ft-btm-addr { flex-direction: column; align-items: center; text-align: center; gap: 4px; }
+    .ft-addr-icon { display: none; }
+    .ft-btm-addr strong { font-size: 0.8rem; }
+    .ft-btm-addr span { font-size: 0.76rem; }
+    .ft-social { justify-content: center; gap: 10px; }
+    .ft-social a { width: 36px; height: 36px; }
     .ft-btm-rbi { text-align: center; }
-    .ft-social { justify-content: center; }
+    .ft-btm-rbi span { font-size: 0.72rem; }
 
     .ft-copyright { padding: 10px 16px; }
+    .ft-copyright span { font-size: 0.76rem; }
 }
