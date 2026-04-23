@@ -862,21 +862,17 @@ const Home = () => {
             <h2 className="loans-heading">
               {hc.loans_h1}<br />{hc.loans_h2}
             </h2>
-            <div className="lns-stats-row">
+            <div className="lns-stats-band">
               {[
-                { icon: "fa-users",        num: "5L+",      label: "Happy Customers",  color: "#2C6275" },
-                { icon: "fa-star",         num: "4.9★",     label: "Play Store Rating", color: "#f59e0b" },
-                { icon: "fa-rupee-sign",   num: "₹0",       label: "Hidden Charges",   color: "#10b981" },
-                { icon: "fa-hand-holding-usd", num: "₹1L+", label: "Max Loan Amount",  color: "#6366f1" },
+                { icon: "fa-users",            num: "5L+",   label: "Happy Customers"  },
+                { icon: "fa-star",             num: "4.9★",  label: "Play Store Rating" },
+                { icon: "fa-shield-alt",       num: "₹0",    label: "Hidden Charges"   },
+                { icon: "fa-hand-holding-usd", num: "₹1L+",  label: "Max Loan Amount"  },
               ].map((s, i) => (
-                <div className="lns-stat-item" key={i}>
-                  <div className="lns-stat-icon" style={{"--sc": s.color}}>
-                    <i className={`fas ${s.icon}`}></i>
-                  </div>
-                  <div className="lns-stat-text">
-                    <span className="lns-stat-num" style={{color: s.color}}>{s.num}</span>
-                    <span className="lns-stat-label">{s.label}</span>
-                  </div>
+                <div className="lns-band-item" key={i}>
+                  <div className="lns-band-icon"><i className={`fas ${s.icon}`}></i></div>
+                  <div className="lns-band-num">{s.num}</div>
+                  <div className="lns-band-label">{s.label}</div>
                 </div>
               ))}
             </div>
