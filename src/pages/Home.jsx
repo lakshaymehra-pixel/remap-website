@@ -509,6 +509,9 @@ const HC_DEFAULTS = {
   hero_h1_line1: 'Sahi Financial', hero_h1_line2: 'Decisions se', hero_h1_line3: 'Life Banegi Great',
   hero_subheading: 'Achieve your life goals with a personalized approach to money. Instant salary loans, zero paperwork.',
   hero_btn_text: 'Apply Now',
+  hero_stat1_num: '5 Lakh+', hero_stat1_label: 'Happy Customers',
+  hero_stat2_num: '4.9 ★',   hero_stat2_label: 'Play Store',
+  hero_stat3_num: 'Safe & Secure', hero_stat3_label: 'Bank-grade Encryption',
   cta_heading: 'Ready for Instant Cash?', cta_subtext: 'Salary loan approved in minutes, not days.', cta_btn_text: 'Check Eligibility',
   wc_eyebrow: 'Why Choose Us', wc_title_line1: "India's Most Trusted", wc_title_line2: 'Salary Loan App',
   wc_item1_title: 'Tap & Apply', wc_item1_desc: 'Apply anytime, from anywhere.',
@@ -777,18 +780,18 @@ const Home = () => {
               </p>
               <div className="hero-new-stats">
                 <div className="hero-new-stat">
-                  <strong>5 Lakh+</strong>
-                  <span>Happy Customers</span>
+                  <strong>{hc.hero_stat1_num}</strong>
+                  <span>{hc.hero_stat1_label}</span>
                 </div>
                 <div className="hero-new-stat-div" />
                 <div className="hero-new-stat">
-                  <strong>4.9 ★</strong>
-                  <span>Play Store</span>
+                  <strong>{hc.hero_stat2_num}</strong>
+                  <span>{hc.hero_stat2_label}</span>
                 </div>
                 <div className="hero-new-stat-div" />
                 <div className="hero-new-stat">
-                  <strong>Safe & Secure</strong>
-                  <span>Bank-grade Encryption</span>
+                  <strong>{hc.hero_stat3_num}</strong>
+                  <span>{hc.hero_stat3_label}</span>
                 </div>
               </div>
               <div className="hero-new-btns">
