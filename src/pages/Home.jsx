@@ -14,10 +14,10 @@ const FALLBACK_TST = [
   { name:"Ankit Kumar",   location:"Delhi",     message:"Amazing service and very easy to use. The process was smooth and quick. I highly recommend it to everyone.", rating: 5 },
   { name:"Priya Sharma",  location:"Mumbai",    message:"Got my salary advance super fast. No paperwork, no hassle. Best experience I've ever had with a loan app.", rating: 5 },
   { name:"Rahul Verma",   location:"Bangalore", message:"Transparent fees and instant approval. Customer support was very helpful. Will definitely use again for emergencies.", rating: 5 },
-  { name:"Sneha Gupta",   location:"Hyderabad", message:"I needed money urgently for a medical bill. SalaryTopUp disbursed the amount in just 15 minutes. Lifesaver!", rating: 5 },
+  { name:"Sneha Gupta",   location:"Hyderabad", message:"I needed money urgently for a medical bill. Salary Topup disbursed the amount in just 15 minutes. Lifesaver!", rating: 5 },
   { name:"Vikram Singh",  location:"Jaipur",    message:"Very user-friendly app with great customer service. The interest rates are fair and the repayment process is simple.", rating: 5 },
   { name:"Neha Patel",    location:"Ahmedabad", message:"Applied at night and got approved instantly. The money was in my account by morning. Truly 24/7 service!", rating: 5 },
-  { name:"Amit Mishra",   location:"Lucknow",   message:"SalaryTopUp helped me when no bank would. Quick disbursal, zero hidden charges. Highly recommended for salaried people.", rating: 5 },
+  { name:"Amit Mishra",   location:"Lucknow",   message:"Salary Topup helped me when no bank would. Quick disbursal, zero hidden charges. Highly recommended for salaried people.", rating: 5 },
   { name:"Kavita Reddy",  location:"Chennai",   message:"The entire process is digital and hassle-free. Got my loan approved in under 5 minutes. Excellent customer support too.", rating: 5 },
   { name:"Saurabh Jain",  location:"Pune",      message:"Best salary loan app I have used. The repayment is flexible and the interest rates are very competitive. Five stars!", rating: 5 },
 ];
@@ -86,9 +86,9 @@ const TstSection = () => {
 
 // FAQ Component
 const FALLBACK_FAQS = [
-  { question: "Who can apply for a SalaryTopUp loan?", answer: "Any salaried individual aged 21-58 years with a minimum monthly income of ₹15,000 can apply. You need to be working with your current employer for at least 3 months." },
+  { question: "Who can apply for a Salary Topup loan?", answer: "Any salaried individual aged 21-58 years with a minimum monthly income of ₹15,000 can apply. You need to be working with your current employer for at least 3 months." },
   { question: "How fast can I get the loan approval?", answer: "Our AI-powered system processes applications instantly. Loans are approved quickly and the amount is disbursed to your bank account as soon as possible." },
-  { question: "Do I need to provide any collateral?", answer: "No, SalaryTopUp loans are completely unsecured. You don't need to pledge any asset or provide any collateral. Your salary is your credit." },
+  { question: "Do I need to provide any collateral?", answer: "No, Salary Topup loans are completely unsecured. You don't need to pledge any asset or provide any collateral. Your salary is your credit." },
   { question: "What documents are required to apply?", answer: "You just need your PAN card, Aadhaar card, and last 3 months bank statement. Everything is verified digitally — no physical documents needed." },
   { question: "How can I repay my loan?", answer: "You can repay via UPI, net banking, debit card, or auto-debit from your salary account. We also send reminders before the due date so you never miss a payment." },
   { question: "What is the interest rate?", answer: "Our interest rates start from 1% per day depending on your credit profile. There are no hidden charges — what you see is what you pay." },
@@ -96,7 +96,7 @@ const FALLBACK_FAQS = [
 
 // QR image component
 const AppQRImage = () => (
-  <img src={appQrImg} alt="Scan to Download SalaryTopUp App" className="app-popup-qr" />
+  <img src={appQrImg} alt="Scan to Download Salary Topup App" className="app-popup-qr" />
 );
 
 const FaqSection = () => {
@@ -216,7 +216,7 @@ const WcSectionWrapper = ({ hc }) => {
         <div className="wc-container">
           <div className="wc-new-wrap">
             <div className="wc-new-left">
-              <h2 className="wc-new-title">Why Choose Us <span>SalaryTopUp</span></h2>
+              <h2 className="wc-new-title">Why Choose Us <span>Salary Topup</span></h2>
               <div className="wc-new-list">
                 {items.map((item, i) => (
                   <WcItem key={i} item={item} index={i} />
@@ -392,7 +392,7 @@ function HeroOpt2() {
           <div className="hopt2-notch" />
           <div className="hopt2-app-header">
             <div className="hopt2-app-logo">ST</div>
-            <span>SalaryTopUp</span>
+            <span>Salary Topup</span>
           </div>
           <div className="hopt2-app-amount">₹50,000</div>
           <div className="hopt2-app-label">Available Limit</div>
@@ -516,9 +516,9 @@ const HC_DEFAULTS = {
   wc_item3_title: 'Trusted & Verified', wc_item3_desc: 'Robust data protection & regulatory adherence.',
   wc_item4_title: 'Customer-First Approach', wc_item4_desc: 'Fast support and clear communication.',
   loans_h1: 'Every wish fulfilled.', loans_h2: 'Get instant funds!',
-  loans_desc: "SalaryTopUp is India's most trusted salary loan app — built for working professionals who need quick, transparent, and hassle-free financial support between paydays.",
+  loans_desc: "Salary Topup is India's most trusted salary loan app — built for working professionals who need quick, transparent, and hassle-free financial support between paydays.",
   track_h1: 'Master your', track_h2: 'money matters',
-  track_desc: 'Stay on top of your finances. Track every EMI, monitor your credit score, manage repayments — all in one place with SalaryTopUp.',
+  track_desc: 'Stay on top of your finances. Track every EMI, monitor your credit score, manage repayments — all in one place with Salary Topup.',
   track_bullet1: 'Real-time EMI & repayment tracking',
   track_bullet2: '100% secure & encrypted data',
   track_bullet3: 'Smart reminders before due dates',
@@ -681,12 +681,12 @@ const Home = () => {
   const testimonials = [
     {
       name: "Rahul Sharma",
-      text: "Salary TopUp saved me during an unexpected medical emergency. The process was incredibly smooth, and I had the money I needed in minutes.",
+      text: "Salary Topup saved me during an unexpected medical emergency. The process was incredibly smooth, and I had the money I needed in minutes.",
       role: "IT Professional, Bangalore"
     },
     {
       name: "Priya Patel",
-      text: "I was skeptical at first, but the transparency and ease of using Salary TopUp won me over. No hidden charges as promised!",
+      text: "I was skeptical at first, but the transparency and ease of using Salary Topup won me over. No hidden charges as promised!",
       role: "Marketing Manager, Mumbai"
     },
     {
@@ -741,10 +741,10 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>Apply for Instant salary Loan Online Now | Salary TopUp</title>
+        <title>Apply for Instant salary Loan Online Now | Salary Topup</title>
         <meta
           name="description"
-          content="Get instant financial support with Salary TopUp online salary loan application. Apply now for quick approval, flexible terms, and convenient repayment options."
+          content="Get instant financial support with Salary Topup online salary loan application. Apply now for quick approval, flexible terms, and convenient repayment options."
         />
         <link rel="canonical" href="https://salarytopup.com/" />
       </Helmet>
@@ -948,9 +948,9 @@ const Home = () => {
                     <div className="mv-app">
                       {/* Header */}
                       <div className="mv-app-header">
-                        <img src={require("../images/logo.webp")} alt="SalaryTopUp" className="mv-logo-img" />
+                        <img src={require("../images/logo.webp")} alt="Salary Topup" className="mv-logo-img" />
                         <div className="mv-app-htext">
-                          <strong>SalaryTopUp</strong>
+                          <strong>Salary Topup</strong>
                           <span>Instant Salary Loan</span>
                         </div>
                         <div className="mv-avatar">R</div>
@@ -1444,7 +1444,7 @@ const Home = () => {
                           <label className="cb-consent">
                             <input type="checkbox" checked={cibilForm.consent}
                               onChange={e => setCibilForm({...cibilForm, consent: e.target.checked})} />
-                            <span>I agree to allow SalaryTopUp to use my information to fetch my CIBIL score</span>
+                            <span>I agree to allow Salary Topup to use my information to fetch my CIBIL score</span>
                           </label>
                           {cibilError && <div className="cb-error"><i className="fas fa-exclamation-circle"></i> {cibilError}</div>}
                           <button className="cb-submit" onClick={handleCibilSubmit}>
@@ -1593,7 +1593,7 @@ const Home = () => {
               <p className="app-popup-question">Applying for a Salary Loan?</p>
               <h3 className="app-popup-title">
                 Get Instant Loan<sup className="app-popup-star">*</sup><br />
-                on SalaryTopUp App
+                on Salary Topup App
               </h3>
               <a
                 href="https://play.google.com/store/apps/details?id=com.salarytopup.salarytopup"

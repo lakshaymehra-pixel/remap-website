@@ -73,9 +73,9 @@ const BlogDetail = () => {
   };
 
   const category = blog.category || "Finance";
-  const author = blog.author || "SalaryTopUp Team";
+  const author = blog.author || "Salary Topup Team";
 
-  const metaTitle = blog.meta_title || blog.title || "Blog | SalaryTopUp";
+  const metaTitle = blog.meta_title || blog.title || "Blog | Salary Topup";
   const metaDesc = blog.meta_description || blog.short_description || "Read our latest blog on salary loans and financial tips.";
   const ogImage = blog.banner_image_url || "";
   const canonical = `https://salarytopup.com/blog/${blog.slug || ""}`;

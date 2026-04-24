@@ -77,7 +77,7 @@ const Support = () => {
                             {/* Contact info (unchanged) */}
                             <div className="contact-info">
                                 <div className="section-header">
-                                    <h1>Contact <span className="highlight">Salary TopUp</span></h1>
+                                    <h1>Contact <span className="highlight">Salary Topup</span></h1>
                                     <p>Need help? We're here for you.</p>
                                 </div>
                                 <div className="contact-details">

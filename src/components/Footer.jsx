@@ -14,7 +14,7 @@ const DEFAULTS = {
   email: 'customercare@salarytopup.com',
   address: 'B-76, 2nd Floor, Wazirpur Industrial Area, Delhi – 110052',
   rbiText: 'RBI Registered NBFC Baid Stock Broking Services Private Limited (Reg. No. B-14.02553)',
-  copyright: '© 2026 Salary TopUp. All Right Reserved',
+  copyright: '© 2026 Salary Topup. All Right Reserved',
   facebookUrl: 'https://www.facebook.com/profile.php?id=61574094973748',
   twitterUrl: 'https://x.com/SalaryTopup',
   instagramUrl: 'https://www.instagram.com/salary_topup',
@@ -50,7 +50,7 @@ const Footer = () => {
 
           {/* Col 1 — Logo + desc + playstore */}
           <div className="ft-col ft-about">
-            <img src={settings.logoUrl || siteLogo || ctxLogo || defaultLogo} alt="SalaryTopUp" className="ft-logo" />
+            <img src={settings.logoUrl || siteLogo || ctxLogo || defaultLogo} alt="Salary Topup" className="ft-logo" />
             <p>{settings.description}</p>
             <div className="ft-getapp">
               <span>Get it on</span>

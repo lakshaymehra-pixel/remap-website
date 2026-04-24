@@ -127,7 +127,7 @@ const Contact = () => {
               <div className="ct-field ct-full">
                 <label className="ct-check">
                   <input type="checkbox" name="consent" checked={formData.consent} onChange={handleChange} />
-                  <span>I agree to be contacted by <strong>SalaryTopUp</strong> for alerts & promotions*</span>
+                  <span>I agree to be contacted by <strong>Salary Topup</strong> for alerts & promotions*</span>
                 </label>
               </div>
               <button type="submit" disabled={!isFormReady} className={`ct-submit ${isFormReady ? "" : "ct-disabled"}`}>

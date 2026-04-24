@@ -9,18 +9,18 @@ const FEATURES = {
     color: "#25557E",
     title: "Lower Interest Rates",
     tagline: "Affordable loans designed for salaried individuals",
-    hero: "We believe that financial emergencies shouldn't cost you a fortune. That's why SalaryTopUp offers some of the most competitive interest rates in the market — starting from just 0.1% per day.",
+    hero: "We believe that financial emergencies shouldn't cost you a fortune. That's why Salary Topup offers some of the most competitive interest rates in the market — starting from just 0.1% per day.",
     points: [
       { icon: "fa-percentage", title: "Rates from 0.1% per day", desc: "Our interest rates are among the lowest for short-term salary loans. No hidden markups, no surprise charges." },
       { icon: "fa-calculator", title: "Transparent calculation", desc: "You see the full breakdown — principal, interest, and processing fee — before you accept. What you see is exactly what you pay." },
-      { icon: "fa-balance-scale", title: "Based on your profile", desc: "Salaried employees with good repayment history get better rates. The more you use SalaryTopUp responsibly, the lower your rate goes." },
+      { icon: "fa-balance-scale", title: "Based on your profile", desc: "Salaried employees with good repayment history get better rates. The more you use Salary Topup responsibly, the lower your rate goes." },
       { icon: "fa-shield-alt", title: "No hidden charges", desc: "Zero prepayment penalty. No late fee surprises. All charges are communicated upfront before disbursement." },
       { icon: "fa-sync-alt", title: "Flexible repayment", desc: "Choose a tenure that suits your salary cycle — 7 to 40 days. Align your repayment with your payday to avoid any financial stress." },
       { icon: "fa-chart-line", title: "Better rates over time", desc: "Loyal customers and on-time repayers are rewarded with improved rate profiles in subsequent loans." },
     ],
     cta: "Apply Now & See Your Rate",
     faq: [
-      { q: "What is the interest rate for a SalaryTopUp loan?", a: "Rates start from 0.1% per day and vary based on your salary, credit profile, and loan amount. The exact rate is shown before you confirm." },
+      { q: "What is the interest rate for a Salary Topup loan?", a: "Rates start from 0.1% per day and vary based on your salary, credit profile, and loan amount. The exact rate is shown before you confirm." },
       { q: "Are there any hidden charges?", a: "No. A one-time processing fee is charged, which is fully disclosed upfront. There are no hidden fees or prepayment penalties." },
       { q: "How is interest calculated?", a: "Interest is calculated on a daily basis on the outstanding principal. The total interest amount is fixed and shown before disbursement." },
     ],
@@ -30,7 +30,7 @@ const FEATURES = {
     color: "#25557E",
     title: "Instant Approval",
     tagline: "From application to approval in minutes — not days",
-    hero: "Traditional banks take days or weeks to approve loans. SalaryTopUp uses AI-powered verification to approve your loan quickly — and disburse to your bank account as soon as possible.",
+    hero: "Traditional banks take days or weeks to approve loans. Salary Topup uses AI-powered verification to approve your loan quickly — and disburse to your bank account as soon as possible.",
     points: [
       { icon: "fa-robot", title: "AI-powered verification", desc: "Our system automatically verifies your identity, income, and bank statements using advanced AI — no manual review needed." },
       { icon: "fa-bolt", title: "Quick approval", desc: "Once you submit your documents, our system processes the application instantly and sends you an approval notification." },
@@ -51,7 +51,7 @@ const FEATURES = {
     color: "#25557E",
     title: "Paperless Process",
     tagline: "100% digital — no printing, scanning, or visiting a branch",
-    hero: "SalaryTopUp is built from the ground up to be completely paperless. From KYC verification to loan agreement signing — everything happens on your phone or computer in minutes.",
+    hero: "Salary Topup is built from the ground up to be completely paperless. From KYC verification to loan agreement signing — everything happens on your phone or computer in minutes.",
     points: [
       { icon: "fa-id-card", title: "Digital KYC", desc: "Verify your identity using your Aadhaar and PAN card digitally. No physical document submission required." },
       { icon: "fa-file-invoice", title: "E-agreement signing", desc: "Your loan agreement is signed digitally using an OTP-based e-sign. Legally valid and fully secure." },
@@ -72,19 +72,19 @@ const FEATURES = {
     color: "#25557E",
     title: "100% Secure",
     tagline: "Bank-grade security protecting your data and money",
-    hero: "Your financial information is sensitive, and we treat it that way. SalaryTopUp uses the same level of encryption and security protocols as leading banks — so your data is always safe.",
+    hero: "Your financial information is sensitive, and we treat it that way. Salary Topup uses the same level of encryption and security protocols as leading banks — so your data is always safe.",
     points: [
       { icon: "fa-shield-alt", title: "256-bit SSL encryption", desc: "All data transmitted between your device and our servers is encrypted using 256-bit SSL — the same standard used by banks." },
       { icon: "fa-user-secret", title: "Data privacy guaranteed", desc: "Your personal and financial data is never sold, shared, or used for advertising. It's yours and yours alone." },
       { icon: "fa-fingerprint", title: "Secure authentication", desc: "Multi-factor authentication and OTP-based login ensure only you can access your account." },
-      { icon: "fa-building", title: "RBI registered NBFC", desc: "SalaryTopUp is offered through Baid Stock Broking Services Pvt. Ltd., a registered NBFC under the Reserve Bank of India." },
+      { icon: "fa-building", title: "RBI registered NBFC", desc: "Salary Topup is offered through Baid Stock Broking Services Pvt. Ltd., a registered NBFC under the Reserve Bank of India." },
       { icon: "fa-eye-slash", title: "No data selling", desc: "We are committed to never selling your data to third parties, telemarketers, or advertisers." },
       { icon: "fa-server", title: "Secure cloud infrastructure", desc: "Our servers are hosted on enterprise-grade cloud infrastructure with 99.9% uptime and regular security audits." },
     ],
     cta: "Apply Securely Today",
     faq: [
       { q: "Is my bank account information safe?", a: "Yes. We use read-only access to verify your bank statement. We never store your banking credentials." },
-      { q: "Who regulates SalaryTopUp?", a: "Loans are provided by Baid Stock Broking Services Pvt. Ltd., an NBFC registered with the Reserve Bank of India (Reg. No. B-14.02553)." },
+      { q: "Who regulates Salary Topup?", a: "Loans are provided by Baid Stock Broking Services Pvt. Ltd., an NBFC registered with the Reserve Bank of India (Reg. No. B-14.02553)." },
       { q: "What happens to my data after loan repayment?", a: "Your data is retained as per RBI guidelines and our privacy policy. You can request deletion after the statutory period." },
     ],
   },
@@ -127,7 +127,7 @@ export default function FeatureDetail() {
   return (
     <>
       <Helmet>
-        <title>{feature.title} | SalaryTopUp</title>
+        <title>{feature.title} | Salary Topup</title>
         <meta name="description" content={feature.hero} />
       </Helmet>
 
@@ -137,7 +137,7 @@ export default function FeatureDetail() {
           <div style={{ width: 80, height: 80, borderRadius: 22, background: "rgba(255,255,255,0.12)", border: "2px solid rgba(255,255,255,0.25)", backdropFilter: "blur(8px)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 22px" }}>
             <i className={`fas ${feature.icon}`} style={{ fontSize: "2rem", color: "#fff" }}></i>
           </div>
-          <p style={{ color: "rgba(255,255,255,0.55)", fontWeight: 700, fontSize: "0.8rem", letterSpacing: "0.12em", textTransform: "uppercase", margin: "0 0 14px" }}>SalaryTopUp Feature</p>
+          <p style={{ color: "rgba(255,255,255,0.55)", fontWeight: 700, fontSize: "0.8rem", letterSpacing: "0.12em", textTransform: "uppercase", margin: "0 0 14px" }}>Salary Topup Feature</p>
           <h1 style={{ color: "#fff", fontSize: "clamp(1.8rem, 4vw, 2.8rem)", fontWeight: 800, lineHeight: 1.2, margin: "0 0 16px" }}>{feature.title}</h1>
           <p style={{ color: "rgba(255,255,255,0.65)", fontSize: "1.05rem", margin: "0 0 32px", lineHeight: 1.7 }}>{feature.hero}</p>
           <Link to="/apply-now" style={{ display: "inline-block", background: "#fff", color: "#25557E", textDecoration: "none", padding: "14px 36px", borderRadius: 12, fontWeight: 700, fontSize: "0.95rem", boxShadow: "0 4px 20px rgba(0,0,0,0.2)" }}>
@@ -192,7 +192,7 @@ export default function FeatureDetail() {
       {/* Bottom CTA */}
       <section style={{ background: `linear-gradient(135deg, #25557E, #0d2240)`, padding: "48px 24px", textAlign: "center" }}>
         <h3 style={{ color: "#fff", fontSize: "1.6rem", fontWeight: 800, margin: "0 0 12px" }}>Ready to experience {feature.title}?</h3>
-        <p style={{ color: "rgba(255,255,255,0.75)", margin: "0 0 28px", fontSize: "0.95rem" }}>Join thousands of salaried Indians who trust SalaryTopUp</p>
+        <p style={{ color: "rgba(255,255,255,0.75)", margin: "0 0 28px", fontSize: "0.95rem" }}>Join thousands of salaried Indians who trust Salary Topup</p>
         <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
           <Link to="/apply-now" style={{ background: "#fff", color: "#0d2240", textDecoration: "none", padding: "13px 32px", borderRadius: 12, fontWeight: 700, fontSize: "0.92rem" }}>
             Apply Now

@@ -111,14 +111,14 @@ const AdminPanel = () => {
   // ─── LOGIN PAGE ───────────────────────────────────────────────
   if (!token) return (
     <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#1a3a5c,#2a5580)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-      <Helmet><title>Admin Login – SalaryTopUp</title></Helmet>
+      <Helmet><title>Admin Login – Salary Topup</title></Helmet>
       <form onSubmit={handleLogin} style={{ background: "#fff", borderRadius: 16, padding: "40px 36px", width: 360, boxShadow: "0 20px 60px rgba(0,0,0,0.3)" }}>
         <div style={{ textAlign: "center", marginBottom: 28 }}>
           <div style={{ width: 56, height: 56, borderRadius: "50%", background: "linear-gradient(135deg,#1e8a6e,#26b9db)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 12px" }}>
             <span style={{ color: "#fff", fontSize: 22 }}>🔐</span>
           </div>
           <h2 style={{ fontSize: 22, fontWeight: 800, color: "#1a3a5c", margin: 0 }}>Admin Login</h2>
-          <p style={{ color: "#888", fontSize: 13, marginTop: 4 }}>SalaryTopUp Dashboard</p>
+          <p style={{ color: "#888", fontSize: 13, marginTop: 4 }}>Salary Topup Dashboard</p>
         </div>
 
         <div style={{ marginBottom: 16 }}>
@@ -159,12 +159,12 @@ const AdminPanel = () => {
   // ─── ADMIN DASHBOARD ─────────────────────────────────────────
   return (
     <div style={{ minHeight: "100vh", background: "#f1f5f9", display: "flex" }}>
-      <Helmet><title>Admin Dashboard – SalaryTopUp</title></Helmet>
+      <Helmet><title>Admin Dashboard – Salary Topup</title></Helmet>
 
       {/* Sidebar */}
       <div style={{ width: 220, background: "linear-gradient(180deg,#1a3a5c,#2a5580)", minHeight: "100vh", padding: "24px 0", display: "flex", flexDirection: "column", flexShrink: 0 }}>
         <div style={{ padding: "0 20px 24px", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
-          <div style={{ fontSize: 18, fontWeight: 800, color: "#fff" }}>SalaryTopUp</div>
+          <div style={{ fontSize: 18, fontWeight: 800, color: "#fff" }}>Salary Topup</div>
           <div style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", marginTop: 2 }}>Admin Panel</div>
         </div>
 

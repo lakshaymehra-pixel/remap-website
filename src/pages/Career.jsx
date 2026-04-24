@@ -59,15 +59,15 @@ export default function Career() {
   return (
     <>
       <Helmet>
-        <title>Careers | SalaryTopUp</title>
-        <meta name="description" content="Join the SalaryTopUp team. Explore exciting career opportunities in fintech." />
+        <title>Careers | Salary Topup</title>
+        <meta name="description" content="Join the Salary Topup team. Explore exciting career opportunities in fintech." />
       </Helmet>
 
       {/* Hero */}
       <section className="cr-hero">
         <div className="cr-hero-inner">
           <span className="cr-hero-badge"><i className="fas fa-star" style={{ marginRight: 6 }}></i>We're Hiring</span>
-          <h1>Join the <span>SalaryTopUp</span> Team</h1>
+          <h1>Join the <span>Salary Topup</span> Team</h1>
           <p>Be part of a fast-growing fintech transforming how India accesses emergency credit. We build products that matter.</p>
         </div>
       </section>

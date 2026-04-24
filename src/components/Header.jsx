@@ -51,7 +51,7 @@ const Header = () => {
         {/* Logo */}
         <div className="hdr-logo">
           <Link to="/">
-            <img src={siteLogo || ctxLogo || defaultLogo} alt="SalaryTopUp" />
+            <img src={siteLogo || ctxLogo || defaultLogo} alt="Salary Topup" />
           </Link>
         </div>
 

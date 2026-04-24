@@ -29,7 +29,7 @@ const FALLBACK_FAQS = [
   {
     group: "Documents & Security",
     items: [
-      { q: "Do I need to provide collateral to get a loan?", a: "Bilkul nahi! Salary TopUp loans are 100% collateral-free. Koi bhi ghar, gaadi, ya sona girvee rakhne ki zaroorat nahi hai. Sirf aapki salary aur basic documents kaafi hain." },
+      { q: "Do I need to provide collateral to get a loan?", a: "Bilkul nahi! Salary Topup loans are 100% collateral-free. Koi bhi ghar, gaadi, ya sona girvee rakhne ki zaroorat nahi hai. Sirf aapki salary aur basic documents kaafi hain." },
       { q: "What documents are required to apply?", a: "Aapko chahiye: PAN Card, Aadhaar Card (identity & address proof), last 3 months ki salary slips ya bank statement, aur employment proof. Bas itna kaafi hai — koi extra documents nahi!" },
       { q: "How fast can I receive the loan amount?", a: "Once approved, funds are typically credited to your bank account within 10–30 minutes. In some cases it may take up to a few hours depending on your bank." },
     ],
